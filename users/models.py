@@ -61,8 +61,8 @@ class Person(models.Model):
     # an id field should be created and made the primary key
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    email = models.EmailField(max_length=100, null=True, blank=True)
-    internship_flag = models.BooleanField(null=True, blank=True)
+    email = models.EmailField(max_length=100, null=True)
+    internship_flag = models.BooleanField(blank=True)
     additional_comments = models.CharField(
         max_length=254, null=True, blank=True)
 
@@ -70,7 +70,7 @@ class Person(models.Model):
 class Donation(models.Model):
     # this model tracks whether the person submits a Donation
     give_back = models.CharField(max_length=30)
-    my_choice = models.BooleanField(null=True, blank=True)
+    my_choice = models.BooleanField(blank=True)
     person = models.ForeignKey('Person')
 
 
@@ -88,7 +88,7 @@ class PersonInternship(models.Model):
 class Company(models.Model):
     name = models.CharField(max_length=30)
     city = models.CharField(max_length=30)
-    state = models.CharField(choices=STATE)
+    state = models.CharField(max_length=2, choices=STATE)
 
 
 class FullTime(models.Model):
