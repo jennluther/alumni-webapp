@@ -5,9 +5,9 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1482428179.455583
+_modified_time = 1484333999.52366
 _enable_loop = True
-_template_filename = 'C:/Users/isys-sec/Documents/AlumniDb/AlumniDb/homepage/templates/index.html'
+_template_filename = '/Users/beckyrichards/Documents/Development/alumni-webapp/alumni-webapp/homepage/templates/index.html'
 _template_uri = 'index.html'
 _source_encoding = 'utf-8'
 import os, os.path, re, json
@@ -32,11 +32,12 @@ def render_body(context,**pageargs):
         def content():
             return render_content(context._locals(__M_locals))
         __M_writer = context.writer()
-        __M_writer('\r\n\r\n')
+        __M_writer('\n\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
             context['self'].content(**pageargs)
         
 
+        __M_writer('\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -48,7 +49,7 @@ def render_content(context,**pageargs):
         def content():
             return render_content(context)
         __M_writer = context.writer()
-        __M_writer('\r\n    <div class="content">\r\n      <h3>Congratulations -- you\'ve successfully created a new django-mako-plus app!</h3>\r\n      <h4>Next Up: Go through the django-mako-plus tutorial and add Javascript, CSS, and urlparams to this page.</h4>\r\n    </div>\r\n')
+        __M_writer('\n    <div class="content">\n      <h3>Congratulations -- you\'ve successfully created a new django-mako-plus app!</h3>\n      <h4>Next Up: Go through the django-mako-plus tutorial and add Javascript, CSS, and urlparams to this page.</h4>\n    </div>\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -56,6 +57,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"source_encoding": "utf-8", "uri": "index.html", "filename": "C:/Users/isys-sec/Documents/AlumniDb/AlumniDb/homepage/templates/index.html", "line_map": {"51": 3, "35": 1, "28": 0, "45": 3, "57": 51}}
+{"uri": "index.html", "filename": "/Users/beckyrichards/Documents/Development/alumni-webapp/alumni-webapp/homepage/templates/index.html", "line_map": {"35": 1, "52": 3, "40": 8, "58": 52, "28": 0, "46": 3}, "source_encoding": "utf-8"}
 __M_END_METADATA
 """
