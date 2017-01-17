@@ -1,6 +1,14 @@
 from django.db import models
 from django.core.validators import MaxValueValidator
 # LISTS
+TIME_RANGE = [
+    ('0 - 10 Hours'),
+    ('10 - 20 Hours'),
+    ('20 - 30 Hours'),
+    ('40 - 60 Hours'),
+    ('60+ Hours'),
+]
+
 STATE = [
     ('AL', 'Alabama'),
     ('AK', 'Alaska'),
@@ -76,13 +84,14 @@ class Donation(models.Model):
 
 class Internship(models.Model):
     company_name = models.CharField(max_length=30)
-    time_looking = models.IntegerField(null=True, blank=True)
     how_obtained = models.CharField(max_length=40)
 
 
 class PersonInternship(models.Model):
     person = models.ForeignKey('Person')
     internship = models.ForeignKey('Internship')
+    time_looking = models.IntegerField(null=True, blank=True)
+
 
 
 class Company(models.Model):
@@ -102,6 +111,7 @@ class FullTime(models.Model):
     # y=yes, n=no, m=maybe
     time_looking = models.IntegerField(null=True, blank=True)
     salary = models.DecimalField(max_digits=6, decimal_places=2)
+    position_description = models.CharField(max_length=30)
     accepted_offer = models.ForeignKey('Company')
     person_id = models.ForeignKey('Person')
 

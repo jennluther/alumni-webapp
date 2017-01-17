@@ -1,4 +1,6 @@
-<html>
+<%inherit file="base.htm" />
+
+<%block name="content">
 <head>
   <script type='text/javascript'>
     function addFields(){
@@ -42,12 +44,17 @@
     <input id="state" type="text" name="state" value="{{ current_state }}">
 
   <h1>Internship Information</h1>
-    <label for="intern_fields">If multiple, how many internships did you complete?</label><!--make this a drop down of numbers-->
+    <label for="intern_fields">How many internships did you complete?</label><!--make this a drop down of numbers-->
     <input id="intern_fields" type="text" name="intern_fields">
     <label for="intern_company">Company: </label><!--make this field give suggested companies that are already in Database-->
+    <input id="intern_company" type="text" name="intern_company" value="{{ current_intern_company }}">
+    <label for="how_obtained">How did you obtain your internship? </label><!--drop down list obtain-->
+    <input id="how_obtained" type="text" name="how_obtained" value="{{ current_how_obtained }}">
+    <label for="intern_company">How much time did you spend looking for your internship? </label><!--drop down list obtain-->
     <input id="intern_company" type="text" name="intern_company" value="{{ current_intern_company }}">
 
     <input type="submit" value="Save">
 </form>
 </body>
 </html>
+</%block>
