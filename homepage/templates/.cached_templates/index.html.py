@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1484333999.52366
+_modified_time = 1484927246.380329
 _enable_loop = True
 _template_filename = '/Users/beckyrichards/Documents/Development/alumni-webapp/alumni-webapp/homepage/templates/index.html'
 _template_uri = 'index.html'
@@ -49,7 +49,7 @@ def render_content(context,**pageargs):
         def content():
             return render_content(context)
         __M_writer = context.writer()
-        __M_writer('\n    <div class="content">\n      <h3>Congratulations -- you\'ve successfully created a new django-mako-plus app!</h3>\n      <h4>Next Up: Go through the django-mako-plus tutorial and add Javascript, CSS, and urlparams to this page.</h4>\n    </div>\n')
+        __M_writer('\n\n  <div class="content">\n    <h1>Welcome to the Information Systems Community. </h1>\n  </div>\n\n  <div class="home_buttons">\n    <a class="btn btn-success" href="#" role="button">Reports</a>\n    <a class="btn btn-success" href="#" role="button">Graduation Survey</a>\n    <a class="btn btn-success" href="#" role="button">IS News</a>\n  </div>\n\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -57,6 +57,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"uri": "index.html", "filename": "/Users/beckyrichards/Documents/Development/alumni-webapp/alumni-webapp/homepage/templates/index.html", "line_map": {"35": 1, "52": 3, "40": 8, "58": 52, "28": 0, "46": 3}, "source_encoding": "utf-8"}
+{"source_encoding": "utf-8", "filename": "/Users/beckyrichards/Documents/Development/alumni-webapp/alumni-webapp/homepage/templates/index.html", "line_map": {"35": 1, "52": 3, "40": 15, "58": 52, "28": 0, "46": 3}, "uri": "index.html"}
 __M_END_METADATA
 """
