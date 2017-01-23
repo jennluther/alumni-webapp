@@ -1,5 +1,5 @@
 <%inherit file="base.htm" />
-<%
+
 
 <%block name="content">
 <form action="/contact-info/" method="post">
@@ -106,7 +106,7 @@
       <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
       <span class="caret"></span></button>
       <ul class="dropdown-menu">
-        %for item in PROGRAM_INTRO:
+        %for item in VALUABLE:
           <li>${ item }</li>
         %endfor
       </ul>

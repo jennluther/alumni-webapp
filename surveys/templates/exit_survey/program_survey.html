@@ -1,0 +1,119 @@
+<%inherit file="base.htm" />
+
+
+<%block name="content">
+<form action="/contact-info/" method="post">
+  <h1>Program Information</h1>
+  <p>Please help us improve the program with your clear feedback.</p>
+<!--
+  <label for="program_introduction">How did you learn about the Information Systems program?</label><br>
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      %for item in PROGRAM_INTRO:
+        <li>${ item }</li>
+      %endfor
+    </ul>
+  </div>
+  <br><br>
+-->
+  <div class="form-group">
+    <label for="mism_decision">Why did you decide to pursue the MISM?</label><br>
+    <input id="mism_decision" type="text" name="mism_decision" value="">
+  </div>
+
+  <div class="form-group">
+    <label for="again">Given the opportunity to start over, would you choose IS again?</label><br>
+    <!--pass values of y=yes, n=no and ns=not sure-->
+    <input id="again" type="radio" name="again" value="y">Yes<br>
+    <input id="again" type="radio" name="again" value="n">No<br>
+    <input id="again" type="radio" name="again" value="ns">Not Sure
+  </div>
+
+  <div class="form-group">
+    <label for="again_response">Please explain your response to the question above.</label><br>
+    <input id="again_response" type="text" name="again_response" value="">
+  </div>
+
+  <div class="form-group">
+    <label for="additional_classes">What classes or topics would you have liked to take that were not offered?</label><br>
+    <input id="additional_classes" type="text" name="additional_classes" value="">
+  </div>
+<!--
+  <label for="valuable_class">What was the most valuable class in the MISM?</label><br>
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
+    <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+      %for item in VALUABLE:
+        <li>${ item }</li>
+      %endfor
+    </ul>
+  </div>
+  <br><br>
+-->
+  <div class="form-group">
+    <label for="valuable_class_response">Please explain your response to the question above.</label><br>
+    <input id="valuable_class_response" type="text" name="valuable_class_response" value="">
+  </div>
+
+  <div class="form-group">
+    <label for="best_response">What did you like best about the MISM and why?</label><br>
+    <input id="best_response" type="text" name="best_response" value="">
+  </div>
+
+  <div class="form-group">
+    <label for="recommendation">What recommendations would you make to improve the program? </label><br>
+    <input id="recommendation" type="text" name="recommendation" value="">
+  </div>
+
+  <div class="form-group">
+    <!--How do I distinguish this appointment from the Career Advisor appointment and so on?-->
+    <label for="appointment">How many times did you meet with Caroline?</label><br>
+    <input id="appointment" type="text" name="appointment" value=""><br><br><!--drop down list of numbers for appointments-->
+  </div>
+
+
+  <div class="form-group">
+    <label for="help_rating">Please rate Caroline's helpfulness in your search for an internship/full-time position.</label><br>
+    <p>Not helpful at all
+    <input id="help_rating" type="radio" name="help_rating" value="1">1
+    <input id="help_rating" type="radio" name="help_rating" value="2">2
+    <input id="help_rating" type="radio" name="help_rating" value="3">3
+    <input id="help_rating" type="radio" name="help_rating" value="4">4
+    <input id="help_rating" type="radio" name="help_rating" value="5">5
+    <input id="help_rating" type="radio" name="help_rating" value="6">6
+    <input id="help_rating" type="radio" name="help_rating" value="7">7
+    <input id="help_rating" type="radio" name="help_rating" value="8">8
+    <input id="help_rating" type="radio" name="help_rating" value="9">9
+    <input id="help_rating" type="radio" name="help_rating" value="10">10
+    Exteremely helpful</p>
+  </div>
+
+  <div class="form-group">
+    <label for="suggestions">What suggestion would you give to Caroline to help her improve?</label><br>
+    <input id="suggestions" type="text" name="suggestions" value="">
+  </div>
+
+  <div class="form-group">
+    <label for="give_back">When you are able to do so, will you give back to the Information Systems program?</label><br>
+    <input id="give_back" type="radio" name="give_back" value="1">Money (donations to department, scholarship funds, etc.)<br>
+    <input id="give_back" type="radio" name="give_back" value="2">Time (mentoriship, guest lectures, etc.)<br>
+    <input id="give_back" type="radio" name="give_back" value="3">Both<br>
+    <input id="give_back" type="radio" name="give_back" value="4">I don't plan on giving back
+  </div>
+
+  <div class="form-group">
+    <label for="my_choice">Did you participate in "My Choice to Give"?</label><br>
+    <input id="my_choice" type="radio" name="my_choice" value="yes">Yes<br>
+    <input id="my_choice" type="radio" name="my_choice" value="no">No
+  </div>
+
+  <div class="form-group">
+    <label for="additional_comments">Anything else you'd like us to know?</label><br>
+    <input id="additional_comments" type="text" name="additional_comments" value="">
+  </div>
+  
+</form>
+</%block>

@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1484863173.6202824
+_modified_time = 1484868579.8827355
 _enable_loop = True
 _template_filename = 'C:/Users/isys-sec/Documents/AlumniDb/alumni-webapp/surveys/templates/exit_survey.html'
 _template_uri = 'exit_survey.html'
@@ -31,10 +31,10 @@ def render_body(context,**pageargs):
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         def content():
             return render_content(context._locals(__M_locals))
-        TIME_RANGE = context.get('TIME_RANGE', UNDEFINED)
+        models = context.get('models', UNDEFINED)
         PROGRAM_INTRO = context.get('PROGRAM_INTRO', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\r\n\r\n')
+        __M_writer('\r\n\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
             context['self'].content(**pageargs)
         
@@ -50,11 +50,11 @@ def render_content(context,**pageargs):
     try:
         def content():
             return render_content(context)
-        TIME_RANGE = context.get('TIME_RANGE', UNDEFINED)
+        models = context.get('models', UNDEFINED)
         PROGRAM_INTRO = context.get('PROGRAM_INTRO', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n<form action="/contact-info/" method="post">\r\n  <h1>Job Information</h1>\r\n\r\n    <label for="offers_received">How many full-time offers did you receive? </label><br> <!--drop down of numbers-->\r\n    <input id="offers_received" type="text" name="offers_received" value=""><br><br>\r\n\r\n    <label for="company">Which company did you accept an offer with? </label><br><!--make this field give suggested companies that are already in Database-->\r\n    <input id="company" type="text" name="company" value=""><br><br>\r\n\r\n    <label for="expected_salary">What is your expected salary? </label><br>\r\n    <input id="expected_salary" type="text" name="exptected_salary" value=""><br><br>\r\n\r\n    <label for="position_title">What is your position title? </label><br>\r\n    <input id="position_title" type="text" name="position_title" value=""><br><br>\r\n\r\n    <label for="position_description">Which of the following best describes your position? </label><br> <!--list of possible job descriptions-->\r\n    <input id="position_description" type="text" name="position_description" value=""><br><br>\r\n    <!--alternate position description that can take the place of the position_description-->\r\n\r\n    <!--I don\'t know if we need to do anything to allow the "other" submition to have the same tags as the position_description-->\r\n    <label for="position_description">If other, list here: </label><br> <!--list of possible job descriptions-->\r\n    <input id="position_description" type="text" name="position_description" value=""><br><br>\r\n\r\n    <label for="contact">Are you willing to serve as a contact for the company you\'ve selected? </label><br>\r\n    <!--pass values of y=yes, n=no and m=maybe-->\r\n    <input id="contact" type="radio" name="contact" value="y">Yes<br>\r\n    <input id="contact" type="radio" name="contact" value="n">No<br>\r\n    <input id="contact" type="radio" name="contact" value="m">Maybe<br><br>\r\n\r\n    <label for="time_looking">How much time did you spend looking for your full-time position? </label><br> <!--list of possible job descriptions-->\r\n    <div class="dropdown">\r\n      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example\r\n      <span class="caret"></span></button>\r\n      <ul class="dropdown-menu">\r\n')
-        for item in TIME_RANGE:
+        for item in models.TIME_RANGE:
             __M_writer('          <li>')
             __M_writer(str( item ))
             __M_writer('</li>\r\n')
@@ -76,6 +76,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"uri": "exit_survey.html", "filename": "C:/Users/isys-sec/Documents/AlumniDb/alumni-webapp/surveys/templates/exit_survey.html", "line_map": {"64": 82, "65": 82, "66": 84, "67": 108, "68": 109, "37": 1, "70": 109, "71": 111, "60": 39, "42": 159, "77": 71, "48": 3, "69": 109, "56": 3, "57": 38, "58": 39, "59": 39, "28": 0, "61": 41, "62": 81, "63": 82}, "source_encoding": "utf-8"}
+{"filename": "C:/Users/isys-sec/Documents/AlumniDb/alumni-webapp/surveys/templates/exit_survey.html", "uri": "exit_survey.html", "line_map": {"64": 83, "65": 83, "66": 85, "67": 109, "68": 110, "37": 1, "70": 110, "71": 112, "60": 40, "42": 160, "77": 71, "48": 4, "69": 110, "56": 4, "57": 39, "58": 40, "59": 40, "28": 0, "61": 42, "62": 82, "63": 83}, "source_encoding": "utf-8"}
 __M_END_METADATA
 """
