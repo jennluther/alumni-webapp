@@ -5,9 +5,9 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1484693737.427102
+_modified_time = 1484941765.573739
 _enable_loop = True
-_template_filename = 'C:/Users/isys-sec/Documents/AlumniDb/alumni-webapp/surveys/templates/base.htm'
+_template_filename = '/Users/beckyrichards/Documents/Development/alumni-webapp/alumni-webapp/surveys/templates/base.htm'
 _template_uri = 'base.htm'
 _source_encoding = 'utf-8'
 import os, os.path, re, json
@@ -20,30 +20,30 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        request = context.get('request', UNDEFINED)
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        self = context.get('self', UNDEFINED)
+        request = context.get('request', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
+        self = context.get('self', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\r\n')
-        __M_writer('\r\n\r\n\r\n<!DOCTYPE html>\r\n<html>\r\n  <meta charset="UTF-8">\r\n  <head>\r\n\r\n    <title>surveys</title>\r\n\r\n')
-        __M_writer('    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>\r\n    <script src="')
+        __M_writer('\n')
+        __M_writer('\n\n\n<!DOCTYPE html>\n<html>\n  <meta charset="UTF-8">\n  <head>\n\n    <title>surveys</title>\n\n')
+        __M_writer('    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>\n    <script src="')
         __M_writer(str( STATIC_URL ))
-        __M_writer('homepage/media/jquery.loadmodal.js"></script>\r\n    <script src="')
+        __M_writer('homepage/media/jquery.loadmodal.js"></script>\n    <script src="')
         __M_writer(str( STATIC_URL ))
-        __M_writer('homepage/media/jquery.form.min.js"></script>\r\n\r\n    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">\r\n\r\n')
+        __M_writer('homepage/media/jquery.form.min.js"></script>\n\n    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">\n\n')
         __M_writer('    ')
         __M_writer(str( get_template_css(self, request, context) ))
-        __M_writer('\r\n\r\n  </head>\r\n  <body>\r\n\r\n    <header>\r\n\r\n      <nav class="navbar navbar-inverse navbar-static-top">\r\n        <div class="container-fluid">\r\n          <!-- Brand and toggle get grouped for better mobile display -->\r\n          <div class="navbar-header">\r\n            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">\r\n              <span class="sr-only">Toggle navigation</span>\r\n              <span class="icon-bar"></span>\r\n              <span class="icon-bar"></span>\r\n              <span class="icon-bar"></span>\r\n            </button>\r\n            <a class="navbar-brand" href="#">Brand</a>\r\n          </div>\r\n\r\n          <!-- Collect the nav links, forms, and other content for toggling -->\r\n          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\r\n            <ul class="nav navbar-nav">\r\n              <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>\r\n              <li><a href="#">Link</a></li>\r\n              <li class="dropdown">\r\n                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>\r\n                <ul class="dropdown-menu">\r\n                  <li><a href="#">Action</a></li>\r\n                  <li><a href="#">Another action</a></li>\r\n                  <li><a href="#">Something else here</a></li>\r\n                  <li role="separator" class="divider"></li>\r\n                  <li><a href="#">Separated link</a></li>\r\n                  <li role="separator" class="divider"></li>\r\n                  <li><a href="#">One more separated link</a></li>\r\n                </ul>\r\n              </li>\r\n            </ul>\r\n            <form class="navbar-form navbar-left">\r\n              <div class="form-group">\r\n                <input type="text" class="form-control" placeholder="Search">\r\n              </div>\r\n              <button type="submit" class="btn btn-default">Submit</button>\r\n            </form>\r\n            <ul class="nav navbar-nav navbar-right">\r\n              <li><a href="#">Link</a></li>\r\n              <li class="dropdown">\r\n                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>\r\n                <ul class="dropdown-menu">\r\n                  <li><a href="#">Action</a></li>\r\n                  <li><a href="#">Another action</a></li>\r\n                  <li><a href="#">Something else here</a></li>\r\n                  <li role="separator" class="divider"></li>\r\n                  <li><a href="#">Separated link</a></li>\r\n                </ul>\r\n              </li>\r\n            </ul>\r\n          </div><!-- /.navbar-collapse -->\r\n        </div><!-- /.container-fluid -->\r\n      </nav>\r\n    </header>\r\n\r\n    ')
+        __M_writer('\n\n  </head>\n  <body>\n\n    <header>\n\n      <nav class="navbar navbar-inverse navbar-static-top">\n        <div class="container-fluid">\n          <!-- Brand and toggle get grouped for better mobile display -->\n          <div class="navbar-header">\n            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">\n              <span class="sr-only">Toggle navigation</span>\n              <span class="icon-bar"></span>\n              <span class="icon-bar"></span>\n              <span class="icon-bar"></span>\n            </button>\n            <a class="navbar-brand" href="#">Alumni Database</a>\n          </div>\n\n          <!-- Collect the nav links, forms, and other content for toggling -->\n          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\n            <ul class="nav navbar-nav">\n              <li><a href="#">Reports</a></li>\n              <li><a href="#">Graduation Survey</a></li>\n              <li><a href="#">IS News</a></li>\n            </ul>\n\n            <ul class="nav navbar-nav navbar-right">\n              <li><a href="#">Login</a></li>\n              <li><a href="#">Sign up</a></li>\n            </ul>\n          </div><!-- /.navbar-collapse -->\n        </div><!-- /.container-fluid -->\n      </nav>\n\n    </header>\n\n    ')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
             context['self'].content(**pageargs)
         
 
-        __M_writer('\r\n\r\n    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>\r\n')
+        __M_writer('\n\n    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>\n')
         __M_writer('    ')
         __M_writer(str( get_template_js(self, request, context) ))
-        __M_writer('\r\n\r\n  </body>\r\n</html>\r\n')
+        __M_writer('\n\n  </body>\n</html>\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -55,7 +55,7 @@ def render_content(context,**pageargs):
         def content():
             return render_content(context)
         __M_writer = context.writer()
-        __M_writer('\r\n      Site content goes here in sub-templates.\r\n    ')
+        __M_writer('\n      Site content goes here in sub-templates.\n    ')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -63,6 +63,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/isys-sec/Documents/AlumniDb/alumni-webapp/surveys/templates/base.htm", "uri": "base.htm", "source_encoding": "utf-8", "line_map": {"32": 16, "33": 16, "34": 17, "35": 17, "36": 22, "37": 22, "38": 22, "64": 58, "43": 86, "44": 90, "45": 90, "46": 90, "17": 4, "19": 0, "52": 84, "58": 84, "29": 2, "30": 4, "31": 15}}
+{"line_map": {"32": 16, "33": 16, "34": 17, "35": 17, "36": 22, "37": 22, "38": 22, "64": 58, "43": 62, "44": 66, "45": 66, "46": 66, "17": 4, "19": 0, "52": 60, "58": 60, "29": 2, "30": 4, "31": 15}, "source_encoding": "utf-8", "uri": "base.htm", "filename": "/Users/beckyrichards/Documents/Development/alumni-webapp/alumni-webapp/surveys/templates/base.htm"}
 __M_END_METADATA
 """
