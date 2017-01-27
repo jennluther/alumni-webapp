@@ -73,6 +73,8 @@ class Person(models.Model):
     internship_flag = models.BooleanField(blank=True)
     additional_comments = models.CharField(
         max_length=254, null=True, blank=True)
+    username = models.CharField(max_length=30)
+    password = models.password
 
 
 class Donation(models.Model):
