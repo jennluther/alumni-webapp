@@ -1,5 +1,8 @@
 from django.db import models
 from django.core.validators import MaxValueValidator
+from django.contrib.auth.models import AbstractUser
+from django.contrib import admin
+
 # LISTS
 TIME_RANGE = [
     ('0 - 10 Hours'),
@@ -73,8 +76,7 @@ class Person(models.Model):
     internship_flag = models.BooleanField(blank=True)
     additional_comments = models.CharField(
         max_length=254, null=True, blank=True)
-    username = models.CharField(max_length=30)
-    password = models.password
+
 
 
 class Donation(models.Model):

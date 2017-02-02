@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1484940899.522617
+_modified_time = 1485542978.852324
 _enable_loop = True
 _template_filename = '/Users/beckyrichards/Documents/Development/alumni-webapp/alumni-webapp/surveys/templates/index.html'
 _template_uri = 'index.html'
@@ -49,7 +49,7 @@ def render_content(context,**pageargs):
         def content():
             return render_content(context)
         __M_writer = context.writer()
-        __M_writer('\n\n  <div class="content">\n    <h1>Graduation Survey. </h1>\n    <p>If you are graduating within the next semester, please take a few minutes to complete this survey. Failure to do so may cause a delay in your graduation. Don\'t worry, it\'ll be done before you can spell supercalifragilisticexpialidocious.</p>\n  </div>\n\n  <div class="home_buttons">\n\n    <a class="btn btn-success btn-lg" href="#" role="button">Take the survey</a>\n\n  </div>\n\n')
+        __M_writer('\n\n  <div class="content">\n    <h1>Graduation Survey. </h1>\n  </div>\n\n  <div class="home_buttons">\n\n    <a class="btn btn-success btn-lg" href="#" role="button">Take the survey</a>\n\n  </div>\n\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -57,6 +57,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"uri": "index.html", "source_encoding": "utf-8", "filename": "/Users/beckyrichards/Documents/Development/alumni-webapp/alumni-webapp/surveys/templates/index.html", "line_map": {"35": 1, "52": 3, "40": 16, "58": 52, "28": 0, "46": 3}}
+{"source_encoding": "utf-8", "uri": "index.html", "line_map": {"35": 1, "52": 3, "40": 15, "58": 52, "28": 0, "46": 3}, "filename": "/Users/beckyrichards/Documents/Development/alumni-webapp/alumni-webapp/surveys/templates/index.html"}
 __M_END_METADATA
 """
