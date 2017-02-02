@@ -22,39 +22,7 @@
 </head>
 
 <body>
-<form action="/confirm-info/" method="post">
-  <h1>Contact Information</h1>
-    <label for="first_name">First name: </label>
-    <input id="first_name" type="text" name="first_name" value="{{ current_fname }}">
-    <label for="last_name">Last name: </label>
-    <input id="last_name" type="text" name="last_name" value="{{ current_lname }}">
-    <label for="email">Email: </label>
-    <input id="email" type="text" name="email" value="{{ current_email }}">
-    <label for="phone">Phone number: </label>
-    <input id="phone" type="text" name="phone" value="{{ current_phone }}">
 
-  <h1>Job Information</h1>
-    <label for="company">Company: </label><!--make this field give suggested companies that are already in Database-->
-    <input id="company" type="text" name="company" value="{{ current_company }}">
-    <label for="salary">Salary: </label>
-    <input id="salary" type="text" name="salary" value="{{ current_salary }}">
-    <label for="city">City: </label>
-    <input id="city" type="text" name="city" value="{{ current_city }}">
-    <label for="state">State: </label><!--link to State list and make it a drop down-->
-    <input id="state" type="text" name="state" value="{{ current_state }}">
-
-  <h1>Internship Information</h1>
-    <label for="intern_fields">How many internships did you complete?</label><!--make this a drop down of numbers-->
-    <input id="intern_fields" type="text" name="intern_fields">
-    <label for="intern_company">Company: </label><!--make this field give suggested companies that are already in Database-->
-    <input id="intern_company" type="text" name="intern_company" value="{{ current_intern_company }}">
-    <label for="how_obtained">How did you obtain your internship? </label><!--drop down list obtain-->
-    <input id="how_obtained" type="text" name="how_obtained" value="{{ current_how_obtained }}">
-    <label for="intern_company">How much time did you spend looking for your internship? </label><!--drop down list obtain-->
-    <input id="intern_company" type="text" name="intern_company" value="{{ current_intern_company }}">
-
-    <input type="submit" value="Save">
-</form>
 </body>
 </html>
 </%block>

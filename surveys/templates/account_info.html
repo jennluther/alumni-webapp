@@ -1,23 +1,5 @@
 <%inherit file="base.htm" />
 
 <%block name="content">
-<form action="/contact-info/" method="post">
-  <h1>Contact Information</h1>
-    <label for="first_name">First name: </label><br>
-    <input id="first_name" type="text" name="first_name" value="{{ current_fname }}"><br><br>
-    <label for="last_name">Last name: </label><br>
-    <input id="last_name" type="text" name="last_name" value="{{ current_lname }}"><br><br>
-    <label for="email">Email: </label><br>
-    <input id="email" type="text" name="email" value="{{ current_email }}"><br><br>
-    <label for="phone">Phone number: </label><br>
-    <input id="phone" type="text" name="phone" value="{{ current_phone }}"><br><br>
 
-  <h1>Job Information</h1>
-    <label for="company">Company: </label><br>
-    <input id="company" type="text" name="company" value="{{ current_company }}"><br><br>
-    <label for="salary">Salary: </label><br>
-    <input id="salary" type="text" name="salary" value="{{ current_salary }}"><br><br><br>
-
-    <input type="submit" value="Save">
-</form>
 </%block>

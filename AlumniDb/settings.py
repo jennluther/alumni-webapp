@@ -26,6 +26,7 @@ SECRET_KEY = '6@9ghfz6!(ae_cxwc+3fklkr#zzbyv45eo05yal--+=u6#_b=p'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+AUTH_USER_MODEL = 'users.Person' #this tells django that we are using a custom user model
 
 
 # Application definition
@@ -121,8 +122,11 @@ WSGI_APPLICATION = 'AlumniDb.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'alumni-webapp',
+        'USER': 'postgres',
+        'PASSWORD': 'jennisawesome',
+        'HOST': 'localhost',
     }
 }
 
