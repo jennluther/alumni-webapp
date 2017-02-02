@@ -1,5 +1,6 @@
 from django import forms
 from .models import Post
+<<<<<<< HEAD
 from django.conf import settings
 from users import models as umod
 from django.forms import widgets
@@ -70,3 +71,15 @@ class ProgramInformation(forms.Form):
     give_back = forms.CharField(label="When you are able to do so, will you give back to the Information Systems program?", max_length=2, required=True, widget=forms.RadioSelect(attrs={"class":"form-control"}), choices=GIVE_CHIOCES)
     give_back = forms.CharField(label="""Did you participate in "My Choice to Give"?""", max_length=2, required=True, widget=forms.RadioSelect(attrs={"class":"form-control"}), choices=MY_CHOICE_CHOICES)
     additional_comments = forms.CharField(label="Anything else you'd like us to know?", max_length=130, required=True, widget=forms.Textarea(attrs={"class":"form-control"}))
+=======
+
+class Exit_Survey_Form(forms.ModelForm):
+
+    class Meta:
+        model = users
+        fields = (*)
+
+        if request.method == "POST":
+            form = Exit_Survey_Form(request.POST, instance=post)
+            if form.is_valid():
+>>>>>>> 758eb032fd2981e7b353d0cab9b871c0e4e50f98
