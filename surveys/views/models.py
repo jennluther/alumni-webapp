@@ -1,16 +1,35 @@
 from django.db import models
 from django.core.validators import MaxValueValidator
-from django.contrib.auth.models import AbstractUser
-from django.contrib import admin
-
-
 # LISTS
 TIME_RANGE = [
-    ('0-10', '0 - 10 Hours'),
-    ('10-20', '10 - 20 Hours'),
-    ('20-30', '20 - 30 Hours'),
-    ('40-60', '40 - 60 Hours'),
-    ('60+', '60+ Hours'),
+    ('0 - 10 Hours'),
+    ('10 - 20 Hours'),
+    ('20 - 30 Hours'),
+    ('40 - 60 Hours'),
+    ('60+ Hours'),
+]
+
+VALUABLE = [
+    ('IS 415 (Capstone)'),
+    ('IS 531 (Enterprise Infrastructure)'),
+    ('IS 550/552 (Capstone)'),
+    ('IS 551 (Leading Change)'),
+    ('IS 555 (BI)'),
+    ('IS 560 (Security)'),
+    ('IS 562 (Project Management)'),
+    ('Other'),
+]
+
+PROGRAM_INTRO = [
+    ('Students in the program'),
+    ('Family member'),
+    ('Alumni'),
+    ('School counselor'),
+    ('Online'),
+    ('Advertisement'),
+    ('Information Session'),
+    ('IS 201'),
+    ('Other'),
 ]
 
 STATE = [
@@ -66,72 +85,23 @@ STATE = [
     ('WY', 'Wyoming'),
 ]
 
-CONTACT_CHOICES = [
-    ('Y', "Yes"),
-    ("N", "No"),
-    ("M", "Maybe"),
-]
-
-AGAIN_CHOICES = [
-    ('Y', "Yes"),
-    ("N", "No"),
-    ("NS", "Not Sure"),
-]
-
-GIVE_CHOICES = [
-    ("Money", "Money (donations to department, scholarship funds, etc.)"),
-    ("Time", "Time (mentorship, guest lectures, etc.)"),
-    ("Both", "Both"),
-    ("No", "I don't plan on giving back"),
-]
-
-MY_CHOICE_CHOICES = [
-    ("Y", "Yes"),
-    ("N", "No"),
-]
-
-VALUABLE_CHOICES =[
-    ("415", "IS 415 (Capstone)"),
-    ("531", "IS 531 (Enterprise Infrastructure)"),
-    ("550/552", "IS 550/552 (Capstone)"),
-    ("551", "IS 551 (Leading Change)"),
-    ("555", "IS 555 (BI)"),
-    ("560", "IS 560 (Security)"),
-    ("562", "IS 562 (Project Management)"),
-    ("Other", "Other"),
-]
-
-INTRODUCTION_CHOICES = [
-    ("1", "Student in the program"),
-    ("2", "Family member"),
-    ("3", "Alumni"),
-    ("4", "School counselor"),
-    ("5", "Online"),
-    ("6", "Advertisement"),
-    ("7", "Information Session"),
-    ("8", "IS 201"),
-    ("9", "Other"),
-]
 # Define models here
 
 
-class Person(AbstractUser):
+class Person(models.Model):
     # an id field should be created and made the primary key
-    #id
-    #first_name
-    #last_name
-    city = models.CharField(max_length=30, null=True, blank=True)
-    state = models.CharField(max_length=2, choices=STATE, blank=True, null=True)
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
     email = models.EmailField(max_length=100, null=True)
     internship_flag = models.BooleanField(blank=True)
-    additional_comments = models.CharField(max_length=254, null=True, blank=True)
-
+    additional_comments = models.CharField(
+        max_length=254, null=True, blank=True)
 
 
 class Donation(models.Model):
     # this model tracks whether the person submits a Donation
-    give_back = models.CharField(max_length=30, choices=GIVE_CHOICES)
-    my_choice = models.BooleanField(blank=True, choices=MY_CHOICE_CHOICES)
+    give_back = models.CharField(max_length=30)
+    my_choice = models.BooleanField(blank=True)
     person = models.ForeignKey('Person')
 
 
@@ -143,7 +113,7 @@ class Internship(models.Model):
 class PersonInternship(models.Model):
     person = models.ForeignKey('Person')
     internship = models.ForeignKey('Internship')
-    time_looking = models.IntegerField(null=True, blank=True, choices=TIME_RANGE)
+    time_looking = models.IntegerField(null=True, blank=True)
 
 
 
@@ -159,13 +129,14 @@ class FullTime(models.Model):
     expected_salary = models.DecimalField(max_digits=6, decimal_places=2)
     position_title = models.CharField(max_length=30)
     # this field is to see if the person
-    contact = models.CharField(max_length=1, choices=CONTACT_CHOICES)
+    contact = models.CharField(max_length=1)
     # is willing to be a contact for the company
     # y=yes, n=no, m=maybe
-    time_looking = models.IntegerField(null=True, blank=True, choices=TIME_RANGE)
+    time_looking = models.IntegerField(null=True, blank=True)
     salary = models.DecimalField(max_digits=6, decimal_places=2)
     position_description = models.CharField(max_length=30)
-    accepted_offer = models.ForeignKey('Company') #can we make the choices come from the company table?
+    difficulties = models.CharField(max_length=150)
+    accepted_offer = models.ForeignKey('Company')
     person_id = models.ForeignKey('Person')
 
 
@@ -207,15 +178,16 @@ class Program(models.Model):
 class ProgramResponse(models.Model):
     program = models.ForeignKey('Program')
     person = models.ForeignKey('Person')
-    program_introduction = models.CharField(max_length=30, choices=INTRODUCTION_CHOICES)
-    mism_decision = models.CharField(max_length=130)
+    program_introduction = models.CharField(max_length=30)
+    mism_decision = models.CharField(max_length=30)
     # Given the opportunity to start over, would you choose IS again?
-    again = models.CharField(max_length=2, choices=AGAIN_CHOICES)
+    again = models.CharField(max_length=10)
     again_response = models.CharField(max_length=150, null=True, blank=True)
     additional_classes = models.CharField(
         max_length=150, null=True, blank=True)
-    valuable_class = models.CharField(max_length=30, null=True, blank=True, choices=VALUABLE_CHOICES)
-    valuable_class_response = models.CharField(max_length=150, null=True, blank=True)
+    valuable_class = models.CharField(max_length=30, null=True, blank=True)
+    valuable_class_response = models.CharField(
+        max_length=150, null=True, blank=True)
     # what did you like best about the MISM and why?
     best_response = models.CharField(max_length=150, null=True, blank=True)
     recommendation = models.CharField(max_length=150, null=True, blank=True)

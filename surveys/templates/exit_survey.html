@@ -1,39 +1,11 @@
 <%inherit file="base.htm" />
 
 <%block name="content">
-<form action="/contact-info/" method="post">
-  <h1>Job Information</h1>
-    <label for="offers_received">How many full-time offers did you receive? </label><br> <!--drop down of numbers-->
-    <input id="offers_received" type="text" name="offers_received" value="{{ current_offers_received }}"><br><br>
-    <label for="company">Which company did you accept an offer with? </label><br><!--make this field give suggested companies that are already in Database-->
-    <input id="company" type="text" name="company" value="{{ current_company }}"><br><br>
-    <label for="expected_salary">What is your expected salary? </label><br>
-    <input id="expected_salary" type="text" name="exptected_salary" value="{{ current_expected_salary }}"><br><br>
-    <label for="position_title">What is your position title? </label><br>
-    <input id="position_title" type="text" name="position_title" value="{{ current_position_title }}"><br><br>
-    <label for="position_description">Which of the following best describes your position? </label><br> <!--list of possible job descriptions-->
-    <input id="position_description" type="text" name="position_description" value="{{ current_position_description }}"><br><br>
-    <!--alternate position description that can take the place of the position_description-->
-    <!--I don't know if we need to do anything to allow the "other" submition to have the same tags as the position_description-->
-    <label for="position_description">If other, list here: </label><br> <!--list of possible job descriptions-->
-    <input id="position_description" type="text" name="position_description" value="{{ current_position_description }}"><br><br>
+  <h1>Exit Survey</h1>
 
-    <label for="contact">Are you willing to serve as a contact for the company you've selected? </label><br>
-    <!--pass values of y=yes, n=no and m=maybe-->
-    <input id="contact" type="radio" name="contact" value="y">Yes<br>
-    <input id="contact" type="radio" name="contact" value="n">No<br>
-    <input id="contact" type="radio" name="contact" value="m">Maybe<br><br>
-
-    <label for="position_description">How much time did you spend looking for your full-time position? </label><br> <!--list of possible job descriptions-->
-    <div class="dropdown">
-      <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Dropdown Example
-      <span class="caret"></span></button>
-      <ul class="dropdown-menu">
-        % for item in TIME_RANGE.values():
-          <li>${item}</li>
-        % endfor
-      </ul>
-    </div>
-    <input id="position_description" type="text" name="position_description" value="{{ current_position_description }}"><br>
+  <form>
+    <table id="myform">
+        ${ form.as_table() }
+    </table>
   </form>
-  </%block>
+</%block>

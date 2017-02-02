@@ -26,6 +26,7 @@ SECRET_KEY = '6@9ghfz6!(ae_cxwc+3fklkr#zzbyv45eo05yal--+=u6#_b=p'
 DEBUG = True
 
 ALLOWED_HOSTS = []
+AUTH_USER_MODEL = 'users.Person' #this tells django that we are using a custom user model
 
 
 # Application definition
@@ -124,7 +125,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'alumni-webapp',
         'USER': 'postgres',
-        'PASSWORD': 'ISfullyinvested',
+        'PASSWORD': 'jennisawesome',
         'HOST': 'localhost',
     }
 }
