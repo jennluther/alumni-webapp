@@ -1,7 +1,9 @@
-<<<<<<< HEAD
 from django.db import models
 from django.core.validators import MaxValueValidator
 from django.contrib.auth.models import AbstractUser
+from django.contrib import admin
+
+
 # LISTS
 TIME_RANGE = [
     ('0-10', '0 - 10 Hours'),
@@ -125,6 +127,7 @@ class Person(AbstractUser):
     additional_comments = models.CharField(max_length=254, null=True, blank=True)
 
 
+
 class Donation(models.Model):
     # this model tracks whether the person submits a Donation
     give_back = models.CharField(max_length=30, choices=GIVE_CHOICES)
@@ -219,5 +222,3 @@ class ProgramResponse(models.Model):
     response_date = models.DateTimeField(null=True, blank=True)
     additional_comments = models.CharField(
         max_length=150, null=True, blank=True)
-=======
->>>>>>> 758eb032fd2981e7b353d0cab9b871c0e4e50f98

@@ -5,9 +5,9 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1485543001.838467
+_modified_time = 1485543109.324128
 _enable_loop = True
-_template_filename = '/Users/beckyrichards/Documents/Development/alumni-webapp/alumni-webapp/homepage/templates/index.html'
+_template_filename = '/Users/beckyrichards/Documents/Development/alumni-webapp/alumni-webapp/users/templates/index.html'
 _template_uri = 'index.html'
 _source_encoding = 'utf-8'
 import os, os.path, re, json
@@ -49,7 +49,7 @@ def render_content(context,**pageargs):
         def content():
             return render_content(context)
         __M_writer = context.writer()
-        __M_writer('\n\n  <div class="content">\n    <h1>We want your data. </h1>\n  </div>\n\n  <div class="home_buttons">\n    <a class="btn btn-success" href="#" role="button">Reports</a>\n    <a class="btn btn-success" href="#" role="button">Graduation Survey</a>\n    <a class="btn btn-success" href="#" role="button">IS News</a>\n  </div>\n\n')
+        __M_writer('\n    <div class="content">\n      <h1>Graduation Survey</h1>\n      <h4>If you are a graduating MISM student, please take the survey below. Failure to complete this survey may result in delayed graduation.</h4>\n    </div>\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -57,6 +57,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"source_encoding": "utf-8", "uri": "index.html", "line_map": {"35": 1, "52": 3, "40": 15, "58": 52, "28": 0, "46": 3}, "filename": "/Users/beckyrichards/Documents/Development/alumni-webapp/alumni-webapp/homepage/templates/index.html"}
+{"source_encoding": "utf-8", "uri": "index.html", "line_map": {"35": 1, "52": 3, "40": 8, "58": 52, "28": 0, "46": 3}, "filename": "/Users/beckyrichards/Documents/Development/alumni-webapp/alumni-webapp/users/templates/index.html"}
 __M_END_METADATA
 """
