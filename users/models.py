@@ -1,7 +1,7 @@
+<<<<<<< HEAD
 from django.db import models
 from django.core.validators import MaxValueValidator
 from django.contrib.auth.models import AbstractUser
-from datetime import datetime
 # LISTS
 TIME_RANGE = [
     ('0-10', '0 - 10 Hours'),
@@ -123,7 +123,6 @@ class Person(AbstractUser):
     email = models.EmailField(max_length=100, null=True)
     internship_flag = models.BooleanField(blank=True)
     additional_comments = models.CharField(max_length=254, null=True, blank=True)
-    #graduation_year = models.DateField()
 
 
 class Donation(models.Model):
