@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'reports',
     'surveys',
     'users',
+    'formlib',
 ]
 
 MIDDLEWARE = [
@@ -82,7 +83,8 @@ TEMPLATES = [
 
            # these are included in every template by default - if you put your most-used libraries here, you won't have to import them exlicitly in templates
            'DEFAULT_TEMPLATE_IMPORTS': [
-             'import os, os.path, re, json',
+            'import django_mako_plus',
+            'import os, os.path, re, json',
            ],
 
            # see the DMP online tutorial for information about this setting
@@ -107,6 +109,19 @@ TEMPLATES = [
            # it can normally be empty
            'TEMPLATES_DIRS': [
                # '/var/somewhere/templates/',
+           ],
+       },
+   },
+   {
+       'BACKEND': 'django.template.backends.django.DjangoTemplates',
+       'DIRS': [],
+       'APP_DIRS': True,
+       'OPTIONS': {
+           'context_processors': [
+               'django.template.context_processors.debug',
+               'django.template.context_processors.request',
+               'django.contrib.auth.context_processors.auth',
+               'django.contrib.messages.context_processors.messages',
            ],
        },
    },
