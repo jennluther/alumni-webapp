@@ -110,6 +110,18 @@ INTRODUCTION_CHOICES = [
     ("8", "IS 201"),
     ("9", "Other"),
 ]
+
+SATISFACTION_CHOICES = [
+    ('VS', 'Very Satisfied'),
+    ('S', 'Satisfied'),
+    ('OK', 'Ok'),
+    ('D', 'Disatisfied'),
+    ('VD', 'Very Disatisfied'),
+]
+
+SKILLS_CHOICES = [
+    #fill this with skills from Reid
+]
 # Define models here
 
 
@@ -162,6 +174,10 @@ class FullTime(models.Model):
     time_looking = models.IntegerField(null=True, blank=True, choices=TIME_RANGE)
     salary = models.DecimalField(max_digits=6, decimal_places=2)
     position_description = models.CharField(max_length=30)
+    current_job = models.BooleanField(default=False)
+    time_at_job = models.IntegerField()
+    avg_hours_week = models.IntegerField()
+    satisfaction = models.CharField(max_length=(50), choices=SATISFACTION_CHOICES)
     accepted_offer = models.ForeignKey('Company') #can we make the choices come from the company table?
     person_id = models.ForeignKey('Person')
 
@@ -169,6 +185,10 @@ class FullTime(models.Model):
 class CompanyFullTime(models.Model):
     company = models.ForeignKey('Company')
     full_time = models.ForeignKey('FullTime')
+
+class Skills(models.Model):
+    full_time = models.ForeignKey('FullTime')
+    skill = models.CharField(max_length=50, choices=SKILLS_CHOICES)
 
 
 class CareerAdvisor(models.Model):
@@ -201,7 +221,7 @@ class Program(models.Model):
     name = models.CharField(max_length=30)
 
 
-class ProgramResponse(models.Model):
+class ExitSurvey(models.Model):
     program = models.ForeignKey('Program')
     person = models.ForeignKey('Person')
     program_introduction = models.CharField(max_length=30, choices=INTRODUCTION_CHOICES)
