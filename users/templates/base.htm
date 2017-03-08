@@ -58,7 +58,26 @@
 
     <%block name="content">
 
-      Site content goes here in sub-templates.
+
+      <div class="container">
+        <div class="row">
+          <div class="col-md-2">
+            <%block name="left_col">
+
+            </%block><!--left_col-->
+          </div>
+          <div class="col-md-8">
+            <%block name="center_col">
+
+            </%block><!--center_col-->
+          </div>
+          <div class="col-md-2">
+            <%block name="right_col">
+
+            </%block><!--right_col-->
+          </div>
+        </div>
+      </div>
     </%block>
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>

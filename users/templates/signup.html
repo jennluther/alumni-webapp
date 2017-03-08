@@ -1,0 +1,13 @@
+<%inherit file="base.htm" />
+
+<%block name="center_col">
+  <h1 class="text-center">Sign Up</h1>
+  <br></br>
+  <form class = "text-center" method="POST">
+    <table align="center" id="myform">
+      ${ form.as_table() }
+    </table>
+    <br></br>
+    <input type="submit" class="btn btn-warning" value="Save"/>
+  </form>
+</%block>

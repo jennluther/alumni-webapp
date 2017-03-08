@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login
 from django import forms
 from .. import dmp_render, dmp_render_to_string
-from users.models import Person
+from users.models import User
 
 
 @view_function
@@ -20,8 +20,8 @@ def process_request(request):
     form = LoginForm(request.POST)
     if form.is_valid():
         # log the user in - connect the user to the request
-        person = authenticate(username=form.cleaned_data.get('username'), password=form.cleaned_data.get('password'))
-        login(request, person)
+        user = authenticate(username=form.cleaned_data.get('username'), password=form.cleaned_data.get('password'))
+        login(request, user)
         #return HttpResponseRedirect('/homepage/index/')
         return HttpResponse('''
         <script>
@@ -42,7 +42,7 @@ class LoginForm(forms.Form):
 
 
     def clean(self):
-        person = authenticate(username=self.cleaned_data.get('username'), password=self.cleaned_data.get('password'))
-        if person == None:
+        user = authenticate(username=self.cleaned_data.get('username'), password=self.cleaned_data.get('password'))
+        if user == None:
             raise forms.ValidationError('The username and password pair was not found in our system.')
         return self.cleaned_data

@@ -26,7 +26,7 @@ SECRET_KEY = '6@9ghfz6!(ae_cxwc+3fklkr#zzbyv45eo05yal--+=u6#_b=p'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-AUTH_USER_MODEL = 'users.Person' #this tells django that we are using a custom user model
+AUTH_USER_MODEL = 'users.User' #this tells django that we are using a custom user model
 
 
 # Application definition
@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    #'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -125,7 +125,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'alumni-webapp',
         'USER': 'postgres',
-        'PASSWORD': 'jennisawesome',
+        'PASSWORD': 'ISfullyinvested',
         'HOST': 'localhost',
     }
 }
