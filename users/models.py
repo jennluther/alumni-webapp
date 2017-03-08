@@ -1,9 +1,7 @@
+
 from django.db import models
 from django.core.validators import MaxValueValidator
 from django.contrib.auth.models import AbstractUser
-from django.contrib import admin
-
-
 # LISTS
 
 PROGRAM_CHOICES = [
@@ -156,6 +154,7 @@ INTRODUCTION_CHOICES = [
     ("9", "Other"),
 ]
 
+<<<<<<< HEAD
 POSITION_CHOICES =[
     ('BI/Db', 'BI/Database'),
     ('Consulting', 'Consulting'),
@@ -169,6 +168,18 @@ POSITION_CHOICES =[
     ('IT Audit', 'IT Audit'),
     ('Security Audit', 'Security Audit'),
     ('Other', 'Other'),
+
+SATISFACTION_CHOICES = [
+    ('VS', 'Very Satisfied'),
+    ('S', 'Satisfied'),
+    ('OK', 'Ok'),
+    ('D', 'Disatisfied'),
+    ('VD', 'Very Disatisfied'),
+]
+
+SKILLS_CHOICES = [
+    #fill this with skills from Reid
+
 ]
 # Define models here
 
@@ -185,7 +196,6 @@ class User(AbstractUser):
     state = models.CharField(max_length=2, choices=STATE, blank=True, null=True)
     internship_flag = models.BooleanField(blank=True, default=False)
     additional_comments = models.CharField(max_length=254, null=True, blank=True)
-
 
 
 class Donation(models.Model):
@@ -221,9 +231,20 @@ class FullTime(models.Model):
     # this field is to see if the person
     contact = models.CharField(max_length=1, null=True, blank=True, choices=CONTACT_CHOICES)
     # is willing to be a contact for the company
+
     ft_time_looking = models.IntegerField(null=True, blank=True, choices=TIME_RANGE)
     position_description = models.CharField(null=True, blank=True, max_length=30)
     ft_other = models.CharField(null=True, blank=True, max_length=50)
+
+    # y=yes, n=no, m=maybe
+    time_looking = models.IntegerField(null=True, blank=True, choices=TIME_RANGE)
+    salary = models.DecimalField(max_digits=6, decimal_places=2)
+    position_description = models.CharField(max_length=30)
+    current_job = models.BooleanField(default=False)
+    time_at_job = models.IntegerField()
+    avg_hours_week = models.IntegerField()
+    satisfaction = models.CharField(max_length=(50), choices=SATISFACTION_CHOICES)
+
     accepted_offer = models.ForeignKey('Company') #can we make the choices come from the company table?
     user_id = models.ForeignKey('User')
 
@@ -231,6 +252,10 @@ class FullTime(models.Model):
 class CompanyFullTime(models.Model):
     company = models.ForeignKey('Company')
     full_time = models.ForeignKey('FullTime')
+
+class Skills(models.Model):
+    full_time = models.ForeignKey('FullTime')
+    skill = models.CharField(max_length=50, choices=SKILLS_CHOICES)
 
 
 class CareerAdvisor(models.Model):
@@ -263,7 +288,7 @@ class Program(models.Model):
     name = models.CharField(max_length=4, null=True, blank=True, choices=PROGRAM_CHOICES)
 
 
-class ProgramResponse(models.Model):
+class ExitSurvey(models.Model):
     program = models.ForeignKey('Program')
     user = models.ForeignKey('User')
     program_introduction = models.CharField(null=True, blank=True, max_length=30, choices=INTRODUCTION_CHOICES)
