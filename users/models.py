@@ -154,7 +154,6 @@ INTRODUCTION_CHOICES = [
     ("9", "Other"),
 ]
 
-<<<<<<< HEAD
 POSITION_CHOICES =[
     ('BI/Db', 'BI/Database'),
     ('Consulting', 'Consulting'),
@@ -168,6 +167,7 @@ POSITION_CHOICES =[
     ('IT Audit', 'IT Audit'),
     ('Security Audit', 'Security Audit'),
     ('Other', 'Other'),
+]
 
 SATISFACTION_CHOICES = [
     ('VS', 'Very Satisfied'),

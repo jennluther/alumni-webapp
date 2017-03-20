@@ -140,7 +140,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'alumni-webapp',
         'USER': 'postgres',
-        'PASSWORD': 'ISfullyinvested',
+        'PASSWORD': '1nf0rm@t10n$y$',
         'HOST': 'localhost',
     }
 }
