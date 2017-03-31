@@ -5,8 +5,8 @@ from django.contrib.auth.models import AbstractUser
 # LISTS
 
 PROGRAM_CHOICES = [
-    ('MISM', 'MISM'),
-    ('BSIS', 'BSIS'),
+    ('MISM', 'Masters of Information Systems Management'),
+    ('BSIS', 'Bachelors of Information Systems'),
 ]
 
 RATING = [
@@ -178,9 +178,34 @@ SATISFACTION_CHOICES = [
 ]
 
 SKILLS_CHOICES = [
-    #fill this with skills from Reid
-
+    ('AD', 'Algorithm Design'),
+    ('BPC', 'Business Processes and Controls'),
+    ('CFS', 'Computing Foundational Skills'),
+    ('DA', 'Database Analysis'),
+    ('DS', 'Database Systems'),
+    ('EI', 'Enterprise Infrastructure'),
+    ('ERP', 'ERP Systems'),
+    ('GA', 'Graphics and Animation'),
+    ('HD', 'Hardware Design'),
+    ('IP', 'Image Processing'),
+    ('IS', 'Information Security'),
+    ('MO', 'Microsoft Office'),
+    ('NM', 'Numerical Method'),
+    ('P', 'Platforms'),
+    ('PDP', 'Product Design and Production'),
+    ('PLE', 'Programming Languages/Environments'),
+    ('PP', 'Programming Paradigms'),
+    ('PS', 'Psychology of Security'),
+    ('SD', 'Software Design'),
+    ('SDM', 'Software Development Methodologies'),
+    ('SDT', 'Software Development Tools'),
+    ('ST', 'Software Testing'),
+    ('S', 'Statistics'),
+    ('SN', 'System Networks'),
+    ('T', 'Theory'),
+    ('WB', 'Web Design'),
 ]
+
 # Define models here
 
 
@@ -191,12 +216,11 @@ class User(AbstractUser):
     #last_name
     #email
     #username
-    #password =
+    #password
     city = models.CharField(max_length=30, null=True, blank=True)
     state = models.CharField(max_length=2, choices=STATE, blank=True, null=True)
-    internship_flag = models.BooleanField(blank=True, default=False)
-    additional_comments = models.CharField(max_length=254, null=True, blank=True)
-
+    phone = models.CharField(max_length=30, null=True, blank=True)
+    graduationDate = models.DateField(null=True, blank=True)
 
 class Donation(models.Model):
     # this model tracks whether the person submits a Donation
@@ -204,54 +228,45 @@ class Donation(models.Model):
     my_choice = models.CharField(max_length=1, null=True, blank=True, choices=MY_CHOICE_CHOICES)
     user = models.ForeignKey('User')
 
-
-class Internship(models.Model):
-    company_name = models.CharField(max_length=30)
-    how_obtained = models.CharField(max_length=40)
-
-
-class PersonInternship(models.Model):
-    user = models.ForeignKey('User')
-    internship = models.ForeignKey('Internship')
-    time_looking = models.IntegerField(null=True, blank=True, choices=TIME_RANGE)
-
-
-
 class Company(models.Model):
     name = models.CharField(max_length=30, null=True, blank=True, )
     city = models.CharField(max_length=30, null=True, blank=True, )
     state = models.CharField(max_length=2, choices=STATE)
 
+class Internship(models.Model):
+    company = models.ForeignKey('Company', null=True, blank=True)
+    user = models.ForeignKey('User', null=True, blank=True)
+    how_obtained = models.CharField(max_length=40, null=True, blank=True)
+    hours_looking = models.IntegerField(null=True, blank=True)
 
 class FullTime(models.Model):
-    offers_received = models.CharField(max_length=17, null=True, blank=True, choices=NUM_OFFERS)
+    company = models.ForeignKey('Company') #can we make the choices come from the company table?
+    user = models.ForeignKey('User')
+
     date_accepted = models.DateField(null=True, blank=True)
-    expected_salary = models.DecimalField(null=True, blank=True, max_digits=6, decimal_places=2)
+    expected_salary = models.DecimalField(null=True, blank=True, max_digits=15, decimal_places=2)
     position_title = models.CharField(null=True, blank=True, max_length=30)
-    # this field is to see if the person
+    # this field is to see if the person is willing to be a contact for the company
     contact = models.CharField(max_length=1, null=True, blank=True, choices=CONTACT_CHOICES)
-    # is willing to be a contact for the company
-
-    ft_time_looking = models.IntegerField(null=True, blank=True, choices=TIME_RANGE)
-    position_description = models.CharField(null=True, blank=True, max_length=30)
-    ft_other = models.CharField(null=True, blank=True, max_length=50)
-
-    # y=yes, n=no, m=maybe
-    time_looking = models.IntegerField(null=True, blank=True, choices=TIME_RANGE)
-    salary = models.DecimalField(max_digits=6, decimal_places=2)
-    position_description = models.CharField(max_length=30)
+    ft_hours_looking = models.IntegerField(null=True, blank=True, choices=TIME_RANGE)
+    salary = models.DecimalField(max_digits=15, decimal_places=2, null=True, blank=True)
+    position_description = models.CharField(null=True, blank=True, max_length=150)
     current_job = models.BooleanField(default=False)
-    time_at_job = models.IntegerField()
-    avg_hours_week = models.IntegerField()
-    satisfaction = models.CharField(max_length=(50), choices=SATISFACTION_CHOICES)
+    start_date = models.DateField(null=True, blank=True)
+    end_date = models.DateField(null=True, blank=True)
+    avg_hours_week = models.IntegerField(null=True, blank=True)
+    satisfaction = models.CharField(max_length=50, null=True, blank=True, choices=SATISFACTION_CHOICES)
+    projected_raise_time_months = models.IntegerField(null=True, blank=True)
+    family_friendly = models.BooleanField(default=False)
+    family_friendly_response = models.CharField(max_length=200, null=True, blank=True)
+    pros = models.CharField(max_length=200, null=True, blank=True)
+    cons = models.CharField(max_length=200, null=True, blank=True)
+    modified = models.DateTimeField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
 
-    accepted_offer = models.ForeignKey('Company') #can we make the choices come from the company table?
-    user_id = models.ForeignKey('User')
-
-
-class CompanyFullTime(models.Model):
+class Offers(models.Model):
     company = models.ForeignKey('Company')
-    full_time = models.ForeignKey('FullTime')
+    user = models.ForeignKey('User')
 
 class Skills(models.Model):
     full_time = models.ForeignKey('FullTime')
@@ -263,33 +278,18 @@ class CareerAdvisor(models.Model):
     ca_last_name = models.CharField(null=True, blank=True, max_length=30)
 
 
-class CareerAdvisorResponse(models.Model):
-    career_advisor = models.ForeignKey('CareerAdvisor')
-    ca_appointment = models.IntegerField(null=True, blank=True)  # number of times they've had appointments
-    ca_help_rating = models.IntegerField(null=True, blank=True, choices=RATING)  # rating of advisors helpfulness
-    ca_suggestions = models.CharField(null=True, blank=True, max_length=150)
-
-
 class AcademicAdvisor(models.Model):
     aa_first_name = models.CharField(null=True, blank=True, max_length=30)
     aa_last_name = models.CharField(null=True, blank=True, max_length=30)
 
 
-class AcademicAdvisorResponse(models.Model):
-    academic_advisor = models.ForeignKey('AcademicAdvisor')
-    aa_appointment = models.IntegerField(null=True, blank=True)  # number of times they've had appointments
-    aa_help_rating = models.IntegerField(null=True, blank=True, choices=RATING)  # rating of advisors helpfulness
-    aa_suggestions = models.CharField(null=True, blank=True, max_length=150)
-
-
 class Program(models.Model):
     career_advisor = models.ForeignKey('CareerAdvisor')
     academic_advisor = models.ForeignKey('AcademicAdvisor')
-    name = models.CharField(max_length=4, null=True, blank=True, choices=PROGRAM_CHOICES)
+    program_name = models.CharField(max_length=4, null=True, blank=True, choices=PROGRAM_CHOICES)
 
 
 class ExitSurvey(models.Model):
-    program = models.ForeignKey('Program')
     user = models.ForeignKey('User')
     program_introduction = models.CharField(null=True, blank=True, max_length=30, choices=INTRODUCTION_CHOICES)
     mism_decision = models.CharField(null=True, blank=True, max_length=130)
@@ -304,5 +304,19 @@ class ExitSurvey(models.Model):
     # what did you like best about the MISM and why?
     best_response = models.CharField(max_length=150, null=True, blank=True)
     recommendation = models.CharField(max_length=150, null=True, blank=True)
-    response_date = models.DateTimeField(null=True, blank=True)
+    response_date = models.DateTimeField(auto_now_add=True)
     additional_comments = models.CharField( max_length=150, null=True, blank=True)
+    #Academic Advisor Responses
+    academic_advisor = models.ForeignKey('AcademicAdvisor')
+    aa_appointment = models.IntegerField(null=True, blank=True)  # number of times they've had appointments
+    aa_help_rating = models.IntegerField(null=True, blank=True, choices=RATING)  # rating of advisors helpfulness
+    aa_suggestions = models.CharField(null=True, blank=True, max_length=150)
+    #Career Advisor Responses
+    career_advisor = models.ForeignKey('CareerAdvisor')
+    ca_appointment = models.IntegerField(null=True, blank=True)  # number of times they've had appointments
+    ca_help_rating = models.IntegerField(null=True, blank=True, choices=RATING)  # rating of advisors helpfulness
+    ca_suggestions = models.CharField(null=True, blank=True, max_length=150)
+
+class ReocurringSurvey(models.Model):
+    user = models.ForeignKey('User')
+    valuable_program_info = models.CharField(max_length=150, null=True, blank=True)

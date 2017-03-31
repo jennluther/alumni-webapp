@@ -21,8 +21,7 @@ def exitsurvey(request):
 
             # create objects for each type of models
             d = umod.Donation()
-            i = umod.internship()
-            pi = umod.PersonInternship()
+            i = umod.Internship()
             c = umod.company()
             ft = umod.FullTime()
             cft = umod.CompanyFullTime()

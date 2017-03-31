@@ -5,11 +5,12 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1485540125.028631
+_modified_time = 1490222594.135784
 _enable_loop = True
-_template_filename = '/Users/beckyrichards/Documents/Development/alumni-webapp/alumni-webapp/homepage/templates/base_ajax.htm'
+_template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/homepage/templates/base_ajax.htm'
 _template_uri = '/homepage/templates/base_ajax.htm'
 _source_encoding = 'utf-8'
+import django_mako_plus
 import os, os.path, re, json
 _exports = ['content']
 
@@ -25,17 +26,17 @@ def render_body(context,**pageargs):
         def content():
             return render_content(context._locals(__M_locals))
         __M_writer = context.writer()
-        __M_writer('\n')
-        __M_writer('\n\n')
+        __M_writer('\r\n')
+        __M_writer('\r\n\r\n')
         __M_writer(str( get_template_css(self, request, context) ))
-        __M_writer('\n\n')
+        __M_writer('\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
             context['self'].content(**pageargs)
         
 
-        __M_writer('\n\n')
+        __M_writer('\r\n\r\n')
         __M_writer(str( get_template_js(self, request, context) ))
-        __M_writer('\n')
+        __M_writer('\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -47,7 +48,7 @@ def render_content(context,**pageargs):
         def content():
             return render_content(context)
         __M_writer = context.writer()
-        __M_writer('\n  Sub-templates should place their ajax content here.\n')
+        __M_writer('\r\n  Sub-templates should place their ajax content here.\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -55,6 +56,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"source_encoding": "utf-8", "line_map": {"36": 14, "37": 17, "38": 17, "44": 12, "17": 6, "50": 12, "19": 0, "56": 50, "28": 4, "29": 6, "30": 9, "31": 9}, "uri": "/homepage/templates/base_ajax.htm", "filename": "/Users/beckyrichards/Documents/Development/alumni-webapp/alumni-webapp/homepage/templates/base_ajax.htm"}
+{"source_encoding": "utf-8", "uri": "/homepage/templates/base_ajax.htm", "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/homepage/templates/base_ajax.htm", "line_map": {"32": 9, "37": 14, "38": 17, "39": 17, "45": 12, "18": 6, "51": 12, "20": 0, "57": 51, "29": 4, "30": 6, "31": 9}}
 __M_END_METADATA
 """

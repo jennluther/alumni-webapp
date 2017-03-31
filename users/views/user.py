@@ -16,9 +16,9 @@ from django.contrib.auth.decorators import permission_required
 def process_request(request):
     #pull all products from the DB
     try:
-        user1 = umod.Person.objects.get(id=request.urlparams[0])
+        user1 = umod.User.objects.get(id=request.urlparams[0])
         #products = cmod.Product.objects.get(id=request.GET.get('id'))
-    except umod.Person.DoesNotExist:
+    except umod.User.DoesNotExist:
         return HttpResponseRedirect('/homepage/index')
 
     #process the form
@@ -100,12 +100,12 @@ class CreateUserForm(FormMixIn, forms.Form):
 
     def clean_username(self):
        username = self.cleaned_data.get('username')
-       if umod.FomoUser.objects.filter(username=username).exclude(id=self.request.user.id):
+       if umod.User.objects.filter(username=username).exclude(id=self.request.user.id):
            raise forms.ValidationError('Username is already in use.')
        return username
 
     def commit(self):
-        user = umod.Person()
+        user = umod.User()
         user.first_name = self.cleaned_data.get('first_name')
         user.last_name = self.cleaned_data.get('last_name')
         user.username = self.cleaned_data.get('username')
@@ -125,8 +125,8 @@ class CreateUserForm(FormMixIn, forms.Form):
 @view_function
 def delete(request):
     try:
-        user = umod.Person.objects.get(id=request.urlparams[0])
-    except umod.Person.DoesNotExist:
+        user = umod.User.objects.get(id=request.urlparams[0])
+    except umod.User.DoesNotExist:
         return HttpResponseRedirect('/users/user')
 
     user.delete()

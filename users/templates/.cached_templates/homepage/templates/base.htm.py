@@ -5,10 +5,10 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1490222009.165798
+_modified_time = 1490222092.586331
 _enable_loop = True
 _template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/homepage/templates/base.htm'
-_template_uri = 'base.htm'
+_template_uri = 'homepage/templates/base.htm'
 _source_encoding = 'utf-8'
 import django_mako_plus
 import os, os.path, re, json
@@ -66,6 +66,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"source_encoding": "utf-8", "uri": "base.htm", "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/homepage/templates/base.htm", "line_map": {"32": 13, "33": 13, "34": 16, "35": 17, "36": 17, "37": 18, "38": 18, "39": 23, "40": 23, "41": 23, "46": 63, "47": 67, "48": 67, "49": 67, "18": 4, "67": 61, "20": 0, "55": 60, "61": 60, "30": 2, "31": 4}}
+{"source_encoding": "utf-8", "uri": "homepage/templates/base.htm", "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/homepage/templates/base.htm", "line_map": {"32": 13, "33": 13, "34": 16, "35": 17, "36": 17, "37": 18, "38": 18, "39": 23, "40": 23, "41": 23, "46": 63, "47": 67, "48": 67, "49": 67, "18": 4, "67": 61, "20": 0, "55": 60, "61": 60, "30": 2, "31": 4}}
 __M_END_METADATA
 """
