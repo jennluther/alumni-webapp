@@ -7,5 +7,5 @@ $(function(){
   $('#id_end_date').datetimepicker({
     timepicker:false,
     format: "Y-m-d"
-  }); 
+  });
 })

@@ -234,7 +234,10 @@ class Company(models.Model):
     state = models.CharField(max_length=2, choices=STATE)
 
     def __str__(self):
-        return self.name
+        return self.name + " (" + self.city + ", " + self.state + ")"
+
+    class Meta:
+        unique_together = ["name", "city", "state"]
 
 class Internship(models.Model):
     company = models.ForeignKey('Company', null=True, blank=True)

@@ -100,34 +100,27 @@ def create(request):
     except umod.User.DoesNotExist:
         return HttpResponseRedirect('/homepage/index')
 
-    companies= umod.Company.objects.all()
-    company_choices = []
-
-    for c in companies:
-        company_choices.append( c.name )
-
-    for c in company_choices:
-        print("$$$$$$", c)
-
+    company = umod.Company.objects.get(id=request.urlparams[1])
+    print(">>>>>>", company.name)
     #process the form
     form = CreateJobForm(request)
 
 
     if form.is_valid():
         print('>>> form is valid')
-        form.commit(user)
-        return HttpResponseRedirect('/users/aluminfo/' + user.id)
+        form.commit(user, company)
+        return HttpResponseRedirect('/users/aluminfo/' + str(user.id))
 
     #render the template
     context = {
         'form': form,
+        'company': company,
     }
     return dmp_render(request, 'currentjob.create.html', context)
 
 class CreateJobForm(FormMixIn, forms.Form):
 
     def init(self, user):
-        self.fields['company'] = forms.ModelChoiceField(label='Company', queryset=umod.Company.objects.order_by('name').all())
         self.fields['position'] = forms.CharField(label='Position', max_length=30)
         self.fields['position_description'] = forms.ChoiceField(choices=umod.POSITION_CHOICES, label='Position Description')
         self.fields['date_accepted'] = forms.DateField(label='Date of job offer acceptance')
@@ -145,7 +138,7 @@ class CreateJobForm(FormMixIn, forms.Form):
         self.fields['ft_hours_looking'] = forms.IntegerField(label='How many hours did you spend looking for this job?')
 
 
-    def commit(self, user):
+    def commit(self,user, company):
         job = umod.FullTime()
         job.position_title = self.cleaned_data.get('position')
         job.position_description = self.cleaned_data.get('position_description')
@@ -162,7 +155,7 @@ class CreateJobForm(FormMixIn, forms.Form):
         job.cons = self.cleaned_data.get('cons')
         job.contact = self.cleaned_data.get('contact')
         job.ft_hours_looking = self.cleaned_data.get('ft_hours_looking')
-        # job.company =
+        job.company = company
         job.user = user
 
         job.save()

@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1492809391.485706
+_modified_time = 1493162129.074538
 _enable_loop = True
 _template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/currentjob.create.html'
 _template_uri = 'currentjob.create.html'
@@ -30,6 +30,7 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        company = context.get('company', UNDEFINED)
         form = context.get('form', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
@@ -48,11 +49,14 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        company = context.get('company', UNDEFINED)
         form = context.get('form', UNDEFINED)
         def content():
             return render_content(context)
         __M_writer = context.writer()
-        __M_writer("\r\n<div class='viewcontainer container'>\r\n  <h3>New Company Information</h3>\r\n  ")
+        __M_writer("\r\n<div class='viewcontainer container'>\r\n  <h3>Job Information</h3>\r\n  <h4>Company: ")
+        __M_writer(str( company.name ))
+        __M_writer('</h4>\r\n  ')
         __M_writer(str( form ))
         __M_writer('\r\n</div>\r\n')
         return ''
@@ -62,6 +66,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"uri": "currentjob.create.html", "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/currentjob.create.html", "source_encoding": "utf-8", "line_map": {"48": 4, "37": 1, "55": 4, "56": 7, "57": 7, "42": 9, "29": 0, "63": 57}}
+{"line_map": {"49": 4, "67": 61, "59": 7, "38": 1, "57": 4, "58": 7, "43": 10, "60": 8, "29": 0, "61": 8}, "uri": "currentjob.create.html", "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/currentjob.create.html", "source_encoding": "utf-8"}
 __M_END_METADATA
 """

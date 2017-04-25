@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1492809341.952424
+_modified_time = 1493162454.361742
 _enable_loop = True
 _template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/aluminfo.html'
 _template_uri = 'aluminfo.html'
@@ -31,11 +31,11 @@ def render_body(context,**pageargs):
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         user = context.get('user', UNDEFINED)
-        pastFullTime = context.get('pastFullTime', UNDEFINED)
+        exitSurvey = context.get('exitSurvey', UNDEFINED)
         currentFullTime = context.get('currentFullTime', UNDEFINED)
+        pastFullTime = context.get('pastFullTime', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
-        exitSurvey = context.get('exitSurvey', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
@@ -52,11 +52,11 @@ def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         user = context.get('user', UNDEFINED)
-        pastFullTime = context.get('pastFullTime', UNDEFINED)
+        exitSurvey = context.get('exitSurvey', UNDEFINED)
         currentFullTime = context.get('currentFullTime', UNDEFINED)
+        pastFullTime = context.get('pastFullTime', UNDEFINED)
         def content():
             return render_content(context)
-        exitSurvey = context.get('exitSurvey', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n<div class="container">\r\n  <h1>')
         __M_writer(str( user.first_name + " " + user.last_name))
@@ -67,7 +67,7 @@ def render_content(context,**pageargs):
             __M_writer('"<button class="btn btn-warning">Results</button></a><h3>\r\n')
         else:
             __M_writer('      <h3>Exit Survey needs to be taken</h3>\r\n')
-        __M_writer('  </div>\r\n\r\n  <a href="/users/currentjob.create/')
+        __M_writer('  </div>\r\n\r\n  <a href="/surveys/choose_company/')
         __M_writer(str( user.id ))
         __M_writer('"><button class="btn btn-success">Add Job Information</button></a></h3>\r\n\r\n')
         if currentFullTime != False:
@@ -136,6 +136,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"source_encoding": "utf-8", "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/aluminfo.html", "uri": "aluminfo.html", "line_map": {"128": 57, "129": 57, "130": 62, "131": 64, "137": 131, "29": 0, "40": 1, "45": 72, "51": 4, "61": 4, "62": 6, "63": 6, "64": 9, "65": 10, "66": 10, "67": 10, "68": 11, "69": 12, "70": 14, "71": 16, "72": 16, "73": 18, "74": 19, "75": 21, "76": 21, "77": 23, "78": 23, "79": 25, "80": 25, "81": 26, "82": 26, "83": 27, "84": 27, "85": 28, "86": 28, "87": 29, "88": 29, "89": 30, "90": 30, "91": 31, "92": 31, "93": 32, "94": 32, "95": 33, "96": 33, "97": 34, "98": 34, "99": 39, "100": 40, "101": 41, "102": 43, "103": 44, "104": 45, "105": 45, "106": 45, "107": 45, "108": 47, "109": 47, "110": 48, "111": 48, "112": 49, "113": 49, "114": 50, "115": 50, "116": 51, "117": 51, "118": 52, "119": 52, "120": 53, "121": 53, "122": 54, "123": 54, "124": 55, "125": 55, "126": 56, "127": 56}}
+{"source_encoding": "utf-8", "line_map": {"128": 57, "129": 57, "130": 62, "131": 64, "137": 131, "29": 0, "40": 1, "45": 72, "51": 4, "61": 4, "62": 6, "63": 6, "64": 9, "65": 10, "66": 10, "67": 10, "68": 11, "69": 12, "70": 14, "71": 16, "72": 16, "73": 18, "74": 19, "75": 21, "76": 21, "77": 23, "78": 23, "79": 25, "80": 25, "81": 26, "82": 26, "83": 27, "84": 27, "85": 28, "86": 28, "87": 29, "88": 29, "89": 30, "90": 30, "91": 31, "92": 31, "93": 32, "94": 32, "95": 33, "96": 33, "97": 34, "98": 34, "99": 39, "100": 40, "101": 41, "102": 43, "103": 44, "104": 45, "105": 45, "106": 45, "107": 45, "108": 47, "109": 47, "110": 48, "111": 48, "112": 49, "113": 49, "114": 50, "115": 50, "116": 51, "117": 51, "118": 52, "119": 52, "120": 53, "121": 53, "122": 54, "123": 54, "124": 55, "125": 55, "126": 56, "127": 56}, "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/aluminfo.html", "uri": "aluminfo.html"}
 __M_END_METADATA
 """

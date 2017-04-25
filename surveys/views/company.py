@@ -11,27 +11,23 @@ from django.contrib.auth.decorators import permission_required
 
 
 #################
-### Edit User
+### Edit Company
 @view_function
 def process_request(request):
-    #pull all products from the DB
     try:
         company = umod.FullTime.objects.get(id=request.urlparams[0])
-        #products = cmod.Product.objects.get(id=request.GET.get('id'))
-    except umod.Company.DoesNotExist:
+    except umod.FullTime.DoesNotExist:
         return HttpResponseRedirect('/homepage/index')
 
     #process the form
     form = EditCompanyForm(request, initial={
-        'name': company.company.name,
-        'city': company.company.city,
-        'state': company.company.state,
+        'company': company.company.name,
     })
 
     if form.is_valid():
         print('>>> form is valid')
         form.commit(company)
-        return HttpResponseRedirect('/users/currentjob/' + company.id )
+        return HttpResponseRedirect('/users/currentjob/' + str( company.id ))
 
     #render the template
     context = {
@@ -44,31 +40,33 @@ def process_request(request):
 class EditCompanyForm(FormMixIn, forms.Form):
 
     def init(self, user):
-        self.fields['name'] = forms.CharField(label='Company Name', max_length=100)
-        self.fields['city'] = forms.CharField(label='City', max_length=100)
-        self.fields['state'] = forms.ChoiceField(label='State', choices=umod.STATE)
-
+        self.fields['company'] = forms.ModelChoiceField(label='Company', queryset=umod.Company.objects.order_by('name').all())
 
 
     def commit(self, company):
-        company.company.name = self.cleaned_data.get('name')
-        company.company.city = self.cleaned_data.get('city')
-        company.company.state = self.cleaned_data.get('state')
+        company.company = self.cleaned_data.get('company')
         company.save()
 
 
 ###########################
-### Create Company
+### Create Company if you already have a FullTime job record
 @view_function
 def create(request):
+    try:
+        current_job = umod.FullTime.objects.get(id=request.urlparams[0])
+        #products = cmod.Product.objects.get(id=request.GET.get('id'))
+    except umod.FullTime.DoesNotExist:
+        return HttpResponseRedirect('/homepage/index')
+
+    user = umod.User.objects.get(id=current_job.user.id)
 
     #process the form
     form = CreateCompanyForm(request)
 
     if form.is_valid():
         print('>>> form is valid')
-        form.commit()
-        return HttpResponseRedirect('/users/fulltime/')
+        form.commit(current_job)
+        return HttpResponseRedirect('/users/currentjob/' + str(current_job.id))
 
     #render the template
     context = {
@@ -83,14 +81,74 @@ class CreateCompanyForm(FormMixIn, forms.Form):
         self.fields['city'] = forms.CharField(label='City', max_length=30)
         self.fields['state'] = forms.ChoiceField(label='State', choices=umod.STATE)
 
+    def clean(self):
+        try:
+            umod.Company.objects.get(name=self.cleaned_data['name'], city=self.cleaned_data['city'], state=self.cleaned_data['state'] )
+            raise forms.ValidationError("This Company already exists!")
+        except umod.Company.DoesNotExist:
+          #because we didn't get a match
+          pass
 
-    def commit(self):
+        return self.cleaned_data
+
+    def commit(self, current_job):
         company = umod.Company()
         company.name = self.cleaned_data.get('name')
         company.city = self.cleaned_data.get('city')
         company.state = self.cleaned_data.get('state')
         company.save()
+        current_job.company = company
+        current_job.save()
 
+
+###########################
+### Create Company for a new FullTime record
+@view_function
+def create_new(request):
+    try:
+        user = umod.User.objects.get(id=request.urlparams[0])
+    except umod.User.DoesNotExist:
+        return HttpResponseRedirect('/homepage/index')
+
+
+    #process the form
+    form = CreateCompanyForm(request)
+
+    if form.is_valid():
+        print('>>> form is valid')
+        form.commit()
+        return HttpResponseRedirect('/users/currentjob.create/' + str(user.id) + '/' + str(company.id))
+
+    #render the template
+    context = {
+        'form': form,
+        'user': user,
+    }
+    return dmp_render(request, 'company.create_new.html', context)
+
+class CreateCompanyForm(FormMixIn, forms.Form):
+
+    def init(self):
+        self.fields['name'] = forms.CharField(label='Company Name', max_length=100)
+        self.fields['city'] = forms.CharField(label='City', max_length=30)
+        self.fields['state'] = forms.ChoiceField(label='State', choices=umod.STATE)
+
+    def clean(self):
+        try:
+            umod.Company.objects.get(name=self.cleaned_data['name'], city=self.cleaned_data['city'], state=self.cleaned_data['state'] )
+            raise forms.ValidationError("This Company already exists!")
+        except umod.Company.DoesNotExist:
+          #because we didn't get a match
+          pass
+
+        return self.cleaned_data
+
+    def commit(self, current_job):
+        company = umod.Company()
+        company.name = self.cleaned_data.get('name')
+        company.city = self.cleaned_data.get('city')
+        company.state = self.cleaned_data.get('state')
+        company.save()
 
 
 

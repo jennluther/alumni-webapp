@@ -3,7 +3,7 @@
 
 <%block name="content">
 <div class='viewcontainer container'>
-  <h3>Company: ${ current_job.company.name }</h3>
+  <h3>Company: ${ current_job.company.name } <a href="/surveys/company/${ current_job.id }"<button class="btn btn-warning">Edit</button></a></h3>
   ${ form }
 </div>
 </%block>
