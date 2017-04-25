@@ -29,14 +29,14 @@ def process_request(request):
         'password': user1.password,
         'city': user1.city,
         'state': user1.state,
+        'phone': user1.phone,
         'email': user1.email,
-        'internship_flag': user1.internship_flag,
         #is there a way to go through all of their internships and output them
     })
     if form.is_valid():
         print('>>> form is valid')
         form.commit(user1)
-        return HttpResponseRedirect('/users/user/')
+        return HttpResponseRedirect('/users/users/')
 
     #render the template
     context = {
@@ -53,8 +53,8 @@ class EditUserForm(FormMixIn, forms.Form):
         self.fields['last_name'] = forms.CharField(label='Last Name', max_length=100)
         self.fields['city'] = forms.CharField(label='City', max_length=30)
         self.fields['state'] = forms.CharField(label='State')
+        self.fields['phone'] = forms.CharField(label='Phone')
         self.fields['email'] = forms.EmailField(label='Email')
-        self.fields['internship_flag'] = forms.CharField(label='Internship')
 
 
     def commit(self, user1):
@@ -62,8 +62,8 @@ class EditUserForm(FormMixIn, forms.Form):
         user1.last_name = self.cleaned_data.get('last_name')
         user1.city = self.cleaned_data.get('city')
         user1.state = self.cleaned_data.get('state')
+        user1.phone = self.cleaned_data.get('phone')
         user1.email = self.cleaned_data.get('email')
-        user1.internship_flag = self.cleaned_data.get('internship_flag')
         user1.save()
 
 
@@ -78,7 +78,7 @@ def create(request):
     if form.is_valid():
         print('>>> form is valid')
         form.commit()
-        return HttpResponseRedirect('/users/user/')
+        return HttpResponseRedirect('/users/users/')
 
     #render the template
     context = {
@@ -95,6 +95,7 @@ class CreateUserForm(FormMixIn, forms.Form):
         self.fields['password'] = forms.CharField(label='Password', widget=forms.PasswordInput)
         self.fields['city'] = forms.CharField(label='City', max_length=30)
         self.fields['state'] = forms.CharField(label='State')
+        self.fields['phone'] = forms.CharField(label='Phone')
         self.fields['email'] = forms.EmailField(label='Email')
 
 
@@ -109,9 +110,10 @@ class CreateUserForm(FormMixIn, forms.Form):
         user.first_name = self.cleaned_data.get('first_name')
         user.last_name = self.cleaned_data.get('last_name')
         user.username = self.cleaned_data.get('username')
-        user.set_password = self.cleaned_data.get('password')
+        user.set_password(self.cleaned_data.get('password'))
         user.city = self.cleaned_data.get('city')
         user.state = self.cleaned_data.get('state')
+        user.phone = self.cleaned_data.get('phone')
         user.email = self.cleaned_data.get('email')
 
         user.save()
@@ -127,7 +129,7 @@ def delete(request):
     try:
         user = umod.User.objects.get(id=request.urlparams[0])
     except umod.User.DoesNotExist:
-        return HttpResponseRedirect('/users/user')
+        return HttpResponseRedirect('/users/users')
 
     user.delete()
-    return HttpResponseRedirect('/users/user')
+    return HttpResponseRedirect('/users/users')

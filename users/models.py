@@ -233,6 +233,9 @@ class Company(models.Model):
     city = models.CharField(max_length=30, null=True, blank=True, )
     state = models.CharField(max_length=2, choices=STATE)
 
+    def __str__(self):
+        return self.name
+
 class Internship(models.Model):
     company = models.ForeignKey('Company', null=True, blank=True)
     user = models.ForeignKey('User', null=True, blank=True)

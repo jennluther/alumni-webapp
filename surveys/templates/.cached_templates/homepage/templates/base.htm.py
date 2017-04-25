@@ -5,10 +5,10 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1492206227.162545
+_modified_time = 1492807796.865161
 _enable_loop = True
 _template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/homepage/templates/base.htm'
-_template_uri = 'base.htm'
+_template_uri = 'homepage/templates/base.htm'
 _source_encoding = 'utf-8'
 import django_mako_plus
 import os, os.path, re, json
@@ -22,10 +22,10 @@ def render_body(context,**pageargs):
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
-        request = context.get('request', UNDEFINED)
-        self = context.get('self', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
+        self = context.get('self', UNDEFINED)
+        request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n')
         __M_writer('\r\n\r\n\r\n<!DOCTYPE html>\r\n<html>\r\n  <meta charset="UTF-8">\r\n  <head>\r\n\r\n    <title>surveys</title>\r\n    <link rel="icon" href="')
@@ -66,6 +66,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"source_encoding": "utf-8", "uri": "base.htm", "line_map": {"32": 13, "33": 13, "34": 16, "35": 17, "36": 17, "37": 18, "38": 18, "39": 23, "40": 23, "41": 23, "46": 64, "47": 68, "48": 68, "49": 68, "18": 4, "67": 61, "20": 0, "55": 61, "61": 61, "30": 2, "31": 4}, "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/homepage/templates/base.htm"}
+{"line_map": {"32": 13, "33": 13, "34": 16, "35": 17, "36": 17, "37": 18, "38": 18, "39": 23, "40": 23, "41": 23, "46": 64, "47": 68, "48": 68, "49": 68, "18": 4, "67": 61, "20": 0, "55": 61, "61": 61, "30": 2, "31": 4}, "uri": "homepage/templates/base.htm", "source_encoding": "utf-8", "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/homepage/templates/base.htm"}
 __M_END_METADATA
 """

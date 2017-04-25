@@ -5,6 +5,7 @@ from django.db import connection
 from datetime import datetime
 import os, os.path, sys
 
+
 # ensure the user really wants to do this
 areyousure = input('''
   You are about to drop and recreate the entire database.
@@ -45,6 +46,24 @@ management.call_command('migrate')
 # imports for our project
 from users import models as umod
 from decimal import Decimal
+import csv
+
+with open('users.csv') as csvfile:
+    reader = csv.DictReader(csvfile)
+    for row in reader:
+        u = umod.User()
+        u.first_name = row['first_name']
+        u.last_name = row['last_name']
+        u.email = row['email']
+        u.username = row['username']
+        u.set_password(row['password'])
+        u.city = row['city']
+        u.state = row['state']
+        u.phone = row['phone']
+        u.graduationDate = row['graduationDate']
+        u.save()
+        print(u.first_name)
+
 
 #DUMMY DATA!
 #advisors
@@ -401,7 +420,7 @@ s11.skill = 'PP'
 s11.save()
 
 es2 = umod.ExitSurvey()
-es2.user = u2
+es2.user = u3
 es2.program_introduction = "Major Fair"
 es2.mism_decision = "MSISM Projects"
 es2.again = "Y"

@@ -1,0 +1,24 @@
+<%inherit file="homepage/base.htm"/>
+
+
+<%block name="content">
+  <h1>Your Account:</h1>
+  <h2>Personal Information:</h2>
+  <table class="table table-striped">
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>City</th>
+      <th>State</th>
+      <th>Email</th>
+    </tr>
+    <tr>
+      <td>${ user.first_name }</td>
+      <td>${ user.last_name }</td>
+      <td>${ user.city }</td>
+      <td>${ user.state }</td>
+      <td>${ user.email }</td>
+    </tr>
+  </table>
+
+</%block>
