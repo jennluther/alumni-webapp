@@ -12,59 +12,80 @@
       <h3>Exit Survey needs to be taken</h3>
     %endif
   </div>
+<div>
+  <div class='job_info'>
+    <a href="/surveys/choose_company/${ user.id }"><button class="btn btn-success">Add Job Information</button></a></h3>
 
-  <a href="/surveys/choose_company/${ user.id }"><button class="btn btn-success">Add Job Information</button></a></h3>
-
-    %if currentFullTime != False:
-    <div class="container currentFullTimeInfo">
-      <h3><strong>Current Job:</strong>
-         <a href="/users/currentjob/${ currentFullTime.id}"><button class="btn btn-info">Update</button></a></h3>
-      <div class="leftindent">
-        <h4>Company: ${ currentFullTime.company.name }</h4>
-        <div class="doubleleftindent">
-          <p>Position: ${ currentFullTime.position_title }</p>
-          <p>Start Date: ${ currentFullTime.start_date }</p>
-          <p>Salary: ${ currentFullTime.salary }</p>
-          <p>Average Work Week: ${ currentFullTime.avg_hours_week }</p>
-          <p>Satisfaction: ${ currentFullTime.satisfaction }</p>
-          <p>Projected Raise Time (months): ${ currentFullTime.projected_raise_time_months }</p>
-          <p>Family Friendly: ${ currentFullTime.family_friendly }</p>
-          <p>Why: ${ currentFullTime.family_friendly_response }</p>
-          <p>Pros: ${ currentFullTime.pros }</p>
-          <p>Cons: ${ currentFullTime.cons }</p>
-        </div>
-      </div>
-    </div>
-    %endif
-
-    %if pastFullTime != False:
-    <div class="container pastFullTimeInfo">
-      <h3><strong>Job History:</strong></h3>
-      %for p in pastFullTime:
-      <div class="leftindent">
-        <h4>Company: ${ p.company.name } <a href="/users/currentjob/${ p.id}"><button class="btn btn-info btn-sm">Update</button></a></h4>
+      %if currentFullTime != False:
+      <div class="container currentFullTimeInfo">
+        <h3><strong>Current Job:</strong>
+           <a href="/users/currentjob/${ currentFullTime.id}"><button class="btn btn-info">Update</button></a></h3>
+        <div class="leftindent">
+          <h4>Company: ${ currentFullTime.company.name }</h4>
           <div class="doubleleftindent">
-          <p>Position: ${ p.position_title }</p>
-          <p>Start Date: ${ p.start_date }</p>
-          <p>End Date: ${ p.end_date }</p>
-          <p>Salary: $${ p.salary }</p>
-          <p>Average Work Week: ${ p.avg_hours_week }</p>
-          <p>Satisfaction: ${ p.satisfaction }</p>
-          <p>Projected Raise Time (months): ${ p.projected_raise_time_months }</p>
-          <p>Family Friendly: ${ p.family_friendly }</p>
-          <p>Why: ${ p.family_friendly_response }</p>
-          <p>Pros: ${ p.pros }</p>
-          <p>Cons: ${ p.cons }</p>
+            <p>Position: ${ currentFullTime.position_title }</p>
+            <p>Start Date: ${ currentFullTime.start_date }</p>
+            <p>Salary: ${ currentFullTime.salary }</p>
+            <p>Average Work Week: ${ currentFullTime.avg_hours_week }</p>
+            <p>Satisfaction: ${ currentFullTime.satisfaction }</p>
+            <p>Projected Raise Time (months): ${ currentFullTime.projected_raise_time_months }</p>
+            <p>Family Friendly: ${ currentFullTime.family_friendly }</p>
+            <p>Why: ${ currentFullTime.family_friendly_response }</p>
+            <p>Pros: ${ currentFullTime.pros }</p>
+            <p>Cons: ${ currentFullTime.cons }</p>
+          </div>
         </div>
       </div>
-        <hr>
-      %endfor
+      %endif
+
+      %if pastFullTime != False:
+      <div class="container pastFullTimeInfo">
+        <h3><strong>Job History:</strong></h3>
+        %for p in pastFullTime:
+        <div class="leftindent">
+          <h4>Company: ${ p.company.name } <a href="/users/currentjob/${ p.id}"><button class="btn btn-info btn-sm">Update</button></a></h4>
+            <div class="doubleleftindent">
+            <p>Position: ${ p.position_title }</p>
+            <p>Start Date: ${ p.start_date }</p>
+            <p>End Date: ${ p.end_date }</p>
+            <p>Salary: $${ p.salary }</p>
+            <p>Average Work Week: ${ p.avg_hours_week }</p>
+            <p>Satisfaction: ${ p.satisfaction }</p>
+            <p>Projected Raise Time (months): ${ p.projected_raise_time_months }</p>
+            <p>Family Friendly: ${ p.family_friendly }</p>
+            <p>Why: ${ p.family_friendly_response }</p>
+            <p>Pros: ${ p.pros }</p>
+            <p>Cons: ${ p.cons }</p>
+          </div>
+        </div>
+          <hr>
+        %endfor
+      </div>
+      %endif
     </div>
-    %endif
 
 
-
+    <div class='intern_info'>
+      <a href="/surveys/choose_company/${ user.id }/internship"><button class="btn btn-success">Add Internship Information</button></a></h3>
+        %if internship != False:
+        <div class="container currentFullTimeInfo">
+          <h3><strong>Internship:</strong></h3>
+            %for i in internship:
+              <div class="leftindent">
+                <h4>Company: ${ i.company.name } <a href="/users/internship/${ i.id}"><button class="btn btn-info btn-sm">Update</button></a></h4>
+                  <div class="doubleleftindent">
+                    <p>Position: ${ i.position_title }</p>
+                    <p>How the internship was obtained: ${ i.how_obtained }</p>
+                    <p>How many hours spent looking for internship: ${ i.hours_looking }</p>
+                  </div>
+                </div>
+              <hr>
+            %endfor
+        </div>
+        %endif
+    </div>
   </div>
+</div>
 
 
 

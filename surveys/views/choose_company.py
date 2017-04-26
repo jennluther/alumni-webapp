@@ -21,12 +21,21 @@ def process_request(request):
 
     form = ChooseCompanyForm(request)
 
+    if request.urlparams[1] == 'internship':
+        newcompany_link = "/surveys/company.create_new/" + str(user.id) + "/internship"
+    else:
+        newcompany_link = "/surveys/company.create_new/" + str(user.id) + "/"
+
     if form.is_valid():
         form.commit()
+        if request.urlparams[1] == 'internship':
+            return HttpResponseRedirect('/users/internship.create/' + str(user.id) + '/' + str(request.POST['company']))
         return HttpResponseRedirect('/users/currentjob.create/' + str(user.id) + '/' + str(request.POST['company']))
 
     context = {
         'form': form,
+        'user': user,
+        'newcompany_link': newcompany_link
     }
     return dmp_render(request, 'choose_company.html', context)
 

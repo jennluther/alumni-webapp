@@ -244,6 +244,7 @@ class Internship(models.Model):
     user = models.ForeignKey('User', null=True, blank=True)
     how_obtained = models.CharField(max_length=40, null=True, blank=True)
     hours_looking = models.IntegerField(null=True, blank=True)
+    position_title = models.CharField(null=True, blank=True, max_length=30)
 
 class FullTime(models.Model):
     company = models.ForeignKey('Company') #can we make the choices come from the company table?
@@ -273,6 +274,7 @@ class FullTime(models.Model):
 class Offers(models.Model):
     company = models.ForeignKey('Company')
     user = models.ForeignKey('User')
+    intern_offer = models.BooleanField(default=False)
 
 class Skills(models.Model):
     full_time = models.ForeignKey('FullTime')

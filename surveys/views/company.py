@@ -15,7 +15,10 @@ from django.contrib.auth.decorators import permission_required
 @view_function
 def process_request(request):
     try:
-        company = umod.FullTime.objects.get(id=request.urlparams[0])
+        if request.urlparams[1] == 'internship':
+            company = umod.Internship.objects.get(id=request.urlparams[0])
+        else:
+            company = umod.FullTime.objects.get(id=request.urlparams[0])
     except umod.FullTime.DoesNotExist:
         return HttpResponseRedirect('/homepage/index')
 
@@ -27,6 +30,8 @@ def process_request(request):
     if form.is_valid():
         print('>>> form is valid')
         form.commit(company)
+        if request.urlparams[1] == 'internship':
+            return HttpResponseRedirect('/users/internship/' + str( company.id ))
         return HttpResponseRedirect('/users/currentjob/' + str( company.id ))
 
     #render the template
@@ -117,6 +122,9 @@ def create_new(request):
     if form.is_valid():
         print('>>> form is valid')
         form.commit()
+        company = umod.Company.objects.get(name=request.POST["name"], city=request.POST["city"], state=request.POST["state"])
+        if request.urlparams[1] == 'internship':
+            return HttpResponseRedirect('/users/internship.create/' + str(user.id) + '/' + str(company.id))
         return HttpResponseRedirect('/users/currentjob.create/' + str(user.id) + '/' + str(company.id))
 
     #render the template
@@ -143,12 +151,13 @@ class CreateCompanyForm(FormMixIn, forms.Form):
 
         return self.cleaned_data
 
-    def commit(self, current_job):
+    def commit(self):
         company = umod.Company()
         company.name = self.cleaned_data.get('name')
         company.city = self.cleaned_data.get('city')
         company.state = self.cleaned_data.get('state')
         company.save()
+        return company
 
 
 

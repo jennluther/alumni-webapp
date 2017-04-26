@@ -17,3 +17,15 @@
 .doubleleftindent{
   text-indent: 40px;
 }
+
+.job_info{
+float:left;
+width:50%;
+overflow:hidden;
+}
+
+.intern_info{
+float:left;
+width:50%;
+overflow:hidden;
+}

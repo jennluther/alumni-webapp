@@ -101,7 +101,6 @@ def create(request):
         return HttpResponseRedirect('/homepage/index')
 
     company = umod.Company.objects.get(id=request.urlparams[1])
-    print(">>>>>>", company.name)
     #process the form
     form = CreateJobForm(request)
 

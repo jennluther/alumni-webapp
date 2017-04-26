@@ -16,21 +16,17 @@ def process_request(request):
     #pull all products from the DB
     try:
         user = umod.User.objects.get(id=request.urlparams[0])
-        print('<<<<<<<<', user.first_name)
         #products = cmod.Product.objects.get(id=request.GET.get('id'))
     except umod.User.DoesNotExist:
         return HttpResponseRedirect('/homepage/index')
 
     try:
         exitSurvey = umod.ExitSurvey.objects.get(user = user.id)
-        print('>>>>>>>>>>> Good exitsurvey', user.first_name)
     except umod.ExitSurvey.DoesNotExist:
         exitSurvey = False
-        print("<<<<< ExitSurvey ", exitSurvey)
 
     try:
         pastFullTime = umod.FullTime.objects.filter(user = user.id, current_job = False)
-        print('>>>>>>>>>>> Good pastfulltime', user.first_name)
         if not pastFullTime:
             pastFullTime = False
         print(pastFullTime)
@@ -39,9 +35,15 @@ def process_request(request):
 
     try:
         currentFullTime = umod.FullTime.objects.get(user = user.id, current_job = True)
-        print('>>>>>>>>>>> Good currentfulltime', user.first_name)
     except umod.FullTime.DoesNotExist:
         currentFullTime = False
+
+    try:
+        internship = umod.Internship.objects.filter(user = user.id)
+        if not internship:
+            internship = False
+    except umod.Internship.DoesNotExist:
+        internship = False
 
 
 
@@ -54,5 +56,6 @@ def process_request(request):
         'exitSurvey': exitSurvey,
         'pastFullTime': pastFullTime,
         'currentFullTime': currentFullTime,
+        'internship': internship,
     }
     return dmp_render(request, 'aluminfo.html', context)

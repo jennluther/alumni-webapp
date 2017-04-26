@@ -5,10 +5,10 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1493246185.772143
+_modified_time = 1493246598.510877
 _enable_loop = True
-_template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/surveys/templates/choose_company.html'
-_template_uri = 'choose_company.html'
+_template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/internship.html'
+_template_uri = 'internship.html'
 _source_encoding = 'utf-8'
 import django_mako_plus
 import os, os.path, re, json
@@ -30,10 +30,10 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        form = context.get('form', UNDEFINED)
+        internship = context.get('internship', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
-        newcompany_link = context.get('newcompany_link', UNDEFINED)
-        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
@@ -49,14 +49,16 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        form = context.get('form', UNDEFINED)
+        internship = context.get('internship', UNDEFINED)
         def content():
             return render_content(context)
-        newcompany_link = context.get('newcompany_link', UNDEFINED)
-        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\r\n<div class=\'viewcontainer container\'>\r\n  <h3>Choose Company:</h3>\r\n  <h4><a href="')
-        __M_writer(str( newcompany_link ))
-        __M_writer('">New Company</a></h4>\r\n  ')
+        __M_writer("\r\n<div class='viewcontainer container'>\r\n  <h3>Company: ")
+        __M_writer(str( internship.company.name ))
+        __M_writer(' <a href="/surveys/company/')
+        __M_writer(str( internship.id ))
+        __M_writer('/internship"<button class="btn btn-warning">Edit</button></a></h3>\r\n  ')
         __M_writer(str( form ))
         __M_writer('\r\n</div>\r\n')
         return ''
@@ -66,6 +68,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"source_encoding": "utf-8", "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/surveys/templates/choose_company.html", "line_map": {"49": 4, "67": 61, "59": 7, "38": 1, "57": 4, "58": 7, "43": 10, "60": 8, "29": 0, "61": 8}, "uri": "choose_company.html"}
+{"source_encoding": "utf-8", "line_map": {"69": 63, "38": 1, "43": 9, "61": 6, "49": 4, "57": 4, "58": 6, "59": 6, "60": 6, "29": 0, "62": 7, "63": 7}, "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/internship.html", "uri": "internship.html"}
 __M_END_METADATA
 """
