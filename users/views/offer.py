@@ -39,7 +39,7 @@ def process_request(request):
 class EditOfferForm(FormMixIn, forms.Form):
 
     def init(self, user):
-        self.fields['intern_offer'] = forms.BooleanField(label='Offer', required=False)
+        self.fields['intern_offer'] = forms.BooleanField(label='Offer received because of internship', required=False)
 
     def commit(self, offer):
         offer.intern_offer = self.cleaned_data.get('intern_offer')
@@ -74,7 +74,7 @@ def create(request):
 class CreateOfferForm(FormMixIn, forms.Form):
 
     def init(self, user):
-        self.fields['intern_offer'] = forms.BooleanField(label='Offer', required=False)
+        self.fields['intern_offer'] = forms.BooleanField(label='Offer received because of internship', required=False)
 
     def commit(self,user, company):
         offer = umod.Offers()

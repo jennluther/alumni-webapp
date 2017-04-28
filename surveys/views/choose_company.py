@@ -23,6 +23,8 @@ def process_request(request):
 
     if request.urlparams[1] == 'internship':
         newcompany_link = "/surveys/company.create_new/" + str(user.id) + "/internship"
+    elif request.urlparams[1] == 'offer':
+        newcompany_link = "/surveys/offer.create_new/" + str(user.id) + "/offer"
     else:
         newcompany_link = "/surveys/company.create_new/" + str(user.id) + "/"
 
@@ -30,6 +32,8 @@ def process_request(request):
         form.commit()
         if request.urlparams[1] == 'internship':
             return HttpResponseRedirect('/users/internship.create/' + str(user.id) + '/' + str(request.POST['company']))
+        elif request.urlparams[1] == 'offer':
+            return HttpResponseRedirect('/users/offer.create/' + str(user.id) + '/' + str(request.POST['company']))
         return HttpResponseRedirect('/users/currentjob.create/' + str(user.id) + '/' + str(request.POST['company']))
 
     context = {
