@@ -1,0 +1,169 @@
+<%inherit file="homepage/templates/base.htm"/>
+
+
+<%block name="content">
+<div class="container">
+  <h1>${ user.first_name + " " + user.last_name}'s Information:</h1>
+
+  <div>
+    %if exitSurvey != False:
+      <h3>Exit Survey has been submitted!  <a href="/users/results/${ user.id }"<button class="btn btn-warning">Results</button></a><h3>
+    %else:
+      <h3>Exit Survey needs to be taken</h3>
+    %endif
+  </div>
+<div>
+  <div class='job_info'>
+    <a href="/surveys/choose_company/${ user.id }"><button class="btn btn-success">Add Job Information</button></a></h3>
+
+      %if currentFullTime != False:
+      <div class="container currentFullTimeInfo">
+        <h3><strong>Current Job:</strong>
+           <a href="/users/currentjob/${ currentFullTime.id}"><button class="btn btn-info">Update</button></a></h3>
+        <div class="leftindent">
+          <h4>Company: ${ currentFullTime.company.name }</h4>
+          <div class="doubleleftindent">
+            <p>Position: ${ currentFullTime.position_title }</p>
+            <p>Skills: ${ current_skills_list }</p>
+            <p>Start Date: ${ currentFullTime.start_date }</p>
+            <p>Salary: ${ currentFullTime.salary }</p>
+            <p>Average Work Week: ${ currentFullTime.avg_hours_week }</p>
+            <p>Satisfaction: ${ currentFullTime.satisfaction }</p>
+            <p>Projected Raise Time (months): ${ currentFullTime.projected_raise_time_months }</p>
+            <p>Family Friendly: ${ currentFullTime.family_friendly }</p>
+            <p>Why: ${ currentFullTime.family_friendly_response }</p>
+            <p>Pros: ${ currentFullTime.pros }</p>
+            <p>Cons: ${ currentFullTime.cons }</p>
+          </div>
+        </div>
+      </div>
+      %endif
+
+      %if pastFullTime != False:
+      <div class="container pastFullTimeInfo">
+        <h3><strong>Job History:</strong></h3>
+            ${ table }
+      </div>
+      %endif
+    </div>
+
+
+    <div class='intern_info'>
+      <div class='internship'>
+        <a href="/surveys/choose_company/${ user.id }/internship"><button class="btn btn-success">Add Internship Information</button></a></h3>
+          %if internship != False:
+          <div class="container currentFullTimeInfo">
+            <h3><strong>Internship:</strong></h3>
+              %for i in internship:
+                <div class="leftindent">
+                  <h4>Company: ${ i.company.name }
+                    <a href="/users/internship/${ i.id}"><button class="btn btn-info btn-sm">Update</button></a>
+                    <a href="/users/internship.delete/${ i.id }/"><button class="delete_internship btn btn-danger btn-sm">Delete</button></a>
+                  </h4>
+                    <div class="doubleleftindent">
+                      <p>Position: ${ i.position_title }</p>
+                      <p>How the internship was obtained: ${ i.how_obtained }</p>
+                      <p>How many hours spent looking for internship: ${ i.hours_looking }</p>
+                    </div>
+                  </div>
+                <hr>
+              %endfor
+          </div>
+          %endif
+      </div>
+
+      <div class='offers'>
+        <a href="/surveys/choose_company/${ user.id }/offer"><button class="btn btn-success">Add Offer Information</button></a></h3>
+          %if offer != False:
+          <div class="container currentFullTimeInfo">
+            <h3><strong>Offer:</strong></h3>
+              %for o in offer:
+                <div class="leftindent">
+                  <h4>Company: ${ o.company.name }
+                    <a href="/users/offer/${ o.id}"><button class="btn btn-info btn-sm">Update</button></a>
+                    <a href="/users/offer.delete/${ o.id }/"><button class="delete_offer btn btn-danger btn-sm">Delete</button></a>
+                  </h4>
+                    <div class="doubleleftindent">
+                      <p>Position: ${ o.intern_offer }</p>
+                    </div>
+                  </div>
+                <hr>
+              %endfor
+          </div>
+          %endif
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- Delete Internship Modal -->
+<div class="modal fade" id="deleteInternship" role="dialog">
+<div class="modal-dialog">
+
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Confirm</h4>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to delete this internship?  This cannot be undone.</p>
+    </div>
+    <div class="modal-footer">
+      <a id="real_delete" href="" class="btn btn-danger" type="submit">Yes</a>
+      <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- Delete Offer Modal -->
+<div class="modal fade" id="deleteOffer" role="dialog">
+<div class="modal-dialog">
+
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Confirm</h4>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to delete this offer?  This cannot be undone.</p>
+    </div>
+    <div class="modal-footer">
+      <a id="real_delete" href="" class="btn btn-danger" type="submit">Yes</a>
+      <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+    </div>
+  </div>
+
+</div>
+</div>
+
+<!-- Delete Job Modal -->
+<div class="modal fade" id="deleteJob" role="dialog">
+<div class="modal-dialog">
+
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+      <h4 class="modal-title">Confirm</h4>
+    </div>
+    <div class="modal-body">
+      <p>Are you sure you want to delete this job?  This cannot be undone.</p>
+    </div>
+    <div class="modal-footer">
+      <a id="real_delete" href="" class="btn btn-danger" type="submit">Yes</a>
+      <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+    </div>
+  </div>
+
+</div>
+</div>
+
+
+
+
+</%block>

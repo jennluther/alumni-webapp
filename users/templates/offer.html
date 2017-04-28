@@ -1,0 +1,9 @@
+<%inherit file="homepage/templates/base.htm"/>
+
+
+<%block name="content">
+<div class='viewcontainer container'>
+  <h3>Company: ${ offer.company.name } <a href="/surveys/company/${ offer.id }/offer"<button class="btn btn-warning">Edit</button></a></h3>
+  ${ form }
+</div>
+</%block>

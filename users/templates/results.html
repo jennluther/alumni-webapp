@@ -1,0 +1,39 @@
+<%inherit file="homepage/templates/base.htm"/>
+
+
+<%block name="content">
+<div class="viewcontainter container">
+  <h3>${ user.first_name + " " + user.last_name + "'s" } Exit Survey</h3>
+
+  <div class='container'>
+    <p>How were you introduced to the program?  ${ exit_survey.program_introduction }</p>
+    <p>What made you decide to do the MISM? ${ exit_survey.mism_decision }</p>
+    <p>Would you do the MISM again? ${ exit_survey.again }</p>
+    <p>Why? ${ exit_survey.again_response }</p>
+    <p>What additional classes would you find helpful that were not offered?  ${ exit_survey.additional_classes }</p>
+    <p>What was the most valuable class?  ${ exit_survey.valuable_class }</p>
+    <p>Why?  ${ exit_survey.valuable_class_response }</p>
+    <p>What did you like best about the MISM and why: ${ exit_survey.best_response }</p>
+    <p>What recommendations would you have for the MISM?  ${ exit_survey.recommendation }</p>
+    <p>Date survey was taken: ${ exit_survey.response_date }</p>
+    <p>Any additional comments: ${ exit_survey.additional_comments }</p>
+  </div>
+
+  <div class='container'>
+    <h4>Academic Advisor</h4>
+    <p>Name: ${ exit_survey.academic_advisor.aa_first_name + " " + exit_survey.academic_advisor.aa_last_name }</p>
+    <p>Number of Appointments: ${ exit_survey.aa_appointment }</p>
+    <p>Advisor help rating: ${ exit_survey.aa_help_rating }</p>
+    <p>Advisor suggestions: ${ exit_survey.aa_suggestions }</p>
+  </div>
+
+  <div class='container'>
+    <h4>Career Advisor</h4>
+    <p>Name: ${ exit_survey.career_advisor.ca_first_name + " " + exit_survey.career_advisor.ca_last_name }</p>
+    <p>Number of Appointments: ${ exit_survey.ca_appointment }</p>
+    <p>Advisor help rating: ${ exit_survey.ca_help_rating }</p>
+    <p>Advisor suggestions: ${ exit_survey.ca_suggestions }</p>
+  </div>
+
+</div>
+</%block>

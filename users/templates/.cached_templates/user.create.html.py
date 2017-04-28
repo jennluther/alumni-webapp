@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1490222553.126497
+_modified_time = 1492205428.474158
 _enable_loop = True
 _template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/user.create.html'
 _template_uri = 'user.create.html'
@@ -52,7 +52,7 @@ def render_content(context,**pageargs):
             return render_content(context)
         form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer("\r\n\r\n  <h1>Create User here:</h1>\r\n  <div class='form'>\r\n\r\n    ")
+        __M_writer("\r\n  <div class='container createuser'>\r\n\r\n    <h1>Create User here:</h1>\r\n    ")
         __M_writer(str( form ))
         __M_writer('\r\n\r\n  </div>\r\n\r\n')
         return ''
@@ -62,6 +62,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"source_encoding": "utf-8", "uri": "user.create.html", "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/user.create.html", "line_map": {"48": 4, "37": 1, "55": 4, "56": 9, "57": 9, "42": 13, "29": 0, "63": 57}}
+{"uri": "user.create.html", "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/user.create.html", "line_map": {"48": 4, "37": 1, "55": 4, "56": 8, "57": 8, "42": 12, "29": 0, "63": 57}, "source_encoding": "utf-8"}
 __M_END_METADATA
 """

@@ -1,1 +1,35 @@
+.users{
+  margin: 10px;
+}
 
+.createuser{
+  width: 50%;
+}
+
+.viewcontainer{
+    width: 70%
+}
+
+.leftindent{
+  text-indent: 20px;
+}
+
+.doubleleftindent{
+  text-indent: 40px;
+}
+
+.job_info{
+float:left;
+width:50%;
+overflow:hidden;
+}
+
+.intern_info{
+float:left;
+width:50%;
+overflow:hidden;
+}
+
+.btn-success{
+  margin: 10px;
+}
