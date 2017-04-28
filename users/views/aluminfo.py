@@ -45,14 +45,22 @@ def process_request(request):
     except umod.Internship.DoesNotExist:
         internship = False
 
-    skills_current_ft = umod.Skills.objects.filter(full_time = currentFullTime.id)
+    try:
+        offer = umod.Offers.objects.filter(user = user.id)
+        if not offer:
+            offer = False
+    except umod.Offers.DoesNotExist:
+        offer = False
+
     current_skills_list = None
-    for s in skills_current_ft:
-        if current_skills_list is None:
-            current_skills_list = s.skill
-        else:
-            current_skills_list = current_skills_list + '; ' + s.skill
-    print(">>>>>>>>>", current_skills_list)
+
+    if currentFullTime != False:
+        skills_current_ft = umod.Skills.objects.filter(full_time = currentFullTime.id)
+        for s in skills_current_ft:
+            if current_skills_list is None:
+                current_skills_list = s.skill
+            else:
+                current_skills_list = current_skills_list + '; ' + s.skill
 
     qry = umod.FullTime.objects.filter(user = user.id, current_job = False)
     past_full_time = []
@@ -64,7 +72,7 @@ def process_request(request):
         skills = umod.Skills.objects.filter(full_time = q.id)
         skills_string = None
         for s in skills:
-            if skill_string is None:
+            if skills_string is None:
                 skills_string = s.skill
             else:
                 skills_string = skills_string + '; ' + s.skill
@@ -87,11 +95,6 @@ def process_request(request):
     for p in past_full_time:
         table.append(p)
 
-    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-    print(table)
-    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
-
-
     #render the template
     context = {
         'user': user,
@@ -101,6 +104,7 @@ def process_request(request):
         'internship': internship,
         'current_skills_list': current_skills_list,
         'table': table,
+        'offer': offer,
         # 'skill_past_ft': skill_past_ft,
     }
     return dmp_render(request, 'aluminfo.html', context)
@@ -125,7 +129,7 @@ class QuotesTable(list):
         html = []
         for row_i, row in enumerate(self):
             html.append('<div class="leftindent">')
-            html.append('<h4>{}'.format(row[1]) + '  <a href="/users/currentjob/{}"><button class="btn btn-info btn-sm">Update</button></a></h4>'.format(row[0]))
+            html.append('<h4>{}'.format(row[1]) + '  <a href="/users/currentjob/{}"><button class="btn btn-info btn-sm">Update</button></a>'.format(row[0]) + '  <a href="/users/currentjob.delete/{}/"><button class="delete_job btn btn-danger btn-sm">Delete</button></a></h4>'.format(row[0]))
             html.append('<div class="doubleleftindent">')
             for val in row[2:]:
                 html.append('<p>{}</p>'.format(val))

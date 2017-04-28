@@ -94,3 +94,16 @@ class CreateInternshipForm(FormMixIn, forms.Form):
         internship.company = company
         internship.user = user
         internship.save()
+
+########################
+###  Deleting internship
+
+@view_function
+def delete(request):
+    try:
+        internship = umod.Internship.objects.get(id=request.urlparams[0])
+    except umod.Internship.DoesNotExist:
+        return HttpResponseRedirect('/users/aluminfo/'+ str(internship.user.id))
+
+    internship.delete()
+    return HttpResponseRedirect('/users/aluminfo/'+ str(internship.user.id))

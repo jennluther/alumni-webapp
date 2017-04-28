@@ -23,6 +23,7 @@ def process_request(request):
     form = EditCurrentJobForm(request, initial={
         'position': current_job.position_title,
         'position_description': current_job.position_description,
+        'current_job': current_job.current_job,
         'date_accepted': current_job.date_accepted,
         'start_date': current_job.start_date,
         'end_date': current_job.end_date,
@@ -58,6 +59,8 @@ class EditCurrentJobForm(FormMixIn, forms.Form):
     def init(self, user):
         self.fields['position'] = forms.CharField(label='Position', max_length=30)
         self.fields['position_description'] = forms.ChoiceField(choices=umod.POSITION_CHOICES, label='Position Description')
+        self.fields['current_job'] = forms.BooleanField(label='Current Job', required=False)
+        self.fields['skills'] = forms.MultipleChoiceField(choices=umod.SKILLS_CHOICES, label='Skills', required=False)
         self.fields['date_accepted'] = forms.DateField(label='Date of job offer acceptance')
         self.fields['start_date'] = forms.DateField(label='Start Date')
         self.fields['end_date'] = forms.DateField(label='End Date', required=False)
@@ -72,10 +75,20 @@ class EditCurrentJobForm(FormMixIn, forms.Form):
         self.fields['contact'] = forms.ChoiceField(label='Would you be willing to act as a contact for this company?', choices=umod.CONTACT_CHOICES)
         self.fields['ft_hours_looking'] = forms.IntegerField(label='How many hours did you spend looking for this job?')
 
-
     def commit(self, current_job):
         current_job.position_title = self.cleaned_data.get('position')
         current_job.position_description = self.cleaned_data.get('position_description')
+        current_job.current_job = self.cleaned_data.get('current_job')
+        skills = self.cleaned_data.get('skills')
+        for s in skills:
+            if umod.Skills.objects.get(skill=s, full_time=current_job):
+                pass
+            else:
+                job_skills = umod.Skills()
+                job_skills.full_time = current_job
+                job_skills.skill = s
+                job_skills.save()
+                print( ">>>>>>>>>", job_skills.skill)
         current_job.date_accepted = self.cleaned_data.get('date_accepted')
         current_job.start_date = self.cleaned_data.get('start_date')
         current_job.end_date = self.cleaned_data.get('end_date')
@@ -158,3 +171,16 @@ class CreateJobForm(FormMixIn, forms.Form):
         job.user = user
 
         job.save()
+
+########################
+###  Deleting currentjob
+
+@view_function
+def delete(request):
+    try:
+        current_job = umod.FullTime.objects.get(id=request.urlparams[0])
+    except umod.FullTime.DoesNotExist:
+        return HttpResponseRedirect('/users/aluminfo/'+ str(current_job.user.id))
+
+    current_job.delete()
+    return HttpResponseRedirect('/users/aluminfo/'+ str(current_job.user.id))

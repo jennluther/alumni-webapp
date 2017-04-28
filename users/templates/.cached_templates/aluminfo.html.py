@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1493407251.805375
+_modified_time = 1493413480.438947
 _enable_loop = True
 _template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/aluminfo.html'
 _template_uri = 'aluminfo.html'
@@ -30,15 +30,16 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        user = context.get('user', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
+        currentFullTime = context.get('currentFullTime', UNDEFINED)
+        offer = context.get('offer', UNDEFINED)
         internship = context.get('internship', UNDEFINED)
         table = context.get('table', UNDEFINED)
-        current_skills_list = context.get('current_skills_list', UNDEFINED)
-        currentFullTime = context.get('currentFullTime', UNDEFINED)
-        pastFullTime = context.get('pastFullTime', UNDEFINED)
-        user = context.get('user', UNDEFINED)
         exitSurvey = context.get('exitSurvey', UNDEFINED)
+        pastFullTime = context.get('pastFullTime', UNDEFINED)
+        current_skills_list = context.get('current_skills_list', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
@@ -54,15 +55,16 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        user = context.get('user', UNDEFINED)
         def content():
             return render_content(context)
+        currentFullTime = context.get('currentFullTime', UNDEFINED)
+        offer = context.get('offer', UNDEFINED)
         internship = context.get('internship', UNDEFINED)
         table = context.get('table', UNDEFINED)
-        current_skills_list = context.get('current_skills_list', UNDEFINED)
-        currentFullTime = context.get('currentFullTime', UNDEFINED)
-        pastFullTime = context.get('pastFullTime', UNDEFINED)
-        user = context.get('user', UNDEFINED)
         exitSurvey = context.get('exitSurvey', UNDEFINED)
+        pastFullTime = context.get('pastFullTime', UNDEFINED)
+        current_skills_list = context.get('current_skills_list', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n<div class="container">\r\n  <h1>')
         __M_writer(str( user.first_name + " " + user.last_name))
@@ -109,25 +111,43 @@ def render_content(context,**pageargs):
             __M_writer('      <div class="container pastFullTimeInfo">\r\n        <h3><strong>Job History:</strong></h3>\r\n            ')
             __M_writer(str( table ))
             __M_writer('\r\n      </div>\r\n')
-        __M_writer('    </div>\r\n\r\n\r\n    <div class=\'intern_info\'>\r\n      <a href="/surveys/choose_company/')
+        __M_writer('    </div>\r\n\r\n\r\n    <div class=\'intern_info\'>\r\n      <div class=\'internship\'>\r\n        <a href="/surveys/choose_company/')
         __M_writer(str( user.id ))
         __M_writer('/internship"><button class="btn btn-success">Add Internship Information</button></a></h3>\r\n')
         if internship != False:
-            __M_writer('        <div class="container currentFullTimeInfo">\r\n          <h3><strong>Internship:</strong></h3>\r\n')
+            __M_writer('          <div class="container currentFullTimeInfo">\r\n            <h3><strong>Internship:</strong></h3>\r\n')
             for i in internship:
-                __M_writer('              <div class="leftindent">\r\n                <h4>Company: ')
+                __M_writer('                <div class="leftindent">\r\n                  <h4>Company: ')
                 __M_writer(str( i.company.name ))
-                __M_writer(' <a href="/users/internship/')
+                __M_writer('\r\n                    <a href="/users/internship/')
                 __M_writer(str( i.id))
-                __M_writer('"><button class="btn btn-info btn-sm">Update</button></a></h4>\r\n                  <div class="doubleleftindent">\r\n                    <p>Position: ')
+                __M_writer('"><button class="btn btn-info btn-sm">Update</button></a>\r\n                    <a href="/users/internship.delete/')
+                __M_writer(str( i.id ))
+                __M_writer('/"><button class="delete_internship btn btn-danger btn-sm">Delete</button></a>\r\n                  </h4>\r\n                    <div class="doubleleftindent">\r\n                      <p>Position: ')
                 __M_writer(str( i.position_title ))
-                __M_writer('</p>\r\n                    <p>How the internship was obtained: ')
+                __M_writer('</p>\r\n                      <p>How the internship was obtained: ')
                 __M_writer(str( i.how_obtained ))
-                __M_writer('</p>\r\n                    <p>How many hours spent looking for internship: ')
+                __M_writer('</p>\r\n                      <p>How many hours spent looking for internship: ')
                 __M_writer(str( i.hours_looking ))
-                __M_writer('</p>\r\n                  </div>\r\n                </div>\r\n              <hr>\r\n')
-            __M_writer('        </div>\r\n')
-        __M_writer('    </div>\r\n  </div>\r\n</div>\r\n\r\n\r\n\r\n\r\n')
+                __M_writer('</p>\r\n                    </div>\r\n                  </div>\r\n                <hr>\r\n')
+            __M_writer('          </div>\r\n')
+        __M_writer('      </div>\r\n\r\n      <div class=\'offers\'>\r\n        <a href="/surveys/choose_company/')
+        __M_writer(str( user.id ))
+        __M_writer('/offer"><button class="btn btn-success">Add Offer Information</button></a></h3>\r\n')
+        if offer != False:
+            __M_writer('          <div class="container currentFullTimeInfo">\r\n            <h3><strong>Offer:</strong></h3>\r\n')
+            for o in offer:
+                __M_writer('                <div class="leftindent">\r\n                  <h4>Company: ')
+                __M_writer(str( o.company.name ))
+                __M_writer('\r\n                    <a href="/users/offer/')
+                __M_writer(str( o.id))
+                __M_writer('"><button class="btn btn-info btn-sm">Update</button></a>\r\n                    <a href="/users/offer.delete/')
+                __M_writer(str( o.id ))
+                __M_writer('/"><button class="delete_offer btn btn-danger btn-sm">Delete</button></a>\r\n                  </h4>\r\n                    <div class="doubleleftindent">\r\n                      <p>Position: ')
+                __M_writer(str( o.intern_offer ))
+                __M_writer('</p>\r\n                    </div>\r\n                  </div>\r\n                <hr>\r\n')
+            __M_writer('          </div>\r\n')
+        __M_writer('      </div>\r\n\r\n    </div>\r\n  </div>\r\n</div>\r\n\r\n<!-- Delete Internship Modal -->\r\n<div class="modal fade" id="deleteInternship" role="dialog">\r\n<div class="modal-dialog">\r\n\r\n  <!-- Modal content-->\r\n  <div class="modal-content">\r\n    <div class="modal-header">\r\n      <button type="button" class="close" data-dismiss="modal">&times;</button>\r\n      <h4 class="modal-title">Confirm</h4>\r\n    </div>\r\n    <div class="modal-body">\r\n      <p>Are you sure you want to delete this internship?  This cannot be undone.</p>\r\n    </div>\r\n    <div class="modal-footer">\r\n      <a id="real_delete" href="" class="btn btn-danger" type="submit">Yes</a>\r\n      <button type="button" class="btn btn-default" data-dismiss="modal">No</button>\r\n    </div>\r\n  </div>\r\n\r\n</div>\r\n</div>\r\n\r\n<!-- Delete Offer Modal -->\r\n<div class="modal fade" id="deleteOffer" role="dialog">\r\n<div class="modal-dialog">\r\n\r\n  <!-- Modal content-->\r\n  <div class="modal-content">\r\n    <div class="modal-header">\r\n      <button type="button" class="close" data-dismiss="modal">&times;</button>\r\n      <h4 class="modal-title">Confirm</h4>\r\n    </div>\r\n    <div class="modal-body">\r\n      <p>Are you sure you want to delete this offer?  This cannot be undone.</p>\r\n    </div>\r\n    <div class="modal-footer">\r\n      <a id="real_delete" href="" class="btn btn-danger" type="submit">Yes</a>\r\n      <button type="button" class="btn btn-default" data-dismiss="modal">No</button>\r\n    </div>\r\n  </div>\r\n\r\n</div>\r\n</div>\r\n\r\n<!-- Delete Job Modal -->\r\n<div class="modal fade" id="deleteJob" role="dialog">\r\n<div class="modal-dialog">\r\n\r\n  <!-- Modal content-->\r\n  <div class="modal-content">\r\n    <div class="modal-header">\r\n      <button type="button" class="close" data-dismiss="modal">&times;</button>\r\n      <h4 class="modal-title">Confirm</h4>\r\n    </div>\r\n    <div class="modal-body">\r\n      <p>Are you sure you want to delete this job?  This cannot be undone.</p>\r\n    </div>\r\n    <div class="modal-footer">\r\n      <a id="real_delete" href="" class="btn btn-danger" type="submit">Yes</a>\r\n      <button type="button" class="btn btn-default" data-dismiss="modal">No</button>\r\n    </div>\r\n  </div>\r\n\r\n</div>\r\n</div>\r\n\r\n\r\n\r\n\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -135,6 +155,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/aluminfo.html", "uri": "aluminfo.html", "line_map": {"128": 62, "129": 67, "130": 69, "136": 130, "29": 0, "43": 1, "48": 76, "54": 4, "67": 4, "68": 6, "69": 6, "70": 9, "71": 10, "72": 10, "73": 10, "74": 11, "75": 12, "76": 14, "77": 17, "78": 17, "79": 19, "80": 20, "81": 22, "82": 22, "83": 24, "84": 24, "85": 26, "86": 26, "87": 27, "88": 27, "89": 28, "90": 28, "91": 29, "92": 29, "93": 30, "94": 30, "95": 31, "96": 31, "97": 32, "98": 32, "99": 33, "100": 33, "101": 34, "102": 34, "103": 35, "104": 35, "105": 36, "106": 36, "107": 41, "108": 42, "109": 43, "110": 45, "111": 45, "112": 48, "113": 52, "114": 52, "115": 53, "116": 54, "117": 56, "118": 57, "119": 58, "120": 58, "121": 58, "122": 58, "123": 60, "124": 60, "125": 61, "126": 61, "127": 62}, "source_encoding": "utf-8"}
+{"uri": "aluminfo.html", "source_encoding": "utf-8", "line_map": {"29": 0, "44": 1, "49": 169, "55": 4, "69": 4, "70": 6, "71": 6, "72": 9, "73": 10, "74": 10, "75": 10, "76": 11, "77": 12, "78": 14, "79": 17, "80": 17, "81": 19, "82": 20, "83": 22, "84": 22, "85": 24, "86": 24, "87": 26, "88": 26, "89": 27, "90": 27, "91": 28, "92": 28, "93": 29, "94": 29, "95": 30, "96": 30, "97": 31, "98": 31, "99": 32, "100": 32, "101": 33, "102": 33, "103": 34, "104": 34, "105": 35, "106": 35, "107": 36, "108": 36, "109": 41, "110": 42, "111": 43, "112": 45, "113": 45, "114": 48, "115": 53, "116": 53, "117": 54, "118": 55, "119": 57, "120": 58, "121": 59, "122": 59, "123": 60, "124": 60, "125": 61, "126": 61, "127": 64, "128": 64, "129": 65, "130": 65, "131": 66, "132": 66, "133": 71, "134": 73, "135": 76, "136": 76, "137": 77, "138": 78, "139": 80, "140": 81, "141": 82, "142": 82, "143": 83, "144": 83, "145": 84, "146": 84, "147": 87, "148": 87, "149": 92, "150": 94, "156": 150}, "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/aluminfo.html"}
 __M_END_METADATA
 """

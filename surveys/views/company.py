@@ -17,6 +17,8 @@ def process_request(request):
     try:
         if request.urlparams[1] == 'internship':
             company = umod.Internship.objects.get(id=request.urlparams[0])
+        elif request.urlparams[1] == 'offer':
+            company = umod.Offers.objects.get(id=request.urlparams[0])
         else:
             company = umod.FullTime.objects.get(id=request.urlparams[0])
     except umod.FullTime.DoesNotExist:
@@ -32,6 +34,8 @@ def process_request(request):
         form.commit(company)
         if request.urlparams[1] == 'internship':
             return HttpResponseRedirect('/users/internship/' + str( company.id ))
+        elif request.urlparams[1] == 'offer':
+            return HttpResponseRedirect('/users/offer/' + str( company.id ))
         return HttpResponseRedirect('/users/currentjob/' + str( company.id ))
 
     #render the template
@@ -125,6 +129,8 @@ def create_new(request):
         company = umod.Company.objects.get(name=request.POST["name"], city=request.POST["city"], state=request.POST["state"])
         if request.urlparams[1] == 'internship':
             return HttpResponseRedirect('/users/internship.create/' + str(user.id) + '/' + str(company.id))
+        if request.urlparams[1] == 'offer':
+            return HttpResponseRedirect('/users/offer.create/' + str(user.id) + '/' + str(company.id))
         return HttpResponseRedirect('/users/currentjob.create/' + str(user.id) + '/' + str(company.id))
 
     #render the template
