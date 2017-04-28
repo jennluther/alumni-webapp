@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1493245814.919955
+_modified_time = 1493407251.805375
 _enable_loop = True
 _template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/aluminfo.html'
 _template_uri = 'aluminfo.html'
@@ -30,13 +30,15 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        internship = context.get('internship', UNDEFINED)
-        user = context.get('user', UNDEFINED)
-        pastFullTime = context.get('pastFullTime', UNDEFINED)
-        exitSurvey = context.get('exitSurvey', UNDEFINED)
-        currentFullTime = context.get('currentFullTime', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
+        internship = context.get('internship', UNDEFINED)
+        table = context.get('table', UNDEFINED)
+        current_skills_list = context.get('current_skills_list', UNDEFINED)
+        currentFullTime = context.get('currentFullTime', UNDEFINED)
+        pastFullTime = context.get('pastFullTime', UNDEFINED)
+        user = context.get('user', UNDEFINED)
+        exitSurvey = context.get('exitSurvey', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
@@ -52,13 +54,15 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        internship = context.get('internship', UNDEFINED)
-        user = context.get('user', UNDEFINED)
-        pastFullTime = context.get('pastFullTime', UNDEFINED)
-        exitSurvey = context.get('exitSurvey', UNDEFINED)
-        currentFullTime = context.get('currentFullTime', UNDEFINED)
         def content():
             return render_content(context)
+        internship = context.get('internship', UNDEFINED)
+        table = context.get('table', UNDEFINED)
+        current_skills_list = context.get('current_skills_list', UNDEFINED)
+        currentFullTime = context.get('currentFullTime', UNDEFINED)
+        pastFullTime = context.get('pastFullTime', UNDEFINED)
+        user = context.get('user', UNDEFINED)
+        exitSurvey = context.get('exitSurvey', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n<div class="container">\r\n  <h1>')
         __M_writer(str( user.first_name + " " + user.last_name))
@@ -79,6 +83,8 @@ def render_content(context,**pageargs):
             __M_writer(str( currentFullTime.company.name ))
             __M_writer('</h4>\r\n          <div class="doubleleftindent">\r\n            <p>Position: ')
             __M_writer(str( currentFullTime.position_title ))
+            __M_writer('</p>\r\n            <p>Skills: ')
+            __M_writer(str( current_skills_list ))
             __M_writer('</p>\r\n            <p>Start Date: ')
             __M_writer(str( currentFullTime.start_date ))
             __M_writer('</p>\r\n            <p>Salary: ')
@@ -100,36 +106,9 @@ def render_content(context,**pageargs):
             __M_writer('</p>\r\n          </div>\r\n        </div>\r\n      </div>\r\n')
         __M_writer('\r\n')
         if pastFullTime != False:
-            __M_writer('      <div class="container pastFullTimeInfo">\r\n        <h3><strong>Job History:</strong></h3>\r\n')
-            for p in pastFullTime:
-                __M_writer('        <div class="leftindent">\r\n          <h4>Company: ')
-                __M_writer(str( p.company.name ))
-                __M_writer(' <a href="/users/currentjob/')
-                __M_writer(str( p.id))
-                __M_writer('"><button class="btn btn-info btn-sm">Update</button></a></h4>\r\n            <div class="doubleleftindent">\r\n            <p>Position: ')
-                __M_writer(str( p.position_title ))
-                __M_writer('</p>\r\n            <p>Start Date: ')
-                __M_writer(str( p.start_date ))
-                __M_writer('</p>\r\n            <p>End Date: ')
-                __M_writer(str( p.end_date ))
-                __M_writer('</p>\r\n            <p>Salary: $')
-                __M_writer(str( p.salary ))
-                __M_writer('</p>\r\n            <p>Average Work Week: ')
-                __M_writer(str( p.avg_hours_week ))
-                __M_writer('</p>\r\n            <p>Satisfaction: ')
-                __M_writer(str( p.satisfaction ))
-                __M_writer('</p>\r\n            <p>Projected Raise Time (months): ')
-                __M_writer(str( p.projected_raise_time_months ))
-                __M_writer('</p>\r\n            <p>Family Friendly: ')
-                __M_writer(str( p.family_friendly ))
-                __M_writer('</p>\r\n            <p>Why: ')
-                __M_writer(str( p.family_friendly_response ))
-                __M_writer('</p>\r\n            <p>Pros: ')
-                __M_writer(str( p.pros ))
-                __M_writer('</p>\r\n            <p>Cons: ')
-                __M_writer(str( p.cons ))
-                __M_writer('</p>\r\n          </div>\r\n        </div>\r\n          <hr>\r\n')
-            __M_writer('      </div>\r\n')
+            __M_writer('      <div class="container pastFullTimeInfo">\r\n        <h3><strong>Job History:</strong></h3>\r\n            ')
+            __M_writer(str( table ))
+            __M_writer('\r\n      </div>\r\n')
         __M_writer('    </div>\r\n\r\n\r\n    <div class=\'intern_info\'>\r\n      <a href="/surveys/choose_company/')
         __M_writer(str( user.id ))
         __M_writer('/internship"><button class="btn btn-success">Add Internship Information</button></a></h3>\r\n')
@@ -156,6 +135,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/aluminfo.html", "source_encoding": "utf-8", "uri": "aluminfo.html", "line_map": {"29": 0, "41": 1, "46": 93, "52": 4, "63": 4, "64": 6, "65": 6, "66": 9, "67": 10, "68": 10, "69": 10, "70": 11, "71": 12, "72": 14, "73": 17, "74": 17, "75": 19, "76": 20, "77": 22, "78": 22, "79": 24, "80": 24, "81": 26, "82": 26, "83": 27, "84": 27, "85": 28, "86": 28, "87": 29, "88": 29, "89": 30, "90": 30, "91": 31, "92": 31, "93": 32, "94": 32, "95": 33, "96": 33, "97": 34, "98": 34, "99": 35, "100": 35, "101": 40, "102": 41, "103": 42, "104": 44, "105": 45, "106": 46, "107": 46, "108": 46, "109": 46, "110": 48, "111": 48, "112": 49, "113": 49, "114": 50, "115": 50, "116": 51, "117": 51, "118": 52, "119": 52, "120": 53, "121": 53, "122": 54, "123": 54, "124": 55, "125": 55, "126": 56, "127": 56, "128": 57, "129": 57, "130": 58, "131": 58, "132": 63, "133": 65, "134": 69, "135": 69, "136": 70, "137": 71, "138": 73, "139": 74, "140": 75, "141": 75, "142": 75, "143": 75, "144": 77, "145": 77, "146": 78, "147": 78, "148": 79, "149": 79, "150": 84, "151": 86, "157": 151}}
+{"filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/aluminfo.html", "uri": "aluminfo.html", "line_map": {"128": 62, "129": 67, "130": 69, "136": 130, "29": 0, "43": 1, "48": 76, "54": 4, "67": 4, "68": 6, "69": 6, "70": 9, "71": 10, "72": 10, "73": 10, "74": 11, "75": 12, "76": 14, "77": 17, "78": 17, "79": 19, "80": 20, "81": 22, "82": 22, "83": 24, "84": 24, "85": 26, "86": 26, "87": 27, "88": 27, "89": 28, "90": 28, "91": 29, "92": 29, "93": 30, "94": 30, "95": 31, "96": 31, "97": 32, "98": 32, "99": 33, "100": 33, "101": 34, "102": 34, "103": 35, "104": 35, "105": 36, "106": 36, "107": 41, "108": 42, "109": 43, "110": 45, "111": 45, "112": 48, "113": 52, "114": 52, "115": 53, "116": 54, "117": 56, "118": 57, "119": 58, "120": 58, "121": 58, "122": 58, "123": 60, "124": 60, "125": 61, "126": 61, "127": 62}, "source_encoding": "utf-8"}
 __M_END_METADATA
 """

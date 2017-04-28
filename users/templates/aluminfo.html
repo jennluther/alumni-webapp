@@ -24,6 +24,7 @@
           <h4>Company: ${ currentFullTime.company.name }</h4>
           <div class="doubleleftindent">
             <p>Position: ${ currentFullTime.position_title }</p>
+            <p>Skills: ${ current_skills_list }</p>
             <p>Start Date: ${ currentFullTime.start_date }</p>
             <p>Salary: ${ currentFullTime.salary }</p>
             <p>Average Work Week: ${ currentFullTime.avg_hours_week }</p>
@@ -41,25 +42,7 @@
       %if pastFullTime != False:
       <div class="container pastFullTimeInfo">
         <h3><strong>Job History:</strong></h3>
-        %for p in pastFullTime:
-        <div class="leftindent">
-          <h4>Company: ${ p.company.name } <a href="/users/currentjob/${ p.id}"><button class="btn btn-info btn-sm">Update</button></a></h4>
-            <div class="doubleleftindent">
-            <p>Position: ${ p.position_title }</p>
-            <p>Start Date: ${ p.start_date }</p>
-            <p>End Date: ${ p.end_date }</p>
-            <p>Salary: $${ p.salary }</p>
-            <p>Average Work Week: ${ p.avg_hours_week }</p>
-            <p>Satisfaction: ${ p.satisfaction }</p>
-            <p>Projected Raise Time (months): ${ p.projected_raise_time_months }</p>
-            <p>Family Friendly: ${ p.family_friendly }</p>
-            <p>Why: ${ p.family_friendly_response }</p>
-            <p>Pros: ${ p.pros }</p>
-            <p>Cons: ${ p.cons }</p>
-          </div>
-        </div>
-          <hr>
-        %endfor
+            ${ table }
       </div>
       %endif
     </div>

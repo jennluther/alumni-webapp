@@ -45,9 +45,51 @@ def process_request(request):
     except umod.Internship.DoesNotExist:
         internship = False
 
+    skills_current_ft = umod.Skills.objects.filter(full_time = currentFullTime.id)
+    current_skills_list = None
+    for s in skills_current_ft:
+        if current_skills_list is None:
+            current_skills_list = s.skill
+        else:
+            current_skills_list = current_skills_list + '; ' + s.skill
+    print(">>>>>>>>>", current_skills_list)
 
+    qry = umod.FullTime.objects.filter(user = user.id, current_job = False)
+    past_full_time = []
+    for q in qry:
+        obj = []
+        obj.append(q.id)
+        obj.append('Company: ' + q.company.name)
+        obj.append('Position: ' + q.position_title)
+        skills = umod.Skills.objects.filter(full_time = q.id)
+        skills_string = None
+        for s in skills:
+            if skill_string is None:
+                skills_string = s.skill
+            else:
+                skills_string = skills_string + '; ' + s.skill
+        obj.append('Skills: ' + str(skills_string))
+        obj.append('Start Date: ' + str(q.start_date))
+        obj.append('Salary: ' + str(q.salary))
+        obj.append('Average Work Week (hours): ' + str(q.avg_hours_week))
+        obj.append('Satisfaction: ' + q.satisfaction)
+        obj.append('Projected Raise Time (months): ' + str(q.projected_raise_time_months))
+        if q.family_friendly == True:
+            obj.append('Family Friendly: Yes')
+        else:
+            obj.append('Family Friendly: No')
+        obj.append('Why: ' + q.family_friendly_response)
+        obj.append('Pros: ' + q.pros)
+        obj.append('Cons: ' + q.cons)
+        past_full_time.append(obj)
 
+    table = QuotesTable()
+    for p in past_full_time:
+        table.append(p)
 
+    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
+    print(table)
+    print(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
 
 
     #render the template
@@ -57,5 +99,36 @@ def process_request(request):
         'pastFullTime': pastFullTime,
         'currentFullTime': currentFullTime,
         'internship': internship,
+        'current_skills_list': current_skills_list,
+        'table': table,
+        # 'skill_past_ft': skill_past_ft,
     }
     return dmp_render(request, 'aluminfo.html', context)
+
+
+class QuotesTable(list):
+    '''
+    A simple class to create an HTML table.
+    This inherits from list, so add to it just as you would any other list in python:
+        qry = hmod.Quote.objects.....()
+        table = QuotesTable()
+        table.append([ 'Cell 1a', 'Cell 1b', 'Cell 1c' ])
+        table.append([ 'Cell 2a', 'Cell 2b', 'Cell 2c' ])
+        print(table)
+    '''
+    table_id = 'quotes_table'
+    def __str__(self):
+        '''
+        Prints the html for the table.
+        '''
+        # start the table
+        html = []
+        for row_i, row in enumerate(self):
+            html.append('<div class="leftindent">')
+            html.append('<h4>{}'.format(row[1]) + '  <a href="/users/currentjob/{}"><button class="btn btn-info btn-sm">Update</button></a></h4>'.format(row[0]))
+            html.append('<div class="doubleleftindent">')
+            for val in row[2:]:
+                html.append('<p>{}</p>'.format(val))
+            html.append('</div>')
+            html.append('</div><hr>')
+        return '\n'.join(html)
