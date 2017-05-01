@@ -72,6 +72,7 @@ class FormMixIn(object):
     form_method = 'POST'
     form_submit = 'Submit'
     field_css = [ 'form-control' ]
+    form_enctype = ''
 
     def __init__(self, request, *args, **kwargs):
         '''Constructor'''
