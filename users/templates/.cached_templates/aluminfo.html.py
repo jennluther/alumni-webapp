@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1493420400.592371
+_modified_time = 1493741596.034944
 _enable_loop = True
 _template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/aluminfo.html'
 _template_uri = 'aluminfo.html'
@@ -32,14 +32,14 @@ def render_body(context,**pageargs):
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         def content():
             return render_content(context._locals(__M_locals))
-        offer = context.get('offer', UNDEFINED)
-        pastFullTime = context.get('pastFullTime', UNDEFINED)
-        table = context.get('table', UNDEFINED)
-        user = context.get('user', UNDEFINED)
-        currentFullTime = context.get('currentFullTime', UNDEFINED)
         current_skills_list = context.get('current_skills_list', UNDEFINED)
+        user = context.get('user', UNDEFINED)
+        offer = context.get('offer', UNDEFINED)
         internship = context.get('internship', UNDEFINED)
+        table = context.get('table', UNDEFINED)
+        pastFullTime = context.get('pastFullTime', UNDEFINED)
         exitSurvey = context.get('exitSurvey', UNDEFINED)
+        currentFullTime = context.get('currentFullTime', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
@@ -57,14 +57,14 @@ def render_content(context,**pageargs):
     try:
         def content():
             return render_content(context)
-        offer = context.get('offer', UNDEFINED)
-        pastFullTime = context.get('pastFullTime', UNDEFINED)
-        table = context.get('table', UNDEFINED)
-        user = context.get('user', UNDEFINED)
-        currentFullTime = context.get('currentFullTime', UNDEFINED)
         current_skills_list = context.get('current_skills_list', UNDEFINED)
+        user = context.get('user', UNDEFINED)
+        offer = context.get('offer', UNDEFINED)
         internship = context.get('internship', UNDEFINED)
+        table = context.get('table', UNDEFINED)
+        pastFullTime = context.get('pastFullTime', UNDEFINED)
         exitSurvey = context.get('exitSurvey', UNDEFINED)
+        currentFullTime = context.get('currentFullTime', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n<div class="container">\r\n  <h1>')
         __M_writer(str( user.first_name + " " + user.last_name))
@@ -74,7 +74,9 @@ def render_content(context,**pageargs):
             __M_writer(str( user.id ))
             __M_writer('"<button class="btn btn-warning">Results</button></a><h3>\r\n')
         else:
-            __M_writer('      <h3>Exit Survey needs to be taken</h3>\r\n')
+            __M_writer('      <h3>Exit Survey needs to be taken  <a href="/surveys/exit_survey/')
+            __M_writer(str( user.id ))
+            __M_writer('"<button class="btn btn-warning">Take Survey</button></a></h3>\r\n')
         __M_writer('  </div>\r\n<div>\r\n  <div class=\'job_info\'>\r\n    <a href="/surveys/choose_company/')
         __M_writer(str( user.id ))
         __M_writer('"><button class="btn btn-success">Add Job Information</button></a></h3>\r\n\r\n')
@@ -155,6 +157,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"source_encoding": "utf-8", "line_map": {"29": 0, "44": 1, "49": 169, "55": 4, "69": 4, "70": 6, "71": 6, "72": 9, "73": 10, "74": 10, "75": 10, "76": 11, "77": 12, "78": 14, "79": 17, "80": 17, "81": 19, "82": 20, "83": 22, "84": 22, "85": 24, "86": 24, "87": 26, "88": 26, "89": 27, "90": 27, "91": 28, "92": 28, "93": 29, "94": 29, "95": 30, "96": 30, "97": 31, "98": 31, "99": 32, "100": 32, "101": 33, "102": 33, "103": 34, "104": 34, "105": 35, "106": 35, "107": 36, "108": 36, "109": 41, "110": 42, "111": 43, "112": 45, "113": 45, "114": 48, "115": 53, "116": 53, "117": 54, "118": 55, "119": 57, "120": 58, "121": 59, "122": 59, "123": 60, "124": 60, "125": 61, "126": 61, "127": 64, "128": 64, "129": 65, "130": 65, "131": 66, "132": 66, "133": 71, "134": 73, "135": 76, "136": 76, "137": 77, "138": 78, "139": 80, "140": 81, "141": 82, "142": 82, "143": 83, "144": 83, "145": 84, "146": 84, "147": 87, "148": 87, "149": 92, "150": 94, "156": 150}, "uri": "aluminfo.html", "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/aluminfo.html"}
+{"line_map": {"29": 0, "44": 1, "49": 169, "55": 4, "69": 4, "70": 6, "71": 6, "72": 9, "73": 10, "74": 10, "75": 10, "76": 11, "77": 12, "78": 12, "79": 12, "80": 14, "81": 17, "82": 17, "83": 19, "84": 20, "85": 22, "86": 22, "87": 24, "88": 24, "89": 26, "90": 26, "91": 27, "92": 27, "93": 28, "94": 28, "95": 29, "96": 29, "97": 30, "98": 30, "99": 31, "100": 31, "101": 32, "102": 32, "103": 33, "104": 33, "105": 34, "106": 34, "107": 35, "108": 35, "109": 36, "110": 36, "111": 41, "112": 42, "113": 43, "114": 45, "115": 45, "116": 48, "117": 53, "118": 53, "119": 54, "120": 55, "121": 57, "122": 58, "123": 59, "124": 59, "125": 60, "126": 60, "127": 61, "128": 61, "129": 64, "130": 64, "131": 65, "132": 65, "133": 66, "134": 66, "135": 71, "136": 73, "137": 76, "138": 76, "139": 77, "140": 78, "141": 80, "142": 81, "143": 82, "144": 82, "145": 83, "146": 83, "147": 84, "148": 84, "149": 87, "150": 87, "151": 92, "152": 94, "158": 152}, "uri": "aluminfo.html", "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/aluminfo.html", "source_encoding": "utf-8"}
 __M_END_METADATA
 """

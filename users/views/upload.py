@@ -7,6 +7,8 @@ from users import models as umod
 from django import forms
 from formlib.form import FormMixIn
 from users import alumni_import
+import io
+import csv
 
 @view_function
 def process_request(request):
@@ -14,9 +16,7 @@ def process_request(request):
     form = FileFieldForm(request)
 
     if form.is_valid():
-        print(">>>>>>>>POST", request.FILES)
-        uploaded_csv = request.FILES['file_field'].read()
-        print(">>>>>>>>>>", uploaded_csv)
+        uploaded_csv = io.TextIOWrapper(request.FILES['file_field'].file, encoding="ASCII")
         alumni_import.ImportAlumni(uploaded_csv)
         return HttpResponseRedirect('/users/users/')
 

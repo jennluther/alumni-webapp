@@ -5,15 +5,7 @@ import csv
 import io
 
 def ImportAlumni(uploaded_csv):
-    print("LINE 8>>>>>>>>", uploaded_csv)
-    # with open(uploaded_csv) as csvfile:
-    # csvfile = io.StringIO(uploaded_csv)
-    print("++++++++++++", uploaded_csv)
     reader = csv.DictReader(uploaded_csv)
-    print("******************************")
-    for r in reader:
-        print( r )
-    print("******************************")
     for row in reader:
         ######USER INFO
         u = umod.User()
@@ -26,6 +18,7 @@ def ImportAlumni(uploaded_csv):
         u.state = row['state']
         u.phone = row['phone']
         u.graduationDate = row['graduationDate']
+        print(u.first_name)
         u.save()
         print(u.first_name)
         ###########FULL TIME INFO

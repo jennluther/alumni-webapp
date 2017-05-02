@@ -1,11 +1,10 @@
-<%inherit file="base.htm" />
+<%inherit file="homepage/templates/base.htm"/>
 
 <%block name="content">
+<div class='viewcontainer container'>
   <h1>Exit Survey</h1>
 
-  <form>
-    <table id="myform">
-        ${ form.as_table() }
-    </table>
-  </form>
+        ${ form }
+  </div>
+
 </%block>

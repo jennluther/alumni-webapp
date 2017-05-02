@@ -47,7 +47,7 @@ management.call_command('migrate')
 from users import models as umod
 from decimal import Decimal
 import csv
-# 
+
 # with open('users.csv') as csvfile:
 #     reader = csv.DictReader(csvfile)
 #     for row in reader:

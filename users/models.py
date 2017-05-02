@@ -221,6 +221,7 @@ class User(AbstractUser):
     state = models.CharField(max_length=2, choices=STATE, blank=True, null=True)
     phone = models.CharField(max_length=30, null=True, blank=True)
     graduationDate = models.DateField(null=True, blank=True)
+    program = models.ForeignKey('Program', null=True, blank=True)
 
 class Donation(models.Model):
     # this model tracks whether the person submits a Donation
@@ -285,10 +286,16 @@ class CareerAdvisor(models.Model):
     ca_first_name = models.CharField(null=True, blank=True, max_length=30)
     ca_last_name = models.CharField(null=True, blank=True, max_length=30)
 
+    def __str__(self):
+        return self.ca_first_name + " " + self.ca_last_name
+
 
 class AcademicAdvisor(models.Model):
     aa_first_name = models.CharField(null=True, blank=True, max_length=30)
     aa_last_name = models.CharField(null=True, blank=True, max_length=30)
+
+    def __str__(self):
+        return self.aa_first_name + " " + self.aa_last_name
 
 
 class Program(models.Model):

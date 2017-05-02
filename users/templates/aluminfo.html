@@ -9,7 +9,7 @@
     %if exitSurvey != False:
       <h3>Exit Survey has been submitted!  <a href="/users/results/${ user.id }"<button class="btn btn-warning">Results</button></a><h3>
     %else:
-      <h3>Exit Survey needs to be taken</h3>
+      <h3>Exit Survey needs to be taken  <a href="/surveys/exit_survey/${ user.id }"<button class="btn btn-warning">Take Survey</button></a></h3>
     %endif
   </div>
 <div>
