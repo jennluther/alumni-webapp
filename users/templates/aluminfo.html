@@ -4,7 +4,18 @@
 <%block name="content">
 <div class="container">
   <h1>${ user.first_name + " " + user.last_name}'s Information:</h1>
-
+  <p class='aluminfo'>
+      Phone number: ${ user.phone } <br>
+      Email: ${ user.email }<br>
+      Address: ${ user.street }
+      ${ user.city },
+      ${ user.state }
+      ${ user.country }
+      ${ user.zipcode }<br>
+      Program: ${ user.program }<br>
+      Graduation Date: ${ user.graduationDate }<br>
+      <a href="/users/user/${ user.id }/">Edit</a>
+    </p>
   <div>
     %if exitSurvey != False:
       <h3>Exit Survey has been submitted!  <a href="/users/results/${ user.id }"<button class="btn btn-warning">Results</button></a><h3>

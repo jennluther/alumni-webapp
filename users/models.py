@@ -154,6 +154,12 @@ INTRODUCTION_CHOICES = [
     ("9", "Other"),
 ]
 
+PROGRAM_CHOICES = [
+    ('BSIS', 'BSIS'),
+    ('I-MISM', 'Integrated MISM'),
+    ('N-MISM', 'Non-Integrated MISM'),
+]
+
 POSITION_CHOICES =[
     ('BI/Db', 'BI/Database'),
     ('Consulting', 'Consulting'),
@@ -217,11 +223,16 @@ class User(AbstractUser):
     #email
     #username
     #password
-    city = models.CharField(max_length=30, null=True, blank=True)
-    state = models.CharField(max_length=2, choices=STATE, blank=True, null=True)
+    street = models.CharField(max_length=100, null=True, blank=True)
+    city = models.CharField(max_length=50, null=True, blank=True)
+    state = models.CharField(max_length=50, choices=STATE, blank=True, null=True)
+    zipcode = models.CharField(max_length=30, null=True, blank=True)
+    country = models.CharField(max_length=30, null=True, blank=True)
     phone = models.CharField(max_length=30, null=True, blank=True)
-    graduationDate = models.DateField(null=True, blank=True)
-    program = models.ForeignKey('Program', null=True, blank=True)
+    graduationDate = models.CharField(max_length=50, null=True, blank=True)
+    program = models.CharField(choices=PROGRAM_CHOICES, null=True, blank=True, max_length=30)
+    academic_advisor = models.ForeignKey('AcademicAdvisor', null=True, blank=True)
+    career_advisor = models.ForeignKey('CareerAdvisor', null=True, blank=True)
 
 class Donation(models.Model):
     # this model tracks whether the person submits a Donation

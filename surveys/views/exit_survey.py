@@ -55,23 +55,23 @@ class ExitForm(FormMixIn, forms.Form):
         # Program-related Questions
         self.fields['name'] = forms.ChoiceField(choices=umod.PROGRAM_CHOICES, label='What program are you currently in?')
         self.fields['program_introduction'] = forms.ChoiceField(choices=umod.INTRODUCTION_CHOICES, label="How did you learn about the Information Systems program?")
-        self.fields['mism_decision'] = forms.CharField(label="Why did you decide to pursue the MISM?", max_length=130)
+        self.fields['mism_decision'] = forms.CharField(label="Why did you decide to pursue the MISM?", max_length=130, required=False)
         self.fields['again'] = forms.ChoiceField(label="Given the opportunity to start over, would you choose IS again?", choices=umod.AGAIN_CHOICES)
         self.fields['again_response'] = forms.CharField(label="Please explain your response to the question above.", max_length=150, required=False)
         self.fields['additional_classes'] = forms.CharField(label="What classes or topics would you have liked to take that were not offered?", max_length=150, required=False)
         #this should be a drop down, not a radio selection
         self.fields['valuable_class'] = forms.ChoiceField(label="What was the most valuable class in the MISM?", choices=umod.VALUABLE_CHOICES)
-        self.fields['valuable_class_response'] = forms.CharField(label="Please explain your response to the question above.", max_length=130)
+        self.fields['valuable_class_response'] = forms.CharField(label="Please explain your response to the question above.", max_length=130, required=False)
         self.fields['least_valuable_class'] = forms.ChoiceField(label="What was the most valuable class in the MISM?", choices=umod.VALUABLE_CHOICES)
-        self.fields['least_valuable_class_response'] = forms.CharField(label="Please explain your response to the question above.", max_length=150)
-        self.fields['best_response'] = forms.CharField(label="What did you like best about the MISM and why?", max_length=150)
-        self.fields['recommendation'] = forms.CharField(label="What recommendations would you make to improve the program?", max_length=150)
+        self.fields['least_valuable_class_response'] = forms.CharField(label="Please explain your response to the question above.", max_length=150, required=False)
+        self.fields['best_response'] = forms.CharField(label="What did you like best about the MISM and why?", max_length=150, required=False)
+        self.fields['recommendation'] = forms.CharField(label="What recommendations would you make to improve the program?", max_length=150, required=False)
 
         # Donation Questions
         #this should be a drop down, not a radio selection
         self.fields['give_back'] = forms.ChoiceField(label="When you are able to do so, will you give back to the Information Systems program?", choices=umod.GIVE_CHOICES)
         self.fields['my_choice'] = forms.ChoiceField(label="""Did you participate in "My Choice to Give"?""", choices=umod.MY_CHOICE_CHOICES)
-        self.fields['additional_comments'] = forms.CharField(label="Anything else you'd like us to know?", max_length=130, required=True)
+        self.fields['additional_comments'] = forms.CharField(label="Anything else you'd like us to know?", max_length=130, required=False)
 
     def commit(self, user):
         #######save program to user

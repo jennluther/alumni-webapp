@@ -51,19 +51,33 @@ class EditUserForm(FormMixIn, forms.Form):
     def init(self, user):
         self.fields['first_name'] = forms.CharField(label='First Name', max_length=100)
         self.fields['last_name'] = forms.CharField(label='Last Name', max_length=100)
+        self.fields['username'] = forms.CharField(label="Username", max_length=100)
+        self.fields['password'] = forms.CharField(label='Password', widget=forms.PasswordInput, required=False)
+        self.fields['email'] = forms.EmailField(label='Email')
+        self.fields['graduationDate'] = forms.CharField(label='Graduation Semester/Year')
+        self.fields['street'] = forms.CharField(label='Street')
         self.fields['city'] = forms.CharField(label='City', max_length=30)
         self.fields['state'] = forms.CharField(label='State')
+        self.fields['country'] = forms.CharField(label='Country')
+        self.fields['zipcode'] = forms.IntegerField(label='Zip Code')
         self.fields['phone'] = forms.CharField(label='Phone')
-        self.fields['email'] = forms.EmailField(label='Email')
+
+
 
 
     def commit(self, user1):
         user1.first_name = self.cleaned_data.get('first_name')
         user1.last_name = self.cleaned_data.get('last_name')
+        user1.username = self.cleaned_data.get('username')
+        user1.set_password(self.cleaned_data.get('password'))
+        user1.street = self.cleaned_data.get('street')
         user1.city = self.cleaned_data.get('city')
         user1.state = self.cleaned_data.get('state')
+        user1.country = self.cleaned_data.get('country')
+        user1.zipcode = self.cleaned_data.get('zipcode')
         user1.phone = self.cleaned_data.get('phone')
         user1.email = self.cleaned_data.get('email')
+        user1.graduationDate = self.cleaned_data.get('graduationDate')
         user1.save()
 
 
@@ -92,11 +106,16 @@ class CreateUserForm(FormMixIn, forms.Form):
         self.fields['first_name'] = forms.CharField(label='First Name', max_length=100)
         self.fields['last_name'] = forms.CharField(label='Last Name', max_length=100)
         self.fields['username'] = forms.CharField(label="Username", max_length=100)
-        self.fields['password'] = forms.CharField(label='Password', widget=forms.PasswordInput)
+        self.fields['password'] = forms.CharField(label='Password', widget=forms.PasswordInput, required=False)
+        self.fields['email'] = forms.EmailField(label='Email')
+        self.fields['graduationDate'] = forms.CharField(label='Graduation Semester/Year')
+        self.fields['street'] = forms.CharField(label='Street')
         self.fields['city'] = forms.CharField(label='City', max_length=30)
         self.fields['state'] = forms.CharField(label='State')
+        self.fields['country'] = forms.CharField(label='Country')
+        self.fields['zipcode'] = forms.IntegerField(label='Zip Code')
         self.fields['phone'] = forms.CharField(label='Phone')
-        self.fields['email'] = forms.EmailField(label='Email')
+
 
 
     def clean_username(self):
@@ -111,11 +130,14 @@ class CreateUserForm(FormMixIn, forms.Form):
         user.last_name = self.cleaned_data.get('last_name')
         user.username = self.cleaned_data.get('username')
         user.set_password(self.cleaned_data.get('password'))
+        user.street = self.cleaned_data.get('street')
         user.city = self.cleaned_data.get('city')
         user.state = self.cleaned_data.get('state')
+        user.country = self.cleaned_data.get('country')
+        user.zipcode = self.cleaned_data.get('zipcode')
         user.phone = self.cleaned_data.get('phone')
         user.email = self.cleaned_data.get('email')
-
+        user.graduationDate = self.cleaned_data.get('graduationDate')
         user.save()
 
 
