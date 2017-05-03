@@ -5,10 +5,10 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1493839634.753389
+_modified_time = 1493839515.163299
 _enable_loop = True
-_template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/login.html'
-_template_uri = 'login.html'
+_template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/login.modal.html'
+_template_uri = 'login.modal.html'
 _source_encoding = 'utf-8'
 import django_mako_plus
 import os, os.path, re, json
@@ -25,7 +25,7 @@ def _mako_generate_namespaces(context):
     pass
 def _mako_inherit(template, context):
     _mako_generate_namespaces(context)
-    return runtime._inherit_from(context, '/homepage/templates/base.htm', _template_uri)
+    return runtime._inherit_from(context, '/homepage/templates/base_ajax.htm', _template_uri)
 def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
@@ -52,9 +52,9 @@ def render_content(context,**pageargs):
         def content():
             return render_content(context)
         __M_writer = context.writer()
-        __M_writer("\r\n<div class='createuser container'>\r\n    ")
+        __M_writer('\r\n\r\n    ')
         __M_writer(str( form ))
-        __M_writer('\r\n  </div>\r\n\r\n')
+        __M_writer('\r\n\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -62,6 +62,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"line_map": {"48": 4, "37": 1, "55": 4, "56": 6, "57": 6, "42": 9, "29": 0, "63": 57}, "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/login.html", "source_encoding": "utf-8", "uri": "login.html"}
+{"line_map": {"48": 4, "37": 1, "55": 4, "56": 6, "57": 6, "42": 8, "29": 0, "63": 57}, "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/login.modal.html", "source_encoding": "utf-8", "uri": "login.modal.html"}
 __M_END_METADATA
 """

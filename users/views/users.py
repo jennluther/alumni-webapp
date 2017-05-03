@@ -22,6 +22,10 @@ def process_request(request):
         users = umod.User.objects.filter(id__in=exitsurvey)
     elif request.urlparams[0] == "incomplete":
         users = umod.User.objects.exclude(id__in=exitsurvey)
+    elif request.urlparams[0] == "MISM":
+        users = umod.User.objects.filter(program__icontains='MISM')
+    elif request.urlparams[0] == "BSIS":
+        users = umod.User.objects.filter(program__icontains='BSIS')
     else:
         users = umod.User.objects.order_by('last_name').all()
 

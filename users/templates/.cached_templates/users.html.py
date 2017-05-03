@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1493827142.781771
+_modified_time = 1493834016.20954
 _enable_loop = True
 _template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/users.html'
 _template_uri = 'users.html'
@@ -30,10 +30,10 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        def content():
-            return render_content(context._locals(__M_locals))
         form = context.get('form', UNDEFINED)
         users = context.get('users', UNDEFINED)
+        def content():
+            return render_content(context._locals(__M_locals))
         __M_writer = context.writer()
         __M_writer('\r\n\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
@@ -49,14 +49,14 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        def content():
-            return render_content(context)
         form = context.get('form', UNDEFINED)
         users = context.get('users', UNDEFINED)
+        def content():
+            return render_content(context)
         __M_writer = context.writer()
         __M_writer("\r\n<div class='container viewcontainer'>\r\n  <h1>Users:</h1>\r\n  <div>\r\n    ")
         __M_writer(str( form ))
-        __M_writer('\r\n  </div><br>\r\n  <a href="/users/user.create/" class="btn btn-primary">Create</a>\r\n  <a href="/users/users" class="btn btn-primary">All Users</a>\r\n  <a href="/users/users/completed" class="btn btn-primary">Filter: Exit Survey Completed</a>\r\n  <a href="/users/users/incomplete" class = "btn btn-primary">Filter: Exit Survey Incomplete </a>\r\n  <a href="/users/upload" class = "btn btn-primary">Upload Alumni Information </a>\r\n\r\n\r\n  <table class="table table-striped users sortable">\r\n      <tr>\r\n        <th>First Name</th>\r\n        <th>Last Name</th>\r\n        <th>Email</th>\r\n        <th>Program</th>\r\n        <th>Actions</th>\r\n      </tr>\r\n')
+        __M_writer('\r\n  </div><br>\r\n  <p>\r\n    <strong>Actions:</strong>\r\n    <a href="/users/user.create/" class="btn btn-primary">Create</a>\r\n    <a href="/users/upload" class = "btn btn-primary">Upload Alumni Information </a>\r\n  </p>\r\n  <p>\r\n    <strong>Filters:</strong>\r\n    <a href="/users/users" class="btn btn-primary">All Users</a>\r\n    <a href="/users/users/completed" class="btn btn-primary">Exit Survey Completed</a>\r\n    <a href="/users/users/incomplete" class = "btn btn-primary">Exit Survey Incomplete </a>\r\n    <a href="/users/users/MISM" class = "btn btn-primary">MISM</a>\r\n    <a href="/users/users/BSIS" class = "btn btn-primary">BSIS</a>\r\n  </p>\r\n\r\n\r\n\r\n  <table class="table table-striped users sortable">\r\n      <tr>\r\n        <th>First Name</th>\r\n        <th>Last Name</th>\r\n        <th>Email</th>\r\n        <th>Program</th>\r\n        <th>Actions</th>\r\n      </tr>\r\n')
         for u in users:
             __M_writer('      <tr>\r\n        <td>')
             __M_writer(str( u.first_name ))
@@ -86,6 +86,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"line_map": {"64": 28, "65": 28, "66": 29, "67": 29, "68": 30, "69": 31, "70": 31, "71": 31, "72": 32, "73": 33, "74": 35, "75": 36, "76": 36, "77": 37, "78": 37, "79": 38, "80": 38, "81": 42, "87": 81, "29": 0, "38": 1, "43": 68, "49": 4, "57": 4, "58": 8, "59": 8, "60": 25, "61": 26, "62": 27, "63": 27}, "uri": "users.html", "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/users.html", "source_encoding": "utf-8"}
+{"line_map": {"64": 37, "65": 37, "66": 38, "67": 38, "68": 39, "69": 40, "70": 40, "71": 40, "72": 41, "73": 42, "74": 44, "75": 45, "76": 45, "77": 46, "78": 46, "79": 47, "80": 47, "81": 51, "87": 81, "29": 0, "38": 1, "43": 77, "49": 4, "57": 4, "58": 8, "59": 8, "60": 34, "61": 35, "62": 36, "63": 36}, "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/users.html", "uri": "users.html", "source_encoding": "utf-8"}
 __M_END_METADATA
 """

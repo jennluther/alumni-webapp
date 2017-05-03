@@ -46,11 +46,16 @@
               <li><a href="#">Graduation Survey</a></li>
               <li><a href="#">IS News</a></li>
             </ul>
-
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="#">Login</a></li>
-              <li><a href="#">Sign up</a></li>
-            </ul>
+            %if user.is_authenticated:
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Welcome ${ user.first_name }</a></li>
+              </ul>
+            %else:
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Login</a></li>
+                <li><a href="#">Sign up</a></li>
+              </ul>
+            %endif
           </div><!-- /.navbar-collapse -->
         </div><!-- /.container-fluid -->
       </nav>

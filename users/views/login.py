@@ -13,9 +13,13 @@ def process_request(request):
 
     form = LoginForm(request)
     if form.is_valid():
+        print("FORM IS VALID")
         #log the user in
         login(request, form.user)
+        print(">>>>>>>>>>", form.user)
         form.commit()
+        if user.is_authenticated:
+            print(">>>>>>>>>>>>>>>>> AUTHENTICATED")
         #redirect to the myaccount page
         return HttpResponseRedirect("/homepage/index/")
 
@@ -28,7 +32,7 @@ def process_request(request):
 class LoginForm(FormMixIn, forms.Form):
 
     def init(self):
-        self.form_action = "/account/login.modal/"
+        self.form_action = "/users/login.modal/"
         self.fields['username'] = forms.CharField(required=True)
         self.fields['password'] = forms.CharField(required=True, widget=forms.PasswordInput())
 
@@ -40,6 +44,11 @@ class LoginForm(FormMixIn, forms.Form):
             raise forms.ValidationError('Invalid username or password')
         if self.user.is_authenticated():
             print(">>>>>is authenticated")
+
+    def commit(self):
+        login(self.request, self.user)
+        print(">>>>>>>>>>> User is logged in")
+        return HttpResponseRedirect('homepage/index')
 
 
 ###################
