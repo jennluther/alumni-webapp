@@ -5,6 +5,9 @@ from datetime import datetime
 from .. import dmp_render, dmp_render_to_string
 from users import models as umod
 from django.contrib.auth.decorators import permission_required
+from django.db.models import Q
+from formlib.form import FormMixIn
+from django import forms
 
 
 @view_function
@@ -22,9 +25,13 @@ def process_request(request):
     else:
         users = umod.User.objects.order_by('last_name').all()
 
-    print('>>>', users)
-    for u in users:
-        print('>>>', u.first_name)
+    form = SearchForm(request)
+    if form.is_valid():
+        form.commit()
+        users = umod.User.objects.filter(Q(first_name__icontains=form.cleaned_data.get('search')) | Q(last_name__icontains=form.cleaned_data.get('search')))
+
+
+
 
 
 
@@ -32,6 +39,18 @@ def process_request(request):
     #render the template
     context = {
         'users': users,
+        'form' : form,
 
     }
     return dmp_render(request, 'users.html', context)
+
+
+class SearchForm(FormMixIn, forms.Form):
+    form_submit = ""
+    open_btn = ''
+    close_btn = ''
+    def init(self):
+        self.fields['search'] = forms.CharField(label='Search', max_length=100)
+    def commit(self):
+        # if all checks out then do the work (search the database)
+        search = self.cleaned_data.get('search')

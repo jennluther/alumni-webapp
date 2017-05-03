@@ -10,7 +10,7 @@ ${ django_mako_plus.link_css(self) }
     ${ form.as_p() }
 
     ## submit button
-    <p class="text-center"><button type="submit" class="btn btn-primary">${ form.form_submit | h }</button></p>
+    ${ form.open_btn }${ form.form_submit | h }${ form.close_btn }
 
 </form>
 

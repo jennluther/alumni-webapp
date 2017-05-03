@@ -73,6 +73,8 @@ class FormMixIn(object):
     form_submit = 'Submit'
     field_css = [ 'form-control' ]
     form_enctype = ''
+    open_btn = '<p class="text-center"><button type="submit" class="btn btn-primary">'
+    close_btn = '</button></p>'
 
     def __init__(self, request, *args, **kwargs):
         '''Constructor'''
