@@ -42,18 +42,18 @@ class ExitForm(FormMixIn, forms.Form):
     def init(self):
         # Career Advisement Questions
         self.fields['career_advisor'] = forms.ModelChoiceField(label='Who was your Career Advisor?', queryset=umod.CareerAdvisor.objects.order_by('ca_first_name', 'ca_last_name').all())
-        self.fields['ca_appointment'] = forms.IntegerField(label='How many times did you meet with your Career Advisor?')
+        self.fields['ca_appointment'] = forms.ChoiceField(choices=umod.RATING, label='How many times did you meet with your Career Advisor?')
         self.fields['ca_help_rating'] = forms.ChoiceField(choices=umod.RATING, label='On a scale from 1 to 10, please rate the helpfulness of your career advisor. 1 being least helpful, 10 being most helpful')
         self.fields['ca_suggestions'] = forms.CharField(label='Do you have any suggestions about how your career advisor could be more helpful?', max_length=150, required=False)
 
         # Academic Advisement Questions
         self.fields['academic_advisor'] = forms.ModelChoiceField(label='Who was your Academic Advisor?', queryset=umod.AcademicAdvisor.objects.order_by('aa_first_name', 'aa_last_name').all())
-        self.fields['aa_appointment'] = forms.ChoiceField(choices=umod.RATING, label="How many times did you meet with your academic advisor?")
-        self.fields['aa_help_rating'] = forms.ChoiceField(choices=umod.RATING, label="Please rate Caroline's helpfulness in your search for an internship/full-time position.")
-        self.fields['aa_suggestions'] = forms.CharField(label="What suggestion would you give to Caroline to help her improve?", max_length=150, required=False)
+        self.fields['aa_appointment'] = forms.ChoiceField(choices=umod.RATING, label="How many times did you meet with your Academic Advisor?")
+        self.fields['aa_help_rating'] = forms.ChoiceField(choices=umod.RATING, label="On a scale from 1 to 10, please rate the helpfulness of your Academic Advisor. 1 being least helpful, 10 being most helpful")
+        self.fields['aa_suggestions'] = forms.CharField(label="Do you have any suggestions about how your Academic Advisor could be more helpful?", max_length=150, required=False)
 
         # Program-related Questions
-        self.fields['name'] = forms.ChoiceField(choices=umod.PROGRAM_CHOICES, label='What program are you currently in?')
+        self.fields['program'] = forms.ChoiceField(choices=umod.PROGRAM_CHOICES, label='What program are you currently in?')
         self.fields['program_introduction'] = forms.ChoiceField(choices=umod.INTRODUCTION_CHOICES, label="How did you learn about the Information Systems program?")
         self.fields['mism_decision'] = forms.CharField(label="Why did you decide to pursue the MISM?", max_length=130, required=False)
         self.fields['again'] = forms.ChoiceField(label="Given the opportunity to start over, would you choose IS again?", choices=umod.AGAIN_CHOICES)
@@ -109,3 +109,6 @@ class ExitForm(FormMixIn, forms.Form):
         d.give_back = self.cleaned_data.get('give_back')
         d.my_choice = self.cleaned_data.get('my_choice')
         d.save()
+        ###########program Information
+        user.program = self.cleaned_data.get('program')
+        user.save()

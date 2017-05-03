@@ -8,8 +8,15 @@ def ImportAlumni(uploaded_csv):
     reader = csv.DictReader(uploaded_csv)
     for row in reader:
         ######USER INFO
-        u = umod.User()
-        u.username = row['email']
+        try:
+            u = umod.User.objects.get(username = row['email'])
+            if row['program'] == "I-MISM" or row['program'] == 'N-MISM':
+                u.program = row['program']
+        except umod.User.DoesNotExist:
+            u = umod.User()
+            u.username = row['email']
+            u.program = row['program']
+
         u.first_name = row['first_name']
         u.last_name = row['last_name']
         u.email = row['email']
@@ -19,8 +26,8 @@ def ImportAlumni(uploaded_csv):
         u.zipcode = row['zipcode']
         u.country = row['country']
         u.phone = row['phone']
-        u.graduationDate = row['graduationDate']
-        u.program = row['program']
+        u.graduation_year = row['graduation_year']
+        u.graduation_semester = row['graduation_semester']
         u.save()
 
         # ###########FULL TIME INFO

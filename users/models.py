@@ -183,6 +183,13 @@ SATISFACTION_CHOICES = [
     ('VD', 'Very Disatisfied'),
 ]
 
+SEMESTER_CHOICES = [
+    ('W', 'Winter'),
+    ('SP', 'Spring'),
+    ('SU', 'Summer'),
+    ('F', 'Fall'),
+]
+
 SKILLS_CHOICES = [
     ('AD', 'Algorithm Design'),
     ('BPC', 'Business Processes and Controls'),
@@ -229,7 +236,8 @@ class User(AbstractUser):
     zipcode = models.CharField(max_length=30, null=True, blank=True)
     country = models.CharField(max_length=30, null=True, blank=True)
     phone = models.CharField(max_length=30, null=True, blank=True)
-    graduationDate = models.CharField(max_length=50, null=True, blank=True)
+    graduation_year = models.IntegerField(null=True, blank=True)
+    graduation_semester = models.CharField(max_length=50, null=True, blank=True, choices=SEMESTER_CHOICES)
     program = models.CharField(choices=PROGRAM_CHOICES, null=True, blank=True, max_length=30)
     academic_advisor = models.ForeignKey('AcademicAdvisor', null=True, blank=True)
     career_advisor = models.ForeignKey('CareerAdvisor', null=True, blank=True)

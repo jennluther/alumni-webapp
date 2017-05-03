@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1493765262.484588
+_modified_time = 1493830314.264556
 _enable_loop = True
 _template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/aluminfo.html'
 _template_uri = 'aluminfo.html'
@@ -30,16 +30,16 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        user = context.get('user', UNDEFINED)
-        currentFullTime = context.get('currentFullTime', UNDEFINED)
-        pastFullTime = context.get('pastFullTime', UNDEFINED)
-        current_skills_list = context.get('current_skills_list', UNDEFINED)
         exitSurvey = context.get('exitSurvey', UNDEFINED)
-        table = context.get('table', UNDEFINED)
+        currentFullTime = context.get('currentFullTime', UNDEFINED)
         internship = context.get('internship', UNDEFINED)
-        offer = context.get('offer', UNDEFINED)
+        pastFullTime = context.get('pastFullTime', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
+        table = context.get('table', UNDEFINED)
+        current_skills_list = context.get('current_skills_list', UNDEFINED)
+        offer = context.get('offer', UNDEFINED)
+        user = context.get('user', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
@@ -55,16 +55,16 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        user = context.get('user', UNDEFINED)
-        currentFullTime = context.get('currentFullTime', UNDEFINED)
-        pastFullTime = context.get('pastFullTime', UNDEFINED)
-        current_skills_list = context.get('current_skills_list', UNDEFINED)
         exitSurvey = context.get('exitSurvey', UNDEFINED)
-        table = context.get('table', UNDEFINED)
+        currentFullTime = context.get('currentFullTime', UNDEFINED)
         internship = context.get('internship', UNDEFINED)
-        offer = context.get('offer', UNDEFINED)
+        pastFullTime = context.get('pastFullTime', UNDEFINED)
         def content():
             return render_content(context)
+        table = context.get('table', UNDEFINED)
+        current_skills_list = context.get('current_skills_list', UNDEFINED)
+        offer = context.get('offer', UNDEFINED)
+        user = context.get('user', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n<div class="container">\r\n  <h1>')
         __M_writer(str( user.first_name + " " + user.last_name))
@@ -85,7 +85,9 @@ def render_content(context,**pageargs):
         __M_writer('<br>\r\n      Program: ')
         __M_writer(str( user.program ))
         __M_writer('<br>\r\n      Graduation Date: ')
-        __M_writer(str( user.graduationDate ))
+        __M_writer(str( user.graduation_semester ))
+        __M_writer(' ')
+        __M_writer(str( user.graduation_year ))
         __M_writer('<br>\r\n      <a href="/users/user/')
         __M_writer(str( user.id ))
         __M_writer('/">Edit</a>\r\n    </p>\r\n  <div>\r\n')
@@ -177,6 +179,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/aluminfo.html", "uri": "aluminfo.html", "line_map": {"29": 0, "44": 1, "49": 180, "55": 4, "69": 4, "70": 6, "71": 6, "72": 8, "73": 8, "74": 9, "75": 9, "76": 10, "77": 10, "78": 11, "79": 11, "80": 12, "81": 12, "82": 13, "83": 13, "84": 14, "85": 14, "86": 15, "87": 15, "88": 16, "89": 16, "90": 17, "91": 17, "92": 20, "93": 21, "94": 21, "95": 21, "96": 22, "97": 23, "98": 23, "99": 23, "100": 25, "101": 28, "102": 28, "103": 30, "104": 31, "105": 33, "106": 33, "107": 35, "108": 35, "109": 37, "110": 37, "111": 38, "112": 38, "113": 39, "114": 39, "115": 40, "116": 40, "117": 41, "118": 41, "119": 42, "120": 42, "121": 43, "122": 43, "123": 44, "124": 44, "125": 45, "126": 45, "127": 46, "128": 46, "129": 47, "130": 47, "131": 52, "132": 53, "133": 54, "134": 56, "135": 56, "136": 59, "137": 64, "138": 64, "139": 65, "140": 66, "141": 68, "142": 69, "143": 70, "144": 70, "145": 71, "146": 71, "147": 72, "148": 72, "149": 75, "150": 75, "151": 76, "152": 76, "153": 77, "154": 77, "155": 82, "156": 84, "157": 87, "158": 87, "159": 88, "160": 89, "161": 91, "162": 92, "163": 93, "164": 93, "165": 94, "166": 94, "167": 95, "168": 95, "169": 98, "170": 98, "171": 103, "172": 105, "178": 172}, "source_encoding": "utf-8"}
+{"source_encoding": "utf-8", "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/aluminfo.html", "line_map": {"29": 0, "44": 1, "49": 180, "55": 4, "69": 4, "70": 6, "71": 6, "72": 8, "73": 8, "74": 9, "75": 9, "76": 10, "77": 10, "78": 11, "79": 11, "80": 12, "81": 12, "82": 13, "83": 13, "84": 14, "85": 14, "86": 15, "87": 15, "88": 16, "89": 16, "90": 16, "91": 16, "92": 17, "93": 17, "94": 20, "95": 21, "96": 21, "97": 21, "98": 22, "99": 23, "100": 23, "101": 23, "102": 25, "103": 28, "104": 28, "105": 30, "106": 31, "107": 33, "108": 33, "109": 35, "110": 35, "111": 37, "112": 37, "113": 38, "114": 38, "115": 39, "116": 39, "117": 40, "118": 40, "119": 41, "120": 41, "121": 42, "122": 42, "123": 43, "124": 43, "125": 44, "126": 44, "127": 45, "128": 45, "129": 46, "130": 46, "131": 47, "132": 47, "133": 52, "134": 53, "135": 54, "136": 56, "137": 56, "138": 59, "139": 64, "140": 64, "141": 65, "142": 66, "143": 68, "144": 69, "145": 70, "146": 70, "147": 71, "148": 71, "149": 72, "150": 72, "151": 75, "152": 75, "153": 76, "154": 76, "155": 77, "156": 77, "157": 82, "158": 84, "159": 87, "160": 87, "161": 88, "162": 89, "163": 91, "164": 92, "165": 93, "166": 93, "167": 94, "168": 94, "169": 95, "170": 95, "171": 98, "172": 98, "173": 103, "174": 105, "180": 174}, "uri": "aluminfo.html"}
 __M_END_METADATA
 """
