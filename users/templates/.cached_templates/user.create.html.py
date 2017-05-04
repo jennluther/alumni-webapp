@@ -37,7 +37,7 @@ def render_body(context,**pageargs):
         __M_writer('\r\n\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
             context['self'].content(**pageargs)
-        
+
 
         __M_writer('\r\n')
         return ''
@@ -52,7 +52,7 @@ def render_content(context,**pageargs):
             return render_content(context)
         form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer("\r\n  <div class='container createuser'>\r\n\r\n    <h1>Create User here:</h1>\r\n    ")
+        __M_writer("\r\n  <div class='container form'>\r\n\r\n    <h1>Create User here:</h1>\r\n    ")
         __M_writer(str( form ))
         __M_writer('\r\n\r\n  </div>\r\n\r\n')
         return ''

@@ -7,6 +7,7 @@ from users import models as umod
 from django import forms
 from formlib.form import FormMixIn
 from users import alumni_import
+from django.contrib.auth.decorators import permission_required
 import io
 import csv
 
@@ -34,5 +35,6 @@ def process_request(request):
 
 class FileFieldForm(FormMixIn, forms.Form):
     form_enctype = 'multipart/form-data'
+    form_submit = 'Upload'
     def init(self):
         self.fields['file_field'] = forms.FileField(label="Upload Alumni Information", required=False)

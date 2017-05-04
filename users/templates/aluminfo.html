@@ -3,9 +3,13 @@
 
 <%block name="content">
 <div class="container">
-  <h1>${ alumni.first_name + " " + alumni.last_name}'s Information:</h1>
-  <p class='aluminfo'>
-      Phone number: ${ alumni.phone } <br>
+  %if alumni.last_name.endswith('s'):
+    <h1>${ alumni.first_name + " " + alumni.last_name} Information:</h1>
+  %else:
+    <h1>${ alumni.first_name + " " + alumni.last_name}'s Information:</h1>
+  %endif
+  <p class='box' id='aluminfo'>
+      Phone Number: ${ alumni.phone } <br>
       Email: ${ alumni.email }<br>
       Address: ${ alumni.street }
       ${ alumni.city },
@@ -13,8 +17,8 @@
       ${ alumni.country }
       ${ alumni.zipcode }<br>
       Program: ${ alumni.program }<br>
-      Graduation Date: ${ alumni.graduation_semester } ${ alumni.graduation_year }<br>
-      <a href="/users/user/${ alumni.id }/">Edit</a>
+      Graduation Date: ${ alumni.graduation_semester } ${ alumni.graduation_year }<br><br>
+      <a href="/users/account.update/" class="btn btn-danger">Update</button></a>
     </p>
   <div>
     %if exitSurvey != False:

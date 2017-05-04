@@ -39,6 +39,7 @@ def process_request(request):
         'email': user1.email,
         'program' : user1.program,
         'alumni' : user1.alumni,
+        'groups' : user1.groups.all(),
         #is there a way to go through all of their internships and output them
     })
     if form.is_valid():
@@ -72,6 +73,7 @@ class EditUserForm(FormMixIn, forms.Form):
         self.fields['phone'] = forms.CharField(label='Phone', required=False)
         self.fields['program'] = forms.ChoiceField(choices=umod.PROGRAM_CHOICES, label='Program', required=False)
         self.fields['alumni'] = forms.BooleanField(required=False)
+        self.fields['groups'] = forms.ModelMultipleChoiceField(label="Groups", queryset=Group.objects.all(), required=False)
 
 
 
@@ -93,6 +95,8 @@ class EditUserForm(FormMixIn, forms.Form):
         user1.program = self.cleaned_data.get('program')
         user1.alumni = self.cleaned_data.get('alumni')
         user1.save()
+
+        user1.groups.set(self.cleaned_data.get('groups'))
 
 
 ###########################
@@ -133,6 +137,7 @@ class CreateUserForm(FormMixIn, forms.Form):
         self.fields['phone'] = forms.CharField(label='Phone', required=False)
         self.fields['program'] = forms.ChoiceField(choices=umod.PROGRAM_CHOICES, label='Program', required=False)
         self.fields['alumni'] = forms.BooleanField(required=False)
+        self.fields['groups'] = forms.ModelMultipleChoiceField(label="Groups", queryset=Group.objects.all(), required=False)
 
 
 
@@ -160,6 +165,8 @@ class CreateUserForm(FormMixIn, forms.Form):
         user.program = self.cleaned_data.get('program')
         user.alumni = self.cleaned_data.get('alumni')
         user.save()
+
+        user.groups.set(self.cleaned_data.get('groups'))
 
 
 

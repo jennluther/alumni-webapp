@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1493839515.163299
+_modified_time = 1493924713.692742
 _enable_loop = True
 _template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/login.modal.html'
 _template_uri = 'login.modal.html'
@@ -30,9 +30,9 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        form = context.get('form', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
+        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
@@ -48,13 +48,13 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        form = context.get('form', UNDEFINED)
         def content():
             return render_content(context)
+        form = context.get('form', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\r\n\r\n    ')
+        __M_writer('\r\n  <div id="form_container">\r\n\r\n    <h1>Login:</h1>\r\n\r\n    <a href="/account/user.create/">Sign Up</a>\r\n\r\n    ')
         __M_writer(str( form ))
-        __M_writer('\r\n\r\n')
+        __M_writer('\r\n\r\n  </div>\r\n\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -62,6 +62,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"line_map": {"48": 4, "37": 1, "55": 4, "56": 6, "57": 6, "42": 8, "29": 0, "63": 57}, "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/login.modal.html", "source_encoding": "utf-8", "uri": "login.modal.html"}
+{"source_encoding": "utf-8", "line_map": {"48": 4, "37": 1, "55": 4, "56": 11, "57": 11, "42": 15, "29": 0, "63": 57}, "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/login.modal.html", "uri": "login.modal.html"}
 __M_END_METADATA
 """
