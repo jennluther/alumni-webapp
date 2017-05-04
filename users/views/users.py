@@ -18,16 +18,18 @@ def process_request(request):
         exitsurvey.append(e.user.id)
         print("$$$$$$", e.user.id)
 
+    users = umod.User.objects.filter(alumni=True)
+
     if request.urlparams[0] == 'completed':
-        users = umod.User.objects.filter(id__in=exitsurvey)
+        users = users.filter(id__in=exitsurvey)
     elif request.urlparams[0] == "incomplete":
-        users = umod.User.objects.exclude(id__in=exitsurvey)
+        users = users.exclude(id__in=exitsurvey)
     elif request.urlparams[0] == "MISM":
-        users = umod.User.objects.filter(program__icontains='MISM')
+        users = users.filter(program__icontains='MISM')
     elif request.urlparams[0] == "BSIS":
-        users = umod.User.objects.filter(program__icontains='BSIS')
+        users = users.filter(program__icontains='BSIS')
     else:
-        users = umod.User.objects.order_by('last_name').all()
+        users = users.order_by('last_name').all()
 
     form = SearchForm(request)
     if form.is_valid():

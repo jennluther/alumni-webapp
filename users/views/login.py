@@ -10,6 +10,7 @@ from formlib.form import FormMixIn
 
 @view_function
 def process_request(request):
+    
 
     form = LoginForm(request)
     if form.is_valid():
@@ -44,11 +45,6 @@ class LoginForm(FormMixIn, forms.Form):
             raise forms.ValidationError('Invalid username or password')
         if self.user.is_authenticated():
             print(">>>>>is authenticated")
-
-    def commit(self):
-        login(self.request, self.user)
-        print(">>>>>>>>>>> User is logged in")
-        return HttpResponseRedirect('homepage/index')
 
 
 ###################

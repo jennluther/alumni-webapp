@@ -241,6 +241,7 @@ class User(AbstractUser):
     program = models.CharField(choices=PROGRAM_CHOICES, null=True, blank=True, max_length=30)
     academic_advisor = models.ForeignKey('AcademicAdvisor', null=True, blank=True)
     career_advisor = models.ForeignKey('CareerAdvisor', null=True, blank=True)
+    alumni = models.BooleanField(default=True)
 
 class Donation(models.Model):
     # this model tracks whether the person submits a Donation

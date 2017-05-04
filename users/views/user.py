@@ -37,6 +37,7 @@ def process_request(request):
         'phone': user1.phone,
         'email': user1.email,
         'program' : user1.program,
+        'alumni' : user1.alumni,
         #is there a way to go through all of their internships and output them
     })
     if form.is_valid():
@@ -61,14 +62,15 @@ class EditUserForm(FormMixIn, forms.Form):
         self.fields['password'] = forms.CharField(label='Password', widget=forms.PasswordInput, required=False)
         self.fields['email'] = forms.EmailField(label='Email', required=False)
         self.fields['graduation_semester'] = forms.ChoiceField(choices=umod.SEMESTER_CHOICES, label='Graduation Semester', required=False)
-        self.fields['graduation_year'] = forms.IntegerField(label='Graduation Year')
+        self.fields['graduation_year'] = forms.IntegerField(label='Graduation Year', required=False)
         self.fields['street'] = forms.CharField(label='Street', required=False)
         self.fields['city'] = forms.CharField(label='City', max_length=30, required=False)
         self.fields['state'] = forms.CharField(label='State', required=False)
         self.fields['country'] = forms.CharField(label='Country', required=False)
         self.fields['zipcode'] = forms.IntegerField(label='Zip Code', required=False)
         self.fields['phone'] = forms.CharField(label='Phone', required=False)
-        self.fields['program'] = forms.ChoiceField(choices=umod.PROGRAM_CHOICES, label='Program')
+        self.fields['program'] = forms.ChoiceField(choices=umod.PROGRAM_CHOICES, label='Program', required=False)
+        self.fields['alumni'] = forms.BooleanField(required=False)
 
 
 
@@ -88,6 +90,7 @@ class EditUserForm(FormMixIn, forms.Form):
         user1.graduation_year = self.cleaned_data.get('graduation_year')
         user1.graduation_semester = self.cleaned_data.get('graduation_semester')
         user1.program = self.cleaned_data.get('program')
+        user1.alumni = self.cleaned_data.get('alumni')
         user1.save()
 
 
@@ -118,15 +121,16 @@ class CreateUserForm(FormMixIn, forms.Form):
         self.fields['username'] = forms.CharField(label="Username", max_length=100)
         self.fields['password'] = forms.CharField(label='Password', widget=forms.PasswordInput, required=False)
         self.fields['email'] = forms.EmailField(label='Email')
-        self.fields['graduation_semester'] = forms.ChoiceField(choices=umod.SEMESTER_CHOICES, label='Graduation Semester')
-        self.fields['graduation_year'] = forms.IntegerField(label='Graduation Year')
-        self.fields['street'] = forms.CharField(label='Street')
-        self.fields['city'] = forms.CharField(label='City', max_length=30)
-        self.fields['state'] = forms.CharField(label='State')
-        self.fields['country'] = forms.CharField(label='Country')
-        self.fields['zipcode'] = forms.IntegerField(label='Zip Code')
-        self.fields['phone'] = forms.CharField(label='Phone')
-        self.fields['program'] = forms.ChoiceField(choices=umod.PROGRAM_CHOICES, label='Program')
+        self.fields['graduation_semester'] = forms.ChoiceField(choices=umod.SEMESTER_CHOICES, label='Graduation Semester', required=False)
+        self.fields['graduation_year'] = forms.IntegerField(label='Graduation Year', required=False)
+        self.fields['street'] = forms.CharField(label='Street', required=False)
+        self.fields['city'] = forms.CharField(label='City', max_length=30, required=False)
+        self.fields['state'] = forms.CharField(label='State', required=False)
+        self.fields['country'] = forms.CharField(label='Country', required=False)
+        self.fields['zipcode'] = forms.IntegerField(label='Zip Code', required=False)
+        self.fields['phone'] = forms.CharField(label='Phone', required=False)
+        self.fields['program'] = forms.ChoiceField(choices=umod.PROGRAM_CHOICES, label='Program', required=False)
+        self.fields['alumni'] = forms.BooleanField(required=False)
 
 
 
@@ -152,6 +156,7 @@ class CreateUserForm(FormMixIn, forms.Form):
         user.graduation_year = self.cleaned_data.get('graduation_year')
         user.graduation_semester = self.cleaned_data.get('graduation_semester')
         user.program = self.cleaned_data.get('program')
+        user.alumni = self.cleaned_data.get('alumni')
         user.save()
 
 
