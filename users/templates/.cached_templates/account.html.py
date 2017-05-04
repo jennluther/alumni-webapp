@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1493931978.083908
+_modified_time = 1493935528.487253
 _enable_loop = True
 _template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/account.html'
 _template_uri = 'account.html'
@@ -95,9 +95,9 @@ def render_content(context,**pageargs):
         __M_writer(str( request.user.zipcode ))
         __M_writer('\r\n')
         if request.user.alumni == True:
-            __M_writer('        Program: ')
+            __M_writer('        <strong>Program:</strong> ')
             __M_writer(str( alumni.program ))
-            __M_writer('<br>\r\n        Graduation Date: ')
+            __M_writer('<br>\r\n        <strong>Graduation Date:</strong> ')
             __M_writer(str( alumni.graduation_semester ))
             __M_writer(' ')
             __M_writer(str( alumni.graduation_year ))
@@ -105,10 +105,12 @@ def render_content(context,**pageargs):
         __M_writer('      <br><br>\r\n        <a href="/users/account.update/" class="btn btn-danger">Update</button></a>\r\n        <a href="/users/changepassword/" class="btn btn-warning">Change Password</button></a>\r\n    </p>\r\n  </div>\r\n\r\n')
         if request.user.alumni == True:
             if exitSurvey == False:
-                __M_writer('    <div>\r\n        <h3>Exit Survey needs to be taken  <a href="/surveys/exit_survey/')
+                __M_writer('    <div class=\'container\'>\r\n        <h3>Exit Survey needs to be taken  <a href="/surveys/exit_survey/')
                 __M_writer(str( alumni.id ))
                 __M_writer('"<button class="btn btn-warning">Take Survey</button></a></h3>\r\n    </div>\r\n')
-            __M_writer('<div>\r\n  <div class=\'job_info\'>\r\n    <a href="/surveys/choose_company/')
+            else:
+                __M_writer("    <div class='container'>\r\n        <h3>Thank you for submitting your exit survey! </h3>\r\n    </div>\r\n")
+            __M_writer('<div class=\'container\'>\r\n  <div class=\'job_info\'>\r\n    <a href="/surveys/choose_company/')
             __M_writer(str( alumni.id ))
             __M_writer('"><button class="btn btn-success">Add Job Information</button></a></h3>\r\n\r\n')
             if currentFullTime != False:
@@ -144,7 +146,7 @@ def render_content(context,**pageargs):
                 __M_writer('      <div class="container pastFullTimeInfo">\r\n        <h3><strong>Job History:</strong></h3>\r\n            ')
                 __M_writer(str( table ))
                 __M_writer('\r\n      </div>\r\n')
-            __M_writer('    </div>\r\n\r\n\r\n    <div class=\'intern_info\'>\r\n      <div class=\'internship\'>\r\n        <a href="/surveys/choose_company/')
+            __M_writer('    </div>\r\n\r\n\r\n    <div class=\'intern_info container\'>\r\n      <div class=\'internship\'>\r\n        <a href="/surveys/choose_company/')
             __M_writer(str( alumni.id ))
             __M_writer('/internship"><button class="btn btn-success">Add Internship Information</button></a></h3>\r\n')
             if internship != False:
@@ -189,6 +191,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/account.html", "uri": "account.html", "source_encoding": "utf-8", "line_map": {"29": 0, "45": 1, "50": 189, "56": 4, "71": 4, "72": 6, "73": 7, "74": 7, "75": 7, "76": 8, "77": 9, "78": 9, "79": 9, "80": 11, "81": 12, "82": 12, "83": 13, "84": 13, "85": 14, "86": 14, "87": 15, "88": 15, "89": 16, "90": 16, "91": 17, "92": 17, "93": 18, "94": 18, "95": 19, "96": 19, "97": 20, "98": 21, "99": 21, "100": 21, "101": 22, "102": 22, "103": 22, "104": 22, "105": 24, "106": 30, "107": 31, "108": 32, "109": 33, "110": 33, "111": 36, "112": 38, "113": 38, "114": 40, "115": 41, "116": 43, "117": 43, "118": 45, "119": 45, "120": 47, "121": 47, "122": 48, "123": 48, "124": 49, "125": 49, "126": 50, "127": 50, "128": 51, "129": 51, "130": 52, "131": 52, "132": 53, "133": 53, "134": 54, "135": 54, "136": 55, "137": 55, "138": 56, "139": 56, "140": 57, "141": 57, "142": 62, "143": 63, "144": 64, "145": 66, "146": 66, "147": 69, "148": 74, "149": 74, "150": 75, "151": 76, "152": 78, "153": 79, "154": 80, "155": 80, "156": 81, "157": 81, "158": 82, "159": 82, "160": 85, "161": 85, "162": 86, "163": 86, "164": 87, "165": 87, "166": 92, "167": 94, "168": 97, "169": 97, "170": 98, "171": 99, "172": 101, "173": 102, "174": 103, "175": 103, "176": 104, "177": 104, "178": 105, "179": 105, "180": 108, "181": 108, "182": 113, "183": 115, "184": 188, "190": 184}}
+{"filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/account.html", "uri": "account.html", "source_encoding": "utf-8", "line_map": {"29": 0, "45": 1, "50": 193, "56": 4, "71": 4, "72": 6, "73": 7, "74": 7, "75": 7, "76": 8, "77": 9, "78": 9, "79": 9, "80": 11, "81": 12, "82": 12, "83": 13, "84": 13, "85": 14, "86": 14, "87": 15, "88": 15, "89": 16, "90": 16, "91": 17, "92": 17, "93": 18, "94": 18, "95": 19, "96": 19, "97": 20, "98": 21, "99": 21, "100": 21, "101": 22, "102": 22, "103": 22, "104": 22, "105": 24, "106": 30, "107": 31, "108": 32, "109": 33, "110": 33, "111": 35, "112": 36, "113": 40, "114": 42, "115": 42, "116": 44, "117": 45, "118": 47, "119": 47, "120": 49, "121": 49, "122": 51, "123": 51, "124": 52, "125": 52, "126": 53, "127": 53, "128": 54, "129": 54, "130": 55, "131": 55, "132": 56, "133": 56, "134": 57, "135": 57, "136": 58, "137": 58, "138": 59, "139": 59, "140": 60, "141": 60, "142": 61, "143": 61, "144": 66, "145": 67, "146": 68, "147": 70, "148": 70, "149": 73, "150": 78, "151": 78, "152": 79, "153": 80, "154": 82, "155": 83, "156": 84, "157": 84, "158": 85, "159": 85, "160": 86, "161": 86, "162": 89, "163": 89, "164": 90, "165": 90, "166": 91, "167": 91, "168": 96, "169": 98, "170": 101, "171": 101, "172": 102, "173": 103, "174": 105, "175": 106, "176": 107, "177": 107, "178": 108, "179": 108, "180": 109, "181": 109, "182": 112, "183": 112, "184": 117, "185": 119, "186": 192, "192": 186}}
 __M_END_METADATA
 """

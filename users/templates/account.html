@@ -18,8 +18,8 @@
       ${ request.user.country }
       ${ request.user.zipcode }
       %if request.user.alumni == True:
-        Program: ${ alumni.program }<br>
-        Graduation Date: ${ alumni.graduation_semester } ${ alumni.graduation_year }
+        <strong>Program:</strong> ${ alumni.program }<br>
+        <strong>Graduation Date:</strong> ${ alumni.graduation_semester } ${ alumni.graduation_year }
       %endif
       <br><br>
         <a href="/users/account.update/" class="btn btn-danger">Update</button></a>
@@ -29,11 +29,15 @@
 
   %if request.user.alumni == True:
   %if exitSurvey == False:
-    <div>
+    <div class='container'>
         <h3>Exit Survey needs to be taken  <a href="/surveys/exit_survey/${ alumni.id }"<button class="btn btn-warning">Take Survey</button></a></h3>
     </div>
+  %else:
+    <div class='container'>
+        <h3>Thank you for submitting your exit survey! </h3>
+    </div>
   %endif
-<div>
+<div class='container'>
   <div class='job_info'>
     <a href="/surveys/choose_company/${ alumni.id }"><button class="btn btn-success">Add Job Information</button></a></h3>
 
@@ -69,7 +73,7 @@
     </div>
 
 
-    <div class='intern_info'>
+    <div class='intern_info container'>
       <div class='internship'>
         <a href="/surveys/choose_company/${ alumni.id }/internship"><button class="btn btn-success">Add Internship Information</button></a></h3>
           %if internship != False:

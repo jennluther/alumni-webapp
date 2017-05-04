@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1493925621.994751
+_modified_time = 1493934924.140646
 _enable_loop = True
 _template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/users.html'
 _template_uri = 'users.html'
@@ -30,9 +30,9 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        form = context.get('form', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
+        form = context.get('form', UNDEFINED)
         alumni = context.get('alumni', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n\r\n\r\n')
@@ -49,14 +49,14 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        form = context.get('form', UNDEFINED)
         def content():
             return render_content(context)
+        form = context.get('form', UNDEFINED)
         alumni = context.get('alumni', UNDEFINED)
         __M_writer = context.writer()
         __M_writer("\r\n<div class='container viewcontainer'>\r\n  <h1>Alumni:</h1>\r\n  <div>\r\n    ")
         __M_writer(str( form ))
-        __M_writer('\r\n  </div><br>\r\n  <nav class=\'navbar navbar navbar-static\'>\r\n    <ul class="nav navbar-nav navbar-right">\r\n      <li class=\'dropdown\'>\r\n        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">\r\n          Actions <span class="caret"></span>\r\n        </a>\r\n          <ul class="dropdown-menu">\r\n            <li><a href="/users/user.create/">Create</a></li>\r\n            <li><a href="/users/upload">Upload Alumni Information </a></li>\r\n          </ul>\r\n      </li>\r\n\r\n      <li class=\'dropdown\'>\r\n        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">\r\n          Filters <span class="caret"></span>\r\n        </a>\r\n          <ul class="dropdown-menu">\r\n            <li><a href="/users/users">All Users</a></li>\r\n            <li><a href="/users/users/completed">Exit Survey Completed</a></li>\r\n            <li><a href="/users/users/incomplete">Exit Survey Incomplete </a></li>\r\n            <li><a href="/users/users/MISM">MISM</a></li>\r\n            <li><a href="/users/users/BSIS">BSIS</a></li>\r\n          </ul>\r\n      </li>\r\n    </ul>\r\n  </nav>\r\n\r\n\r\n\r\n\r\n  <table class="table table-striped users sortable">\r\n      <tr>\r\n        <th>First Name</th>\r\n        <th>Last Name</th>\r\n        <th>Email</th>\r\n        <th>Program</th>\r\n        <th>Actions</th>\r\n      </tr>\r\n')
+        __M_writer('\r\n  </div><br>\r\n  <nav class=\'navbar nav\'>\r\n    <ul class="nav navbar-nav navbar-left">\r\n      <li class=\'dropdown\'>\r\n        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">\r\n          Actions <span class="caret"></span>\r\n        </a>\r\n          <ul class="dropdown-menu">\r\n            <li><a href="/users/user.create/">Create</a></li>\r\n            <li><a href="/users/upload">Upload Alumni Information </a></li>\r\n          </ul>\r\n      </li>\r\n\r\n      <li class=\'dropdown\'>\r\n        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">\r\n          Filters <span class="caret"></span>\r\n        </a>\r\n          <ul class="dropdown-menu">\r\n            <li><a href="/users/users">All Users</a></li>\r\n            <li><a href="/users/users/completed">Exit Survey Completed</a></li>\r\n            <li><a href="/users/users/incomplete">Exit Survey Incomplete </a></li>\r\n            <li><a href="/users/users/MISM">MISM</a></li>\r\n            <li><a href="/users/users/BSIS">BSIS</a></li>\r\n          </ul>\r\n      </li>\r\n    </ul>\r\n  </nav>\r\n\r\n\r\n\r\n\r\n  <table class="table table-striped users sortable">\r\n      <tr>\r\n        <th>First Name</th>\r\n        <th>Last Name</th>\r\n        <th>Email</th>\r\n        <th>Program</th>\r\n        <th>Actions</th>\r\n      </tr>\r\n')
         for u in alumni:
             __M_writer('      <tr>\r\n        <td>')
             __M_writer(str( u.first_name ))
@@ -86,6 +86,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"source_encoding": "utf-8", "uri": "users.html", "line_map": {"64": 51, "65": 51, "66": 52, "67": 52, "68": 53, "69": 54, "70": 54, "71": 54, "72": 55, "73": 56, "74": 58, "75": 59, "76": 59, "77": 60, "78": 60, "79": 61, "80": 61, "81": 65, "87": 81, "29": 0, "38": 1, "43": 91, "49": 4, "57": 4, "58": 8, "59": 8, "60": 48, "61": 49, "62": 50, "63": 50}, "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/users.html"}
+{"filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/users.html", "uri": "users.html", "source_encoding": "utf-8", "line_map": {"64": 51, "65": 51, "66": 52, "67": 52, "68": 53, "69": 54, "70": 54, "71": 54, "72": 55, "73": 56, "74": 58, "75": 59, "76": 59, "77": 60, "78": 60, "79": 61, "80": 61, "81": 65, "87": 81, "29": 0, "38": 1, "43": 91, "49": 4, "57": 4, "58": 8, "59": 8, "60": 48, "61": 49, "62": 50, "63": 50}}
 __M_END_METADATA
 """

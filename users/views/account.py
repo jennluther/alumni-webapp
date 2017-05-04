@@ -158,6 +158,11 @@ def update(request):
         'street': request.user.street,
         'country': request.user.country,
         'zipcode': request.user.zipcode,
+        # if request.user.alumni == True:
+        #     'program': request.user.program,
+        #     'graduation_semester': request.user.graduation_semester,
+        #     'graduation_year': request.user.graduation_year,
+
     })
     if form.is_valid():
         print('>>> form is valid')

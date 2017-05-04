@@ -18,6 +18,18 @@
   text-indent: 40px;
 }
 
+.left{
+  float:left;
+  width:50%;
+  overflow:hidden;
+}
+
+.right{
+  float:left;
+  width:50%;
+  overflow:hidden;
+}
+
 .job_info{
 float:left;
 width:50%;

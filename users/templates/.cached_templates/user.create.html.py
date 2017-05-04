@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1492205428.474158
+_modified_time = 1493934936.071797
 _enable_loop = True
 _template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/user.create.html'
 _template_uri = 'user.create.html'
@@ -37,7 +37,7 @@ def render_body(context,**pageargs):
         __M_writer('\r\n\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
             context['self'].content(**pageargs)
-
+        
 
         __M_writer('\r\n')
         return ''
@@ -62,6 +62,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"uri": "user.create.html", "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/user.create.html", "line_map": {"48": 4, "37": 1, "55": 4, "56": 8, "57": 8, "42": 12, "29": 0, "63": 57}, "source_encoding": "utf-8"}
+{"filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/user.create.html", "uri": "user.create.html", "source_encoding": "utf-8", "line_map": {"48": 4, "37": 1, "55": 4, "56": 8, "57": 8, "42": 12, "29": 0, "63": 57}}
 __M_END_METADATA
 """

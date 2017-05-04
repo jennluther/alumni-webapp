@@ -7,6 +7,7 @@ from users import models as umod
 from django import forms
 from formlib.form import FormMixIn
 from django.contrib.auth.models import Permission, Group
+from django.contrib.auth.decorators import permission_required
 
 @view_function
 @permission_required('users.change_internship', login_url='/users/login/')

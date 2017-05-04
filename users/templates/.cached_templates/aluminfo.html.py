@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1493928926.183763
+_modified_time = 1493938857.161284
 _enable_loop = True
 _template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/aluminfo.html'
 _template_uri = 'aluminfo.html'
@@ -30,16 +30,16 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        exitSurvey = context.get('exitSurvey', UNDEFINED)
+        internship = context.get('internship', UNDEFINED)
+        alumni = context.get('alumni', UNDEFINED)
+        currentFullTime = context.get('currentFullTime', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
-        exitSurvey = context.get('exitSurvey', UNDEFINED)
         pastFullTime = context.get('pastFullTime', UNDEFINED)
-        currentFullTime = context.get('currentFullTime', UNDEFINED)
         offer = context.get('offer', UNDEFINED)
-        alumni = context.get('alumni', UNDEFINED)
-        internship = context.get('internship', UNDEFINED)
-        current_skills_list = context.get('current_skills_list', UNDEFINED)
         table = context.get('table', UNDEFINED)
+        current_skills_list = context.get('current_skills_list', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
@@ -55,20 +55,27 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        exitSurvey = context.get('exitSurvey', UNDEFINED)
+        internship = context.get('internship', UNDEFINED)
+        alumni = context.get('alumni', UNDEFINED)
+        currentFullTime = context.get('currentFullTime', UNDEFINED)
         def content():
             return render_content(context)
-        exitSurvey = context.get('exitSurvey', UNDEFINED)
         pastFullTime = context.get('pastFullTime', UNDEFINED)
-        currentFullTime = context.get('currentFullTime', UNDEFINED)
         offer = context.get('offer', UNDEFINED)
-        alumni = context.get('alumni', UNDEFINED)
-        internship = context.get('internship', UNDEFINED)
-        current_skills_list = context.get('current_skills_list', UNDEFINED)
         table = context.get('table', UNDEFINED)
+        current_skills_list = context.get('current_skills_list', UNDEFINED)
         __M_writer = context.writer()
-        __M_writer('\r\n<div class="container">\r\n  <h1>')
-        __M_writer(str( alumni.first_name + " " + alumni.last_name))
-        __M_writer("'s Information:</h1>\r\n  <p class='box' id='aluminfo'>\r\n      Phone Number: ")
+        __M_writer('\r\n<div class="container">\r\n')
+        if alumni.last_name.endswith('s'):
+            __M_writer('    <h1>')
+            __M_writer(str( alumni.first_name + " " + alumni.last_name))
+            __M_writer(' Information:</h1>\r\n')
+        else:
+            __M_writer('    <h1>')
+            __M_writer(str( alumni.first_name + " " + alumni.last_name))
+            __M_writer("'s Information:</h1>\r\n")
+        __M_writer("  <p class='box' id='aluminfo'>\r\n      Phone Number: ")
         __M_writer(str( alumni.phone ))
         __M_writer(' <br>\r\n      Email: ')
         __M_writer(str( alumni.email ))
@@ -88,7 +95,9 @@ def render_content(context,**pageargs):
         __M_writer(str( alumni.graduation_semester ))
         __M_writer(' ')
         __M_writer(str( alumni.graduation_year ))
-        __M_writer('<br><br>\r\n      <a href="/users/account.update/" class="btn btn-danger">Update</button></a>\r\n    </p>\r\n  <div>\r\n')
+        __M_writer('<br><br>\r\n      <a href="/users/user/')
+        __M_writer(str( alumni.id ))
+        __M_writer('" class="btn btn-danger">Update</button></a>\r\n    </p>\r\n  <div>\r\n')
         if exitSurvey != False:
             __M_writer('      <h3>Exit Survey has been submitted!  <a href="/users/results/')
             __M_writer(str( alumni.id ))
@@ -177,6 +186,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"source_encoding": "utf-8", "uri": "aluminfo.html", "line_map": {"29": 0, "44": 1, "49": 180, "55": 4, "69": 4, "70": 6, "71": 6, "72": 8, "73": 8, "74": 9, "75": 9, "76": 10, "77": 10, "78": 11, "79": 11, "80": 12, "81": 12, "82": 13, "83": 13, "84": 14, "85": 14, "86": 15, "87": 15, "88": 16, "89": 16, "90": 16, "91": 16, "92": 20, "93": 21, "94": 21, "95": 21, "96": 22, "97": 23, "98": 23, "99": 23, "100": 25, "101": 28, "102": 28, "103": 30, "104": 31, "105": 33, "106": 33, "107": 35, "108": 35, "109": 37, "110": 37, "111": 38, "112": 38, "113": 39, "114": 39, "115": 40, "116": 40, "117": 41, "118": 41, "119": 42, "120": 42, "121": 43, "122": 43, "123": 44, "124": 44, "125": 45, "126": 45, "127": 46, "128": 46, "129": 47, "130": 47, "131": 52, "132": 53, "133": 54, "134": 56, "135": 56, "136": 59, "137": 64, "138": 64, "139": 65, "140": 66, "141": 68, "142": 69, "143": 70, "144": 70, "145": 71, "146": 71, "147": 72, "148": 72, "149": 75, "150": 75, "151": 76, "152": 76, "153": 77, "154": 77, "155": 82, "156": 84, "157": 87, "158": 87, "159": 88, "160": 89, "161": 91, "162": 92, "163": 93, "164": 93, "165": 94, "166": 94, "167": 95, "168": 95, "169": 98, "170": 98, "171": 103, "172": 105, "178": 172}, "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/aluminfo.html"}
+{"source_encoding": "utf-8", "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/aluminfo.html", "line_map": {"29": 0, "44": 1, "49": 184, "55": 4, "69": 4, "70": 6, "71": 7, "72": 7, "73": 7, "74": 8, "75": 9, "76": 9, "77": 9, "78": 11, "79": 12, "80": 12, "81": 13, "82": 13, "83": 14, "84": 14, "85": 15, "86": 15, "87": 16, "88": 16, "89": 17, "90": 17, "91": 18, "92": 18, "93": 19, "94": 19, "95": 20, "96": 20, "97": 20, "98": 20, "99": 21, "100": 21, "101": 24, "102": 25, "103": 25, "104": 25, "105": 26, "106": 27, "107": 27, "108": 27, "109": 29, "110": 32, "111": 32, "112": 34, "113": 35, "114": 37, "115": 37, "116": 39, "117": 39, "118": 41, "119": 41, "120": 42, "121": 42, "122": 43, "123": 43, "124": 44, "125": 44, "126": 45, "127": 45, "128": 46, "129": 46, "130": 47, "131": 47, "132": 48, "133": 48, "134": 49, "135": 49, "136": 50, "137": 50, "138": 51, "139": 51, "140": 56, "141": 57, "142": 58, "143": 60, "144": 60, "145": 63, "146": 68, "147": 68, "148": 69, "149": 70, "150": 72, "151": 73, "152": 74, "153": 74, "154": 75, "155": 75, "156": 76, "157": 76, "158": 79, "159": 79, "160": 80, "161": 80, "162": 81, "163": 81, "164": 86, "165": 88, "166": 91, "167": 91, "168": 92, "169": 93, "170": 95, "171": 96, "172": 97, "173": 97, "174": 98, "175": 98, "176": 99, "177": 99, "178": 102, "179": 102, "180": 107, "181": 109, "187": 181}, "uri": "aluminfo.html"}
 __M_END_METADATA
 """
