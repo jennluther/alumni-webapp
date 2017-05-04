@@ -47,6 +47,7 @@ management.call_command('migrate')
 from users import models as umod
 from decimal import Decimal
 import csv
+from django.contrib.auth.models import Permission, Group
 
 # with open('users.csv') as csvfile:
 #     reader = csv.DictReader(csvfile)
@@ -135,6 +136,28 @@ import csv
 #         o.user = u
 #         o.intern_offer = row['intern_offer']
 
+####Groups
+g1 = Group()
+g1.name = 'Alumni'
+g1.save()
+g1.permissions.add(Permission.objects.get(codename='add_company'))
+g1.permissions.add(Permission.objects.get(codename='add_donation'))
+g1.permissions.add(Permission.objects.get(codename='change_donation'))
+g1.permissions.add(Permission.objects.get(codename='delete_donation'))
+g1.permissions.add(Permission.objects.get(codename='add_exitsurvey'))
+g1.permissions.add(Permission.objects.get(codename='add_fulltime'))
+g1.permissions.add(Permission.objects.get(codename='change_fulltime'))
+g1.permissions.add(Permission.objects.get(codename='delete_fulltime'))
+g1.permissions.add(Permission.objects.get(codename='add_internship'))
+g1.permissions.add(Permission.objects.get(codename='change_internship'))
+g1.permissions.add(Permission.objects.get(codename='delete_internship'))
+g1.permissions.add(Permission.objects.get(codename='add_offers'))
+g1.permissions.add(Permission.objects.get(codename='change_offers'))
+g1.permissions.add(Permission.objects.get(codename='delete_offers'))
+g1.permissions.add(Permission.objects.get(codename='add_skills'))
+g1.permissions.add(Permission.objects.get(codename='change_user'))
+g1.save()
+
 
 #DUMMY DATA!
 #advisors
@@ -182,10 +205,8 @@ u1.last_name = "Luther"
 u1.email = "luther.jenn@gmail.com"
 u1.username = "luna"
 u1.set_password("luther")
-u1.city = "Springville"
-u1.state = "UT"
-u1.phone = '8013586330'
-u1.graduationDate = "2018-04-25"
+u1.alumni = False
+u1.is_superuser=True
 u1.save()
 
 d1 = umod.Donation()
@@ -268,12 +289,10 @@ u2 = umod.User()
 u2.first_name = "Ashlyn"
 u2.last_name = "Lewis"
 u2.email = "lewis.ashlyn@gmail.com"
-u2.username = "bomb"
+u2.username = "ashlyn"
 u2.set_password("trashtan")
-u2.city = "Spanish Fork"
-u2.state = "UT"
-u2.phone = 8015469865
-u2.graduationDate = "2019-04-25"
+u2.alumni = False
+u2.is_superuser=True
 u2.save()
 
 d2 = umod.Donation()
@@ -375,15 +394,13 @@ es2.save()
 ###############
 #u3
 u3 = umod.User()
-u3.first_name = "Nic"
-u3.last_name = "Anderson"
-u3.email = "nicvanderson@gmail.com"
-u3.username = "dum"
+u3.first_name = "Emma"
+u3.last_name = "Hayes"
+u3.email = "isys-sec790@byu.edu"
+u3.username = "emma"
 u3.set_password("ilovejenn")
-u3.city = "Provo"
-u3.state = "UT"
-u3.phone = 3526542156
-u3.graduationDate = "2018-12-25"
+u3.alumni = False
+u3.is_superuser=True
 u3.save()
 
 d3 = umod.Donation()

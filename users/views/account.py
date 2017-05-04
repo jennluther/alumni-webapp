@@ -11,6 +11,7 @@ from django.contrib.auth.decorators import permission_required
 #################
 ### Edit MyAccount
 @view_function
+@permission_required('users.change_user', login_url='/users/login/')
 def process_request(request):
     #pull all products from the DB
     try:
@@ -25,8 +26,7 @@ def process_request(request):
         'last_name': user.last_name,
         'username': user.username,
         'email': user.email,
-        'phone': user.phone_number,
-        'company': company.name,
+        'phone': user.phone,
         'city': user.city,
         'state': user.state,
     })
@@ -51,7 +51,6 @@ class MyAccountForm(FormMixIn, forms.Form):
         self.fields['username'] = forms.CharField(label='User Name', max_length=100)
         self.fields['email'] = forms.EmailField(label='Email')
         self.fields['phone'] = forms.CharField(label='Phone', max_length=30)
-        self.fields['company'] = forms.CharField(label='Company', max_length=30)
         self.fields['city'] = forms.CharField(label='City', max_length=30)
         self.fields['state'] = forms.CharField(label='State')
 

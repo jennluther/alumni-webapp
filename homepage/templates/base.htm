@@ -48,7 +48,9 @@
               <li><a href="#">Reports</a></li>
               <li><a href="#">Graduation Survey</a></li>
               <li><a href="#">IS News</a></li>
-              <li><a href="/users/users/">Alumni</a></li>
+              %if user.is_superuser:
+                <li><a href="/users/users/">Alumni</a></li>
+              %endif
             </ul>
             %if user.is_authenticated:
               <ul class="nav navbar-nav navbar-right">
@@ -57,7 +59,7 @@
                     Welcome ${ user.first_name } <span class="caret"></span>
                   </a>
                     <ul class="dropdown-menu">
-                      <li><a href="/users/user/${ user.id }"><i class="fa fa-user" aria-hidden="true"></i>My Account</a></li>
+                      <li><a href="/users/account/${ user.id }"><i class="fa fa-user" aria-hidden="true"></i>My Account</a></li>
                       <li><a href="/users/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>Log Out</a></li>
                     </ul>
                 </li>
@@ -65,7 +67,7 @@
             %else:
               <ul class="nav navbar-nav navbar-right">
                 <li><a href="/users/login/">Login</a></li>
-                <li><a href="/users/create/">Sign up</a></li>
+                <li><a href="/users/signup/">Sign up</a></li>
               </ul>
             %endif
           </div><!-- /.navbar-collapse -->

@@ -12,21 +12,22 @@ from django.contrib.auth.decorators import permission_required
 
 ####################
 @view_function
+@permission_required('users.change_user', login_url='/users/login/')
 def process_request(request):
     #pull all products from the DB
     try:
-        user = umod.User.objects.get(id=request.urlparams[0])
+        alumni = umod.User.objects.get(id=request.urlparams[0])
         #products = cmod.Product.objects.get(id=request.GET.get('id'))
     except umod.User.DoesNotExist:
         return HttpResponseRedirect('/homepage/index')
 
     try:
-        exitSurvey = umod.ExitSurvey.objects.get(user = user.id)
+        exitSurvey = umod.ExitSurvey.objects.get(user = alumni.id)
     except umod.ExitSurvey.DoesNotExist:
         exitSurvey = False
 
     try:
-        pastFullTime = umod.FullTime.objects.filter(user = user.id, current_job = False)
+        pastFullTime = umod.FullTime.objects.filter(user = alumni.id, current_job = False)
         if not pastFullTime:
             pastFullTime = False
         print(pastFullTime)
@@ -34,19 +35,19 @@ def process_request(request):
         pastFullTime = False
 
     try:
-        currentFullTime = umod.FullTime.objects.get(user = user.id, current_job = True)
+        currentFullTime = umod.FullTime.objects.get(user = alumni.id, current_job = True)
     except umod.FullTime.DoesNotExist:
         currentFullTime = False
 
     try:
-        internship = umod.Internship.objects.filter(user = user.id)
+        internship = umod.Internship.objects.filter(user = alumni.id)
         if not internship:
             internship = False
     except umod.Internship.DoesNotExist:
         internship = False
 
     try:
-        offer = umod.Offers.objects.filter(user = user.id)
+        offer = umod.Offers.objects.filter(user = alumni.id)
         if not offer:
             offer = False
     except umod.Offers.DoesNotExist:
@@ -62,7 +63,7 @@ def process_request(request):
             else:
                 current_skills_list = current_skills_list + '; ' + s.skill
 
-    qry = umod.FullTime.objects.filter(user = user.id, current_job = False)
+    qry = umod.FullTime.objects.filter(user = alumni.id, current_job = False)
     past_full_time = []
     for q in qry:
         obj = []
@@ -97,7 +98,7 @@ def process_request(request):
 
     #render the template
     context = {
-        'user': user,
+        'alumni': alumni,
         'exitSurvey': exitSurvey,
         'pastFullTime': pastFullTime,
         'currentFullTime': currentFullTime,

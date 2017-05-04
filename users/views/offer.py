@@ -8,6 +8,7 @@ from django import forms
 from formlib.form import FormMixIn
 
 @view_function
+@permission_required('users.change_offers', login_url='/users/login/')
 def process_request(request):
     #pull all products from the DB
     try:
@@ -48,6 +49,7 @@ class EditOfferForm(FormMixIn, forms.Form):
 
 
 @view_function
+@permission_required('users.create_offers', login_url='/users/login/')
 def create(request):
     try:
         user = umod.User.objects.get(id=request.urlparams[0])
@@ -89,6 +91,7 @@ class CreateOfferForm(FormMixIn, forms.Form):
 ###  Deleting offer
 
 @view_function
+@permission_required('users.delete_offers', login_url='/users/login/')
 def delete(request):
     try:
         offer = umod.Offers.objects.get(id=request.urlparams[0])

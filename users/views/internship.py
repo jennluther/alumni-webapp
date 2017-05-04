@@ -6,8 +6,10 @@ from .. import dmp_render, dmp_render_to_string
 from users import models as umod
 from django import forms
 from formlib.form import FormMixIn
+from django.contrib.auth.models import Permission, Group
 
 @view_function
+@permission_required('users.change_internship', login_url='/users/login/')
 def process_request(request):
     #pull all products from the DB
     try:
@@ -55,6 +57,7 @@ class EditInternshipForm(FormMixIn, forms.Form):
 
 
 @view_function
+@permission_required('users.create_internship', login_url='/users/login/')
 def create(request):
     try:
         user = umod.User.objects.get(id=request.urlparams[0])
@@ -99,6 +102,7 @@ class CreateInternshipForm(FormMixIn, forms.Form):
 ###  Deleting internship
 
 @view_function
+@permission_required('users.delete_internship', login_url='/users/login/')
 def delete(request):
     try:
         internship = umod.Internship.objects.get(id=request.urlparams[0])

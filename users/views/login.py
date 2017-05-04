@@ -7,20 +7,16 @@ from django.shortcuts import redirect
 from users import models as umod
 from django import forms
 from formlib.form import FormMixIn
+from django.contrib.auth.models import Permission, Group
 
 @view_function
 def process_request(request):
-    
 
     form = LoginForm(request)
     if form.is_valid():
-        print("FORM IS VALID")
         #log the user in
         login(request, form.user)
-        print(">>>>>>>>>>", form.user)
         form.commit()
-        if user.is_authenticated:
-            print(">>>>>>>>>>>>>>>>> AUTHENTICATED")
         #redirect to the myaccount page
         return HttpResponseRedirect("/homepage/index/")
 

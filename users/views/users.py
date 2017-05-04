@@ -11,6 +11,7 @@ from django import forms
 
 
 @view_function
+@permission_required('users.add_group', login_url='/users/login/')
 def process_request(request):
     #pull all users from the DB
     exitsurvey = []
@@ -18,23 +19,23 @@ def process_request(request):
         exitsurvey.append(e.user.id)
         print("$$$$$$", e.user.id)
 
-    users = umod.User.objects.filter(alumni=True)
+    alumni = umod.User.objects.filter(alumni=True)
 
     if request.urlparams[0] == 'completed':
-        users = users.filter(id__in=exitsurvey)
+        alumni = alumni.filter(id__in=exitsurvey)
     elif request.urlparams[0] == "incomplete":
-        users = users.exclude(id__in=exitsurvey)
+        alumni = alumni.exclude(id__in=exitsurvey)
     elif request.urlparams[0] == "MISM":
-        users = users.filter(program__icontains='MISM')
+        alumni = alumni.filter(program__icontains='MISM')
     elif request.urlparams[0] == "BSIS":
-        users = users.filter(program__icontains='BSIS')
+        alumni = alumni.filter(program__icontains='BSIS')
     else:
-        users = users.order_by('last_name').all()
+        alumni = alumni.order_by('last_name').all()
 
     form = SearchForm(request)
     if form.is_valid():
         form.commit()
-        users = umod.User.objects.filter(Q(first_name__icontains=form.cleaned_data.get('search')) | Q(last_name__icontains=form.cleaned_data.get('search')))
+        alumni = umod.User.objects.filter(Q(first_name__icontains=form.cleaned_data.get('search')) | Q(last_name__icontains=form.cleaned_data.get('search')))
 
 
 
@@ -44,7 +45,7 @@ def process_request(request):
 
     #render the template
     context = {
-        'users': users,
+        'alumni': alumni,
         'form' : form,
 
     }

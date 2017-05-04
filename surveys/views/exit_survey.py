@@ -7,28 +7,29 @@ from django.forms import widgets
 from django.contrib.auth.models import AbstractUser
 from users import models as umod
 from formlib.form import FormMixIn
-
+from django.contrib.auth.decorators import permission_required
 
 # add to your views
 @view_function
+@permission_required('users.add_exitsurvey', login_url='/users/login/')
 def process_request(request):
     try:
-        user = umod.User.objects.get(id=request.urlparams[0])
+        alumni = umod.User.objects.get(id=request.urlparams[0])
         #products = cmod.Product.objects.get(id=request.GET.get('id'))
     except umod.User.DoesNotExist:
         return HttpResponseRedirect('/homepage/index')
 
     try:
-        exit_survey = umod.ExitSurvey.objects.get(user = user)
-        return HttpResponse('This user has already taken the exit survey')
+        exit_survey = umod.ExitSurvey.objects.get(user = alumni)
+        return HttpResponse('This alumni has already taken the exit survey')
     except umod.ExitSurvey.DoesNotExist:
         pass
 
     form = ExitForm(request)
 
     if form.is_valid():
-        form.commit(user)
-        return HttpResponseRedirect('/users/results/' + str(user.id))
+        form.commit(alumni)
+        return HttpResponseRedirect('/users/results/' + str(alumni.id))
 
     context = {
     'form': form,
@@ -73,14 +74,14 @@ class ExitForm(FormMixIn, forms.Form):
         self.fields['my_choice'] = forms.ChoiceField(label="""Did you participate in "My Choice to Give"?""", choices=umod.MY_CHOICE_CHOICES)
         self.fields['additional_comments'] = forms.CharField(label="Anything else you'd like us to know?", max_length=130, required=False)
 
-    def commit(self, user):
+    def commit(self, alumni):
         #######save program to user
         # program = umod.Program.objects.get(program_name = ['name'], career_advisor = ['career_advisor'], academic_advisor = ['academic_advisor'])
         # print(">>>>>>>>>>>>>", program)
         #user.save()
         #######save exit survey
         es = umod.ExitSurvey()
-        es.user = user
+        es.user = alumni
         es.program_introduction = self.cleaned_data.get('program_introduction')
         es.mism_decision = self.cleaned_data.get('mism_decision')
         es.again = self.cleaned_data.get('again')
@@ -105,10 +106,10 @@ class ExitForm(FormMixIn, forms.Form):
         es.save()
         #########save donation info
         d = umod.Donation()
-        d.user = user
+        d.user = alumni
         d.give_back = self.cleaned_data.get('give_back')
         d.my_choice = self.cleaned_data.get('my_choice')
         d.save()
         ###########program Information
-        user.program = self.cleaned_data.get('program')
-        user.save()
+        alumni.program = self.cleaned_data.get('program')
+        alumni.save()

@@ -5,46 +5,28 @@ from django import forms
 from .. import dmp_render, dmp_render_to_string
 from users import models as umod
 from users.models import *
+from formlib.form import FormMixIn
 
 
 
 @view_function
 def process_request(request):
 
-  #process the form
-  form = SignupForm()
-  if request.method == 'POST': # just submitted the form
-    form = SignupForm(request.POST)
+    #process the form
+    form = SignupForm(request)
+
     if form.is_valid():
-        # create a user object
-        # fill user object with the data from the form
-        # d = umod.Donation()
-        u = umod.User()
-        u.first_name = form.cleaned_data.get('first_name')
-        u.last_name = form.cleaned_data.get('last_name')
-        u.email = form.cleaned_data.get('email')
-        u.username = form.cleaned_data.get('username')
-        u.set_password(form.cleaned_data.get('password'))
-
-        # d.give_back = form.cleaned_data.get('give_back')
-        # d.my_choice = form.cleaned_data.get('my_choice')
-
-
-        u.save() # this is our insert statement right here
-
-
-
-
+        print('>>> form is valid')
+        form.commit()
         return HttpResponseRedirect('/homepage/index/')
 
+    #render the template
+    context = {
+        'form': form,
+    }
+    return dmp_render(request, 'signup.html', context)
 
-  template_vars = {
-    'form': form,
-  }
-
-  return dmp_render(request, 'signup.html', template_vars)
-
-class SignupForm(forms.Form):
+class SignupForm(FormMixIn, forms.Form):
 
     GIVE_CHOICES = [
         ["Money", "Money (donations to department, scholarship funds, etc.)"],
@@ -58,11 +40,11 @@ class SignupForm(forms.Form):
         ["N", "No"],
     ]
 
-    first_name = forms.CharField(label='First Name', required=True, max_length=100, widget=forms.TextInput(attrs={"class":"form-control"}))
-    last_name = forms.CharField(label='Last Name', required=True, max_length=100, widget=forms.TextInput(attrs={"class":"form-control"}))
-    email = forms.EmailField(label='Email', required=True, max_length=100, widget=forms.TextInput(attrs={"class":"form-control"}))
-    username = forms.CharField(label='Username', required=True, max_length=100, widget=forms.TextInput(attrs={"class":"form-control"}))
-    password = forms.CharField(label='Password', required=True, max_length=100, widget=forms.TextInput(attrs={"class":"form-control"}))
+    first_name = forms.CharField(label='First Name', required=True, max_length=100)
+    last_name = forms.CharField(label='Last Name', required=True, max_length=100)
+    email = forms.EmailField(label='Email', required=True, max_length=100)
+    username = forms.CharField(label='Username', required=True, max_length=100)
+    password = forms.CharField(label='Password', required=True, max_length=100)
     # give_back = forms.ChoiceField(label='When you can, will you give back to the IS program?', required=True, choices=GIVE_CHOICES)
     # my_choice = forms.ChoiceField(label="Did you participate in My Choice to Give?", required=True, choices=MY_CHOICE_CHOICES)
 
@@ -77,3 +59,12 @@ class SignupForm(forms.Form):
         if len(users) > 0:
             raise forms.ValidationError('This username has already been used. Please enter a new username.')
         return username
+
+    def commit(self):
+        u = umod.User()
+        u.first_name = form.cleaned_data.get('first_name')
+        u.last_name = form.cleaned_data.get('last_name')
+        u.email = form.cleaned_data.get('email')
+        u.username = form.cleaned_data.get('username')
+        u.set_password(form.cleaned_data.get('password'))
+        u.save()

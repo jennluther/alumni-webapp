@@ -6,8 +6,10 @@ from .. import dmp_render, dmp_render_to_string
 from users import models as umod
 from django import forms
 from formlib.form import FormMixIn
+from django.contrib.auth.decorators import permission_required
 
 @view_function
+@permission_required('users.change_fulltime', login_url='/users/login/')
 def process_request(request):
     #pull all products from the DB
     try:
@@ -16,7 +18,7 @@ def process_request(request):
     except umod.FullTime.DoesNotExist:
         return HttpResponseRedirect('/homepage/index')
 
-    user = umod.User.objects.get(id=current_job.user.id)
+    alumni = umod.User.objects.get(id=current_job.user.id)
     ####I need to query to get the the current job!!!!
 
     #process the form
@@ -44,7 +46,7 @@ def process_request(request):
     if form.is_valid():
         print('>>> form is valid')
         form.commit(current_job)
-        return HttpResponseRedirect('/users/aluminfo/'+ str(user.id))
+        return HttpResponseRedirect('/users/aluminfo/'+ str(alumni.id))
 
     #render the template
     context = {
@@ -56,7 +58,7 @@ def process_request(request):
 
 class EditCurrentJobForm(FormMixIn, forms.Form):
 
-    def init(self, user):
+    def init(self, alumni):
         self.fields['position'] = forms.CharField(label='Position', max_length=30)
         self.fields['position_description'] = forms.ChoiceField(choices=umod.POSITION_CHOICES, label='Position Description')
         self.fields['current_job'] = forms.BooleanField(label='Current Job', required=False)
@@ -107,9 +109,10 @@ class EditCurrentJobForm(FormMixIn, forms.Form):
 
 
 @view_function
+@permission_required('users.create_fulltime', login_url='/users/login/')
 def create(request):
     try:
-        user = umod.User.objects.get(id=request.urlparams[0])
+        alumni = umod.User.objects.get(id=request.urlparams[0])
     except umod.User.DoesNotExist:
         return HttpResponseRedirect('/homepage/index')
 
@@ -120,8 +123,8 @@ def create(request):
 
     if form.is_valid():
         print('>>> form is valid')
-        form.commit(user, company)
-        return HttpResponseRedirect('/users/aluminfo/' + str(user.id))
+        form.commit(alumni, company)
+        return HttpResponseRedirect('/users/aluminfo/' + str(alumni.id))
 
     #render the template
     context = {
@@ -132,7 +135,7 @@ def create(request):
 
 class CreateJobForm(FormMixIn, forms.Form):
 
-    def init(self, user):
+    def init(self, alumni):
         self.fields['position'] = forms.CharField(label='Position', max_length=30)
         self.fields['position_description'] = forms.ChoiceField(choices=umod.POSITION_CHOICES, label='Position Description')
         self.fields['date_accepted'] = forms.DateField(label='Date of job offer acceptance')
@@ -150,7 +153,7 @@ class CreateJobForm(FormMixIn, forms.Form):
         self.fields['ft_hours_looking'] = forms.IntegerField(label='How many hours did you spend looking for this job?')
 
 
-    def commit(self,user, company):
+    def commit(self,alumni, company):
         job = umod.FullTime()
         job.position_title = self.cleaned_data.get('position')
         job.position_description = self.cleaned_data.get('position_description')
@@ -168,7 +171,7 @@ class CreateJobForm(FormMixIn, forms.Form):
         job.contact = self.cleaned_data.get('contact')
         job.ft_hours_looking = self.cleaned_data.get('ft_hours_looking')
         job.company = company
-        job.user = user
+        job.user = alumni
 
         job.save()
 
@@ -176,6 +179,7 @@ class CreateJobForm(FormMixIn, forms.Form):
 ###  Deleting currentjob
 
 @view_function
+@permission_required('users.delete_fulltime', login_url='/users/login/')
 def delete(request):
     try:
         current_job = umod.FullTime.objects.get(id=request.urlparams[0])

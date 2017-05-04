@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1493907467.088383
+_modified_time = 1493919184.942935
 _enable_loop = True
 _template_filename = '/Users/Jenn/Programs/alumni-webapp/users/templates/users.html'
 _template_uri = 'users.html'
@@ -30,7 +30,7 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        users = context.get('users', UNDEFINED)
+        alumni = context.get('alumni', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
         form = context.get('form', UNDEFINED)
@@ -49,7 +49,7 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
-        users = context.get('users', UNDEFINED)
+        alumni = context.get('alumni', UNDEFINED)
         def content():
             return render_content(context)
         form = context.get('form', UNDEFINED)
@@ -57,7 +57,7 @@ def render_content(context,**pageargs):
         __M_writer("\n<div class='container viewcontainer'>\n  <h1>Alumni:</h1>\n  <div>\n    ")
         __M_writer(str( form ))
         __M_writer('\n  </div><br>\n  <p>\n    <strong>Actions:</strong>\n    <a href="/users/user.create/" class="btn btn-primary">Create</a>\n    <a href="/users/upload" class = "btn btn-primary">Upload Alumni Information </a>\n  </p>\n  <p>\n    <strong>Filters:</strong>\n    <a href="/users/users" class="btn btn-primary">All Users</a>\n    <a href="/users/users/completed" class="btn btn-primary">Exit Survey Completed</a>\n    <a href="/users/users/incomplete" class = "btn btn-primary">Exit Survey Incomplete </a>\n    <a href="/users/users/MISM" class = "btn btn-primary">MISM</a>\n    <a href="/users/users/BSIS" class = "btn btn-primary">BSIS</a>\n  </p>\n\n\n\n  <table class="table table-striped users sortable">\n      <tr>\n        <th>First Name</th>\n        <th>Last Name</th>\n        <th>Email</th>\n        <th>Program</th>\n        <th>Actions</th>\n      </tr>\n')
-        for u in users:
+        for u in alumni:
             __M_writer('      <tr>\n        <td>')
             __M_writer(str( u.first_name ))
             __M_writer('</a>\n        <td>')

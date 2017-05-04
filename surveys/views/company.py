@@ -13,6 +13,7 @@ from django.contrib.auth.decorators import permission_required
 #################
 ### Edit Company
 @view_function
+@permission_required('account.change_company', login_url='/account/login/')
 def process_request(request):
     try:
         if request.urlparams[1] == 'internship':
@@ -48,7 +49,7 @@ def process_request(request):
 
 class EditCompanyForm(FormMixIn, forms.Form):
 
-    def init(self, user):
+    def init(self, alumni):
         self.fields['company'] = forms.ModelChoiceField(label='Company', queryset=umod.Company.objects.order_by('name').all())
 
 
@@ -60,6 +61,7 @@ class EditCompanyForm(FormMixIn, forms.Form):
 ###########################
 ### Create Company if you already have a FullTime job record
 @view_function
+@permission_required('surveys.add_company', login_url='/users/login/')
 def create(request):
     try:
         current_job = umod.FullTime.objects.get(id=request.urlparams[0])
@@ -67,7 +69,7 @@ def create(request):
     except umod.FullTime.DoesNotExist:
         return HttpResponseRedirect('/homepage/index')
 
-    user = umod.User.objects.get(id=current_job.user.id)
+    alumni = umod.User.objects.get(id=current_job.alumni.id)
 
     #process the form
     form = CreateCompanyForm(request)
@@ -113,9 +115,10 @@ class CreateCompanyForm(FormMixIn, forms.Form):
 ###########################
 ### Create Company for a new FullTime record
 @view_function
+@permission_required('surveys.add_company', login_url='/users/login/')
 def create_new(request):
     try:
-        user = umod.User.objects.get(id=request.urlparams[0])
+        alumni = umod.User.objects.get(id=request.urlparams[0])
     except umod.User.DoesNotExist:
         return HttpResponseRedirect('/homepage/index')
 
@@ -128,15 +131,15 @@ def create_new(request):
         form.commit()
         company = umod.Company.objects.get(name=request.POST["name"], city=request.POST["city"], state=request.POST["state"])
         if request.urlparams[1] == 'internship':
-            return HttpResponseRedirect('/users/internship.create/' + str(user.id) + '/' + str(company.id))
+            return HttpResponseRedirect('/users/internship.create/' + str(alumni.id) + '/' + str(company.id))
         if request.urlparams[1] == 'offer':
-            return HttpResponseRedirect('/users/offer.create/' + str(user.id) + '/' + str(company.id))
-        return HttpResponseRedirect('/users/currentjob.create/' + str(user.id) + '/' + str(company.id))
+            return HttpResponseRedirect('/users/offer.create/' + str(alumni.id) + '/' + str(company.id))
+        return HttpResponseRedirect('/users/currentjob.create/' + str(alumni.id) + '/' + str(company.id))
 
     #render the template
     context = {
         'form': form,
-        'user': user,
+        'alumni': alumni,
     }
     return dmp_render(request, 'company.create_new.html', context)
 

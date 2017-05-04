@@ -3,29 +3,29 @@
 
 <%block name="content">
 <div class="container">
-  <h1>${ user.first_name + " " + user.last_name}'s Information:</h1>
+  <h1>${ alumni.first_name + " " + alumni.last_name}'s Information:</h1>
   <p class='aluminfo'>
-      Phone number: ${ user.phone } <br>
-      Email: ${ user.email }<br>
-      Address: ${ user.street }
-      ${ user.city },
-      ${ user.state }
-      ${ user.country }
-      ${ user.zipcode }<br>
-      Program: ${ user.program }<br>
-      Graduation Date: ${ user.graduation_semester } ${ user.graduation_year }<br>
-      <a href="/users/user/${ user.id }/">Edit</a>
+      Phone number: ${ alumni.phone } <br>
+      Email: ${ alumni.email }<br>
+      Address: ${ alumni.street }
+      ${ alumni.city },
+      ${ alumni.state }
+      ${ alumni.country }
+      ${ alumni.zipcode }<br>
+      Program: ${ alumni.program }<br>
+      Graduation Date: ${ alumni.graduation_semester } ${ alumni.graduation_year }<br>
+      <a href="/users/user/${ alumni.id }/">Edit</a>
     </p>
   <div>
     %if exitSurvey != False:
-      <h3>Exit Survey has been submitted!  <a href="/users/results/${ user.id }"<button class="btn btn-warning">Results</button></a><h3>
+      <h3>Exit Survey has been submitted!  <a href="/users/results/${ alumni.id }"<button class="btn btn-warning">Results</button></a><h3>
     %else:
-      <h3>Exit Survey needs to be taken  <a href="/surveys/exit_survey/${ user.id }"<button class="btn btn-warning">Take Survey</button></a></h3>
+      <h3>Exit Survey needs to be taken  <a href="/surveys/exit_survey/${ alumni.id }"<button class="btn btn-warning">Take Survey</button></a></h3>
     %endif
   </div>
 <div>
   <div class='job_info'>
-    <a href="/surveys/choose_company/${ user.id }"><button class="btn btn-success">Add Job Information</button></a></h3>
+    <a href="/surveys/choose_company/${ alumni.id }"><button class="btn btn-success">Add Job Information</button></a></h3>
 
       %if currentFullTime != False:
       <div class="container currentFullTimeInfo">
@@ -61,7 +61,7 @@
 
     <div class='intern_info'>
       <div class='internship'>
-        <a href="/surveys/choose_company/${ user.id }/internship"><button class="btn btn-success">Add Internship Information</button></a></h3>
+        <a href="/surveys/choose_company/${ alumni.id }/internship"><button class="btn btn-success">Add Internship Information</button></a></h3>
           %if internship != False:
           <div class="container currentFullTimeInfo">
             <h3><strong>Internship:</strong></h3>
@@ -84,7 +84,7 @@
       </div>
 
       <div class='offers'>
-        <a href="/surveys/choose_company/${ user.id }/offer"><button class="btn btn-success">Add Offer Information</button></a></h3>
+        <a href="/surveys/choose_company/${ alumni.id }/offer"><button class="btn btn-success">Add Offer Information</button></a></h3>
           %if offer != False:
           <div class="container currentFullTimeInfo">
             <h3><strong>Offer:</strong></h3>

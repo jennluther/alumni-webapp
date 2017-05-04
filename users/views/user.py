@@ -13,6 +13,7 @@ from django.contrib.auth.decorators import permission_required
 #################
 ### Edit User
 @view_function
+@permission_required('users.change_user', login_url='/users/login/')
 def process_request(request):
     #pull all products from the DB
     try:
@@ -97,6 +98,7 @@ class EditUserForm(FormMixIn, forms.Form):
 ###########################
 ### Create User
 @view_function
+@permission_required('users.create_user', login_url='/users/login/')
 def create(request):
 
     #process the form
@@ -166,6 +168,7 @@ class CreateUserForm(FormMixIn, forms.Form):
 ###  Deleting user
 
 @view_function
+@permission_required('users.delete_user', login_url='/users/login/')
 def delete(request):
     try:
         user = umod.User.objects.get(id=request.urlparams[0])
