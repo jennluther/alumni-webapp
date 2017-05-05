@@ -1,0 +1,26 @@
+<%inherit file="homepage/templates/base.htm"/>
+
+
+<%block name="content">
+  <div class='container viewcontainer'>
+    <h2>Alumni that work at ${ company.name }</h2>
+    <table class="table table-striped users sortable">
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Current Job</th>
+          <th>View Info</th>
+        </tr>
+      % for u in alumni:
+        <tr>
+          <td>${ u.user.first_name }</a>
+          <td>${ u.user.last_name }</td>
+          <td>${ u.current_job }</td>
+          <td>
+            <a href="/users/aluminfo/${ u.user.id }/">Details</a>
+          </td>
+        </tr>
+      % endfor
+    </table>
+  </div>
+</%block>

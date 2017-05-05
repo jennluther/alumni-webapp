@@ -1,0 +1,11 @@
+<%inherit file="homepage/templates/base.htm"/>
+
+
+<%block name="content">
+  <div class='viewcontainer container'>
+    <h2>Compaines where our Alumni are</h2>
+    %for c in companies:
+      <h3><a href='company/${ c.id }'>${ c.name }</a></h3>
+    %endfor
+  </div>
+</%block>
