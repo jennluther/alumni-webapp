@@ -27,7 +27,6 @@ def process_request(request):
         'first_name': user1.first_name,
         'last_name': user1.last_name,
         'username': user1.username,
-        'password': user1.password,
         'graduation_semester': user1.graduation_semester,
         'graduation_year' : user1.graduation_year,
         'street' : user1.street,
@@ -61,7 +60,6 @@ class EditUserForm(FormMixIn, forms.Form):
         self.fields['first_name'] = forms.CharField(label='First Name', max_length=100)
         self.fields['last_name'] = forms.CharField(label='Last Name', max_length=100)
         self.fields['username'] = forms.CharField(label="Username", max_length=100)
-        self.fields['password'] = forms.CharField(label='Password', widget=forms.PasswordInput, required=False)
         self.fields['email'] = forms.EmailField(label='Email', required=False)
         self.fields['graduation_semester'] = forms.ChoiceField(choices=umod.SEMESTER_CHOICES, label='Graduation Semester', required=False)
         self.fields['graduation_year'] = forms.IntegerField(label='Graduation Year', required=False)
@@ -82,7 +80,6 @@ class EditUserForm(FormMixIn, forms.Form):
         user1.first_name = self.cleaned_data.get('first_name')
         user1.last_name = self.cleaned_data.get('last_name')
         user1.username = self.cleaned_data.get('username')
-        user1.set_password(self.cleaned_data.get('password'))
         user1.street = self.cleaned_data.get('street')
         user1.city = self.cleaned_data.get('city')
         user1.state = self.cleaned_data.get('state')

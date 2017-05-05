@@ -61,7 +61,7 @@ class EditCompanyForm(FormMixIn, forms.Form):
 ###########################
 ### Create Company if you already have a FullTime job record
 @view_function
-@permission_required('surveys.add_company', login_url='/users/login/')
+@permission_required('users.add_company', login_url='/users/login/')
 def create(request):
     try:
         current_job = umod.FullTime.objects.get(id=request.urlparams[0])
@@ -115,7 +115,7 @@ class CreateCompanyForm(FormMixIn, forms.Form):
 ###########################
 ### Create Company for a new FullTime record
 @view_function
-@permission_required('surveys.add_company', login_url='/users/login/')
+@permission_required('users.add_company', login_url='/users/login/')
 def create_new(request):
     try:
         alumni = umod.User.objects.get(id=request.urlparams[0])

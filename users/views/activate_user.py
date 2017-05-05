@@ -14,7 +14,7 @@ from formlib.form import FormMixIn
 def process_request(request):
     #pull all products from the DB
     try:
-        person = umod.User.objects.get(id=request.user.id)
+        person = umod.User.objects.get(id=request.urlparams[0])
         #products = cmod.Product.objects.get(id=request.GET.get('id'))
     except umod.User.DoesNotExist:
         return HttpResponseRedirect('/homepage/index')
@@ -22,34 +22,29 @@ def process_request(request):
     #process the form
     form = ChangePasswordForm(request, initial={
         'username': person.username,
-        'password': person.password,
     })
     if form.is_valid():
         print('>>> form is valid')
         form.commit(person)
-        return HttpResponseRedirect('/users/account/')
+        return HttpResponseRedirect('/users/aluminfo/' + str(person.id) + '/')
 
     #render the template
     context = {
         'form': form,
+        'person': person,
     }
 
-    return dmp_render(request, 'changepassword.html', context)
+    return dmp_render(request, 'activate_user.html', context)
 
 class ChangePasswordForm(FormMixIn, forms.Form):
 
     def init(self):
         self.fields['username'] = forms.CharField(widget=forms.HiddenInput(), required=False)
-        self.fields['password'] = forms.CharField(label='Password', widget=forms.PasswordInput)
         self.fields['new_password1'] = forms.CharField(label="New Password", widget=forms.PasswordInput)
         self.fields['new_password2'] = forms.CharField(label="Confirm Password", widget=forms.PasswordInput,
             help_text='Enter the same password as above')
 
     def clean(self):
-        password = self.cleaned_data.get('password')
-        self.user = authenticate(username=self.cleaned_data.get('username'), password=self.cleaned_data.get('password'))
-        if self.user is None:
-            raise forms.ValidationError('User does not exist.  Try again.')
         new_password1 = self.cleaned_data.get('new_password1')
         new_password2 = self.cleaned_data.get('new_password2')
         if new_password1 != new_password2:

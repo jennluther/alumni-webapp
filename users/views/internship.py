@@ -58,7 +58,7 @@ class EditInternshipForm(FormMixIn, forms.Form):
 
 
 @view_function
-@permission_required('users.create_internship', login_url='/users/login/')
+@permission_required('users.add_internship', login_url='/users/login/')
 def create(request):
     try:
         user = umod.User.objects.get(id=request.urlparams[0])

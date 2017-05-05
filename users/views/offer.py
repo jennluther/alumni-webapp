@@ -50,7 +50,7 @@ class EditOfferForm(FormMixIn, forms.Form):
 
 
 @view_function
-@permission_required('users.create_offers', login_url='/users/login/')
+@permission_required('users.add_offers', login_url='/users/login/')
 def create(request):
     try:
         user = umod.User.objects.get(id=request.urlparams[0])

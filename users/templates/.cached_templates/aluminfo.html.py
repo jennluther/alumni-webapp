@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1493938857.161284
+_modified_time = 1493996839.563597
 _enable_loop = True
 _template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/aluminfo.html'
 _template_uri = 'aluminfo.html'
@@ -31,15 +31,15 @@ def render_body(context,**pageargs):
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
         exitSurvey = context.get('exitSurvey', UNDEFINED)
-        internship = context.get('internship', UNDEFINED)
-        alumni = context.get('alumni', UNDEFINED)
+        current_skills_list = context.get('current_skills_list', UNDEFINED)
+        offer = context.get('offer', UNDEFINED)
         currentFullTime = context.get('currentFullTime', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
         pastFullTime = context.get('pastFullTime', UNDEFINED)
-        offer = context.get('offer', UNDEFINED)
+        internship = context.get('internship', UNDEFINED)
         table = context.get('table', UNDEFINED)
-        current_skills_list = context.get('current_skills_list', UNDEFINED)
+        alumni = context.get('alumni', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
@@ -56,15 +56,15 @@ def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         exitSurvey = context.get('exitSurvey', UNDEFINED)
-        internship = context.get('internship', UNDEFINED)
-        alumni = context.get('alumni', UNDEFINED)
+        current_skills_list = context.get('current_skills_list', UNDEFINED)
+        offer = context.get('offer', UNDEFINED)
         currentFullTime = context.get('currentFullTime', UNDEFINED)
         def content():
             return render_content(context)
         pastFullTime = context.get('pastFullTime', UNDEFINED)
-        offer = context.get('offer', UNDEFINED)
+        internship = context.get('internship', UNDEFINED)
         table = context.get('table', UNDEFINED)
-        current_skills_list = context.get('current_skills_list', UNDEFINED)
+        alumni = context.get('alumni', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n<div class="container">\r\n')
         if alumni.last_name.endswith('s'):
@@ -97,7 +97,9 @@ def render_content(context,**pageargs):
         __M_writer(str( alumni.graduation_year ))
         __M_writer('<br><br>\r\n      <a href="/users/user/')
         __M_writer(str( alumni.id ))
-        __M_writer('" class="btn btn-danger">Update</button></a>\r\n    </p>\r\n  <div>\r\n')
+        __M_writer('" class="btn btn-danger">Update</button></a>\r\n      <a href="/users/activate_user/')
+        __M_writer(str( alumni.id ))
+        __M_writer('" class="btn btn-warning">Change Password</button></a>\r\n    </p>\r\n  <div>\r\n')
         if exitSurvey != False:
             __M_writer('      <h3>Exit Survey has been submitted!  <a href="/users/results/')
             __M_writer(str( alumni.id ))
@@ -186,6 +188,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"source_encoding": "utf-8", "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/aluminfo.html", "line_map": {"29": 0, "44": 1, "49": 184, "55": 4, "69": 4, "70": 6, "71": 7, "72": 7, "73": 7, "74": 8, "75": 9, "76": 9, "77": 9, "78": 11, "79": 12, "80": 12, "81": 13, "82": 13, "83": 14, "84": 14, "85": 15, "86": 15, "87": 16, "88": 16, "89": 17, "90": 17, "91": 18, "92": 18, "93": 19, "94": 19, "95": 20, "96": 20, "97": 20, "98": 20, "99": 21, "100": 21, "101": 24, "102": 25, "103": 25, "104": 25, "105": 26, "106": 27, "107": 27, "108": 27, "109": 29, "110": 32, "111": 32, "112": 34, "113": 35, "114": 37, "115": 37, "116": 39, "117": 39, "118": 41, "119": 41, "120": 42, "121": 42, "122": 43, "123": 43, "124": 44, "125": 44, "126": 45, "127": 45, "128": 46, "129": 46, "130": 47, "131": 47, "132": 48, "133": 48, "134": 49, "135": 49, "136": 50, "137": 50, "138": 51, "139": 51, "140": 56, "141": 57, "142": 58, "143": 60, "144": 60, "145": 63, "146": 68, "147": 68, "148": 69, "149": 70, "150": 72, "151": 73, "152": 74, "153": 74, "154": 75, "155": 75, "156": 76, "157": 76, "158": 79, "159": 79, "160": 80, "161": 80, "162": 81, "163": 81, "164": 86, "165": 88, "166": 91, "167": 91, "168": 92, "169": 93, "170": 95, "171": 96, "172": 97, "173": 97, "174": 98, "175": 98, "176": 99, "177": 99, "178": 102, "179": 102, "180": 107, "181": 109, "187": 181}, "uri": "aluminfo.html"}
+{"filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/users/templates/aluminfo.html", "source_encoding": "utf-8", "uri": "aluminfo.html", "line_map": {"29": 0, "44": 1, "49": 185, "55": 4, "69": 4, "70": 6, "71": 7, "72": 7, "73": 7, "74": 8, "75": 9, "76": 9, "77": 9, "78": 11, "79": 12, "80": 12, "81": 13, "82": 13, "83": 14, "84": 14, "85": 15, "86": 15, "87": 16, "88": 16, "89": 17, "90": 17, "91": 18, "92": 18, "93": 19, "94": 19, "95": 20, "96": 20, "97": 20, "98": 20, "99": 21, "100": 21, "101": 22, "102": 22, "103": 25, "104": 26, "105": 26, "106": 26, "107": 27, "108": 28, "109": 28, "110": 28, "111": 30, "112": 33, "113": 33, "114": 35, "115": 36, "116": 38, "117": 38, "118": 40, "119": 40, "120": 42, "121": 42, "122": 43, "123": 43, "124": 44, "125": 44, "126": 45, "127": 45, "128": 46, "129": 46, "130": 47, "131": 47, "132": 48, "133": 48, "134": 49, "135": 49, "136": 50, "137": 50, "138": 51, "139": 51, "140": 52, "141": 52, "142": 57, "143": 58, "144": 59, "145": 61, "146": 61, "147": 64, "148": 69, "149": 69, "150": 70, "151": 71, "152": 73, "153": 74, "154": 75, "155": 75, "156": 76, "157": 76, "158": 77, "159": 77, "160": 80, "161": 80, "162": 81, "163": 81, "164": 82, "165": 82, "166": 87, "167": 89, "168": 92, "169": 92, "170": 93, "171": 94, "172": 96, "173": 97, "174": 98, "175": 98, "176": 99, "177": 99, "178": 100, "179": 100, "180": 103, "181": 103, "182": 108, "183": 110, "189": 183}}
 __M_END_METADATA
 """

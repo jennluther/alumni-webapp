@@ -109,7 +109,7 @@ class EditCurrentJobForm(FormMixIn, forms.Form):
 
 
 @view_function
-@permission_required('users.create_fulltime', login_url='/users/login/')
+@permission_required('users.add_fulltime', login_url='/users/login/')
 def create(request):
     try:
         alumni = umod.User.objects.get(id=request.urlparams[0])

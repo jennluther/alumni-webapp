@@ -12,6 +12,8 @@ def ImportAlumni(uploaded_csv):
             u = umod.User.objects.get(username = row['email'])
             if row['program'] == "I-MISM" or row['program'] == 'N-MISM':
                 u.program = row['program']
+            else:
+                u.program = row['program']
         except umod.User.DoesNotExist:
             u = umod.User()
             u.username = row['email']

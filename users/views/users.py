@@ -8,6 +8,9 @@ from django.contrib.auth.decorators import permission_required
 from django.db.models import Q
 from formlib.form import FormMixIn
 from django import forms
+import io
+import xlsxwriter
+from django.utils.translation import ugettext
 
 
 @view_function
@@ -23,14 +26,19 @@ def process_request(request):
 
     if request.urlparams[0] == 'completed':
         alumni = alumni.filter(id__in=exitsurvey)
+        export_link = '/users/export/completed'
     elif request.urlparams[0] == "incomplete":
         alumni = alumni.exclude(id__in=exitsurvey)
+        export_link = '/users/export/incomplete'
     elif request.urlparams[0] == "MISM":
         alumni = alumni.filter(program__icontains='MISM')
+        export_link = '/users/export/MISM'
     elif request.urlparams[0] == "BSIS":
         alumni = alumni.filter(program__icontains='BSIS')
+        export_link = '/users/export/BSIS'
     else:
         alumni = alumni.order_by('last_name').all()
+        export_link = '/users/export/'
 
     form = SearchForm(request)
     if form.is_valid():
@@ -42,11 +50,11 @@ def process_request(request):
 
 
 
-
     #render the template
     context = {
         'alumni': alumni,
         'form' : form,
+        'export_link': export_link,
 
     }
     return dmp_render(request, 'users.html', context)

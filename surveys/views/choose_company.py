@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import permission_required
 #################
 ### Choose Company
 @view_function
-@permission_required('surveys.add_exitsurvey', login_url='/users/login/')
+@permission_required('users.add_exitsurvey', login_url='/users/login/')
 def process_request(request):
     try:
         alumni = umod.User.objects.get(id=request.urlparams[0])
@@ -25,7 +25,7 @@ def process_request(request):
     if request.urlparams[1] == 'internship':
         newcompany_link = "/surveys/company.create_new/" + str(alumni.id) + "/internship"
     elif request.urlparams[1] == 'offer':
-        newcompany_link = "/surveys/offer.create_new/" + str(alumni.id) + "/offer"
+        newcompany_link = "/surveys/company.create_new/" + str(alumni.id) + "/offer"
     else:
         newcompany_link = "/surveys/company.create_new/" + str(alumni.id) + "/"
 
