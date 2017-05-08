@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1494021835.997322
+_modified_time = 1494253966.393202
 _enable_loop = True
 _template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/reports/templates/companies.html'
 _template_uri = 'companies.html'
@@ -54,7 +54,7 @@ def render_content(context,**pageargs):
         __M_writer = context.writer()
         __M_writer("\r\n  <div class='viewcontainer container'>\r\n    <h2>Compaines where our Alumni are</h2>\r\n")
         for c in companies:
-            __M_writer("      <h3><a href='company/")
+            __M_writer("      <h3><a href='/reports/company/")
             __M_writer(str( c.id ))
             __M_writer("'>")
             __M_writer(str( c.name ))

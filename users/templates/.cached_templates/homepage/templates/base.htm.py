@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1493930713.777837
+_modified_time = 1494253971.711912
 _enable_loop = True
 _template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/homepage/templates/base.htm'
 _template_uri = 'homepage/templates/base.htm'
@@ -21,12 +21,12 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        request = context.get('request', UNDEFINED)
         user = context.get('user', UNDEFINED)
         self = context.get('self', UNDEFINED)
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n')
         __M_writer('\r\n\r\n\r\n<!DOCTYPE html>\r\n<html>\r\n  <meta charset="UTF-8">\r\n  <head>\r\n\r\n    <title>surveys</title>\r\n    <link rel="icon" href="')
@@ -41,7 +41,7 @@ def render_body(context,**pageargs):
         __M_writer(str( get_template_css(self, request, context) ))
         __M_writer('\r\n\r\n  </head>\r\n  <body>\r\n\r\n    <header>\r\n\r\n      <nav class="navbar navbar-inverse navbar-static-top">\r\n        <div class="container-fluid">\r\n          <!-- Brand and toggle get grouped for better mobile display -->\r\n          <div class="navbar-header">\r\n            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">\r\n              <span class="sr-only">Toggle navigation</span>\r\n              <span class="icon-bar"></span>\r\n              <span class="icon-bar"></span>\r\n              <span class="icon-bar"></span>\r\n            </button>\r\n            <a class="navbar-brand" href="#">Alumni Database</a>\r\n          </div>\r\n\r\n          <!-- Collect the nav links, forms, and other content for toggling -->\r\n          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\r\n            <ul class="nav navbar-nav">\r\n              <li><a href="#">Reports</a></li>\r\n              <li><a href="#">Graduation Survey</a></li>\r\n              <li><a href="#">IS News</a></li>\r\n')
         if user.is_superuser:
-            __M_writer('                <li><a href="/users/users/">Alumni</a></li>\r\n')
+            __M_writer('                <li><a href="/users/users/">Alumni</a></li>\r\n                <li><a href=\'/reports/companies/\'>Companies</a></li>\r\n')
         __M_writer('            </ul>\r\n')
         if user.is_authenticated:
             __M_writer('              <ul class="nav navbar-nav navbar-right">\r\n                <li class=\'dropdown\'>\r\n                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">\r\n                    Welcome ')
@@ -77,6 +77,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/homepage/templates/base.htm", "line_map": {"66": 78, "72": 78, "78": 72, "18": 4, "20": 0, "31": 2, "32": 4, "33": 13, "34": 13, "35": 16, "36": 19, "37": 19, "38": 20, "39": 20, "40": 25, "41": 25, "42": 25, "43": 51, "44": 52, "45": 54, "46": 55, "47": 56, "48": 59, "49": 59, "50": 67, "51": 68, "52": 73, "57": 81, "58": 85, "59": 85, "60": 85}, "source_encoding": "utf-8", "uri": "homepage/templates/base.htm"}
+{"filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/homepage/templates/base.htm", "line_map": {"66": 79, "72": 79, "78": 72, "18": 4, "20": 0, "31": 2, "32": 4, "33": 13, "34": 13, "35": 16, "36": 19, "37": 19, "38": 20, "39": 20, "40": 25, "41": 25, "42": 25, "43": 51, "44": 52, "45": 55, "46": 56, "47": 57, "48": 60, "49": 60, "50": 68, "51": 69, "52": 74, "57": 82, "58": 86, "59": 86, "60": 86}, "source_encoding": "utf-8", "uri": "homepage/templates/base.htm"}
 __M_END_METADATA
 """

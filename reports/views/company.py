@@ -22,6 +22,13 @@ def process_request(request):
 
     alumni = umod.FullTime.objects.filter(company=request.urlparams[0])
 
+    if request.urlparams[1]=='current':
+        alumni = alumni.filter(current_job=True)
+    elif request.urlparams[1]=='past':
+        alumni = alumni.filter(current_job=False)
+    else:
+        alumni = alumni
+
 
     context = {
         'company': company,
