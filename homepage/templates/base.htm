@@ -2,6 +2,7 @@
 
 ## imports
 <%! from django_mako_plus import get_template_css, get_template_js %>
+<%! import datetime %>
 
 
 <!DOCTYPE html>
@@ -84,6 +85,35 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     ## render the JS with the same name as this page
     ${ get_template_js(self, request, context) }
+
+      <!-- Footer -->
+  <footer class='footer'>
+      <div class="container">
+          <div class="row">
+              <a href="mailto:isys790@byu.edu" id="support-email-link"><div class="col-lg-4 text-left" id="footer-left">
+                <i class="fa fa-envelope-o fa-3x wow bounceIn"></i>
+                <p>isys790@byu.edu</p>
+              </div></a>
+
+              <div class="col-lg-4 text-center" id="footer-center">
+                  <i class="fa fa-map-marker fa-3x sr-contact"></i>
+                  <p>790 TNRB <br />
+                  Provo, Utah 84604 <br />
+                  </p>
+              </div>
+              <div class="col-lg-4 text-right" id="footer-right">
+                  <i class="fa fa-phone fa-3x sr-contact"></i>
+                  <p>1-801-422-5379</p>
+              </div>
+
+          </div>
+          <!-- /.row -->
+      </div>
+      <!-- /.container -->
+      <div class="row" id="copyright">
+        <p>Copyright &copy; BYU IS ${ datetime.datetime.now().year}</p>
+      </div>
+  </footer>
 
   </body>
 </html>

@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1494253971.711912
+_modified_time = 1494259365.065982
 _enable_loop = True
 _template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/homepage/templates/base.htm'
 _template_uri = 'homepage/templates/base.htm'
@@ -17,17 +17,20 @@ _exports = ['content']
 
 from django_mako_plus import get_template_css, get_template_js 
 
+import datetime 
+
 def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        user = context.get('user', UNDEFINED)
-        self = context.get('self', UNDEFINED)
+        request = context.get('request', UNDEFINED)
         STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        self = context.get('self', UNDEFINED)
+        user = context.get('user', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
-        request = context.get('request', UNDEFINED)
         __M_writer = context.writer()
+        __M_writer('\r\n')
         __M_writer('\r\n')
         __M_writer('\r\n\r\n\r\n<!DOCTYPE html>\r\n<html>\r\n  <meta charset="UTF-8">\r\n  <head>\r\n\r\n    <title>surveys</title>\r\n    <link rel="icon" href="')
         __M_writer(str( STATIC_URL ))
@@ -57,7 +60,9 @@ def render_body(context,**pageargs):
         __M_writer('\r\n\r\n    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>\r\n')
         __M_writer('    ')
         __M_writer(str( get_template_js(self, request, context) ))
-        __M_writer('\r\n\r\n  </body>\r\n</html>\r\n')
+        __M_writer('\r\n\r\n      <!-- Footer -->\r\n  <footer class=\'footer\'>\r\n      <div class="container">\r\n          <div class="row">\r\n              <a href="mailto:isys790@byu.edu" id="support-email-link"><div class="col-lg-4 text-left" id="footer-left">\r\n                <i class="fa fa-envelope-o fa-3x wow bounceIn"></i>\r\n                <p>isys790@byu.edu</p>\r\n              </div></a>\r\n\r\n              <div class="col-lg-4 text-center" id="footer-center">\r\n                  <i class="fa fa-map-marker fa-3x sr-contact"></i>\r\n                  <p>790 TNRB <br />\r\n                  Provo, Utah 84604 <br />\r\n                  </p>\r\n              </div>\r\n              <div class="col-lg-4 text-right" id="footer-right">\r\n                  <i class="fa fa-phone fa-3x sr-contact"></i>\r\n                  <p>1-801-422-5379</p>\r\n              </div>\r\n\r\n          </div>\r\n          <!-- /.row -->\r\n      </div>\r\n      <!-- /.container -->\r\n      <div class="row" id="copyright">\r\n        <p>Copyright &copy; BYU IS ')
+        __M_writer(str( datetime.datetime.now().year))
+        __M_writer('</p>\r\n      </div>\r\n  </footer>\r\n\r\n  </body>\r\n</html>\r\n')
         return ''
     finally:
         context.caller_stack._pop_frame()
@@ -77,6 +82,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/homepage/templates/base.htm", "line_map": {"66": 79, "72": 79, "78": 72, "18": 4, "20": 0, "31": 2, "32": 4, "33": 13, "34": 13, "35": 16, "36": 19, "37": 19, "38": 20, "39": 20, "40": 25, "41": 25, "42": 25, "43": 51, "44": 52, "45": 55, "46": 56, "47": 57, "48": 60, "49": 60, "50": 68, "51": 69, "52": 74, "57": 82, "58": 86, "59": 86, "60": 86}, "source_encoding": "utf-8", "uri": "homepage/templates/base.htm"}
+{"uri": "homepage/templates/base.htm", "source_encoding": "utf-8", "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/homepage/templates/base.htm", "line_map": {"64": 114, "65": 114, "71": 80, "77": 80, "18": 4, "83": 77, "20": 5, "22": 0, "33": 2, "34": 4, "35": 5, "36": 14, "37": 14, "38": 17, "39": 20, "40": 20, "41": 21, "42": 21, "43": 26, "44": 26, "45": 26, "46": 52, "47": 53, "48": 56, "49": 57, "50": 58, "51": 61, "52": 61, "53": 69, "54": 70, "55": 75, "60": 83, "61": 87, "62": 87, "63": 87}}
 __M_END_METADATA
 """
