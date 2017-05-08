@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1494254468.73625
+_modified_time = 1494255877.80901
 _enable_loop = True
 _template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/reports/templates/company.html'
 _template_uri = 'company.html'
@@ -30,10 +30,11 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
+        company = context.get('company', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
         alumni = context.get('alumni', UNDEFINED)
-        company = context.get('company', UNDEFINED)
+        export_link = context.get('export_link', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n\r\n\r\n')
         if 'parent' not in context._data or not hasattr(context._data['parent'], 'content'):
@@ -49,14 +50,17 @@ def render_body(context,**pageargs):
 def render_content(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
+        company = context.get('company', UNDEFINED)
         def content():
             return render_content(context)
         alumni = context.get('alumni', UNDEFINED)
-        company = context.get('company', UNDEFINED)
+        export_link = context.get('export_link', UNDEFINED)
         __M_writer = context.writer()
         __M_writer("\r\n  <div class='container viewcontainer'>\r\n    <h2>Alumni that work at ")
         __M_writer(str( company.name ))
-        __M_writer('</h2>\r\n    <nav class=\'navbar nav\'>\r\n      <ul class="nav navbar-nav navbar-left">\r\n        <li class=\'dropdown\'>\r\n          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">\r\n            Filters <span class="caret"></span>\r\n          </a>\r\n            <ul class="dropdown-menu">\r\n              <li><a href="/reports/company/')
+        __M_writer('</h2>\r\n    <nav class=\'navbar nav\'>\r\n      <ul class="nav navbar-nav navbar-left">\r\n        <li class=\'dropdown\'>\r\n          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">\r\n            Actions <span class="caret"></span>\r\n          </a>\r\n            <ul class="dropdown-menu">\r\n              <li><a href="')
+        __M_writer(str( export_link ))
+        __M_writer('">Export Alumni Information </a></li>\r\n            </ul>\r\n        </li>\r\n        <li class=\'dropdown\'>\r\n          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">\r\n            Filters <span class="caret"></span>\r\n          </a>\r\n            <ul class="dropdown-menu">\r\n              <li><a href="/reports/company/')
         __M_writer(str( company.id ))
         __M_writer('">All Alumni</a></li>\r\n              <li><a href="/reports/company/')
         __M_writer(str( company.id ))
@@ -81,6 +85,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"uri": "company.html", "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/reports/templates/company.html", "line_map": {"64": 16, "65": 16, "66": 28, "67": 29, "68": 30, "69": 30, "70": 31, "71": 31, "72": 32, "73": 32, "74": 34, "75": 34, "76": 38, "82": 76, "29": 0, "38": 1, "43": 40, "49": 4, "57": 4, "58": 6, "59": 6, "60": 14, "61": 14, "62": 15, "63": 15}, "source_encoding": "utf-8"}
+{"filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/reports/templates/company.html", "source_encoding": "utf-8", "uri": "company.html", "line_map": {"64": 22, "65": 22, "66": 23, "67": 23, "68": 24, "69": 24, "70": 36, "71": 37, "72": 38, "73": 38, "74": 39, "75": 39, "76": 40, "77": 40, "78": 42, "79": 42, "80": 46, "86": 80, "29": 0, "39": 1, "44": 48, "50": 4, "59": 4, "60": 6, "61": 6, "62": 14, "63": 14}}
 __M_END_METADATA
 """

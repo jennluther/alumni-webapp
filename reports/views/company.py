@@ -24,14 +24,18 @@ def process_request(request):
 
     if request.urlparams[1]=='current':
         alumni = alumni.filter(current_job=True)
+        export_link = '/reports/job_export/' + str(company.id) + '/current'
     elif request.urlparams[1]=='past':
         alumni = alumni.filter(current_job=False)
+        export_link = '/reports/job_export/' + str(company.id) + '/past'
     else:
         alumni = alumni
+        export_link = '/reports/job_export/' + str(company.id)
 
 
     context = {
         'company': company,
         'alumni': alumni,
+        'export_link': export_link,
     }
     return dmp_render(request, 'company.html', context)
