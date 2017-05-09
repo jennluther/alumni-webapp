@@ -99,7 +99,7 @@ class EditUserForm(FormMixIn, forms.Form):
 ###########################
 ### Create User
 @view_function
-@permission_required('users.create_user', login_url='/users/login/')
+@permission_required('users.add_user', login_url='/users/login/')
 def create(request):
 
     #process the form
@@ -164,8 +164,6 @@ class CreateUserForm(FormMixIn, forms.Form):
         user.save()
 
         user.groups.set(self.cleaned_data.get('groups'))
-
-
 
 
 ########################

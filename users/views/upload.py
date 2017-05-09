@@ -13,7 +13,7 @@ import csv
 
 @view_function
 #####Only want admins to be able to upload alumni information
-@permission_required('users.add_group', login_url='/users/login/')
+@permission_required('users.delete_user', login_url='/users/login/')
 def process_request(request):
 
     form = FileFieldForm(request)

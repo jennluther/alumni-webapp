@@ -41,6 +41,9 @@ class LoginForm(FormMixIn, forms.Form):
             raise forms.ValidationError('Invalid username or password')
         if self.user.is_authenticated():
             print(">>>>>is authenticated")
+            for p in Permission.objects.all():
+                if self.user.has_perm(p):
+                    print('>>>>>>>>>>>>>', p)
 
 
 ###################

@@ -14,7 +14,7 @@ from django.utils.translation import ugettext
 
 
 @view_function
-@permission_required('users.add_group', login_url='/users/login/')
+@permission_required('users.delete_user', login_url='/users/login/')
 def process_request(request):
 
     alumni = umod.User.objects.filter(alumni=True)

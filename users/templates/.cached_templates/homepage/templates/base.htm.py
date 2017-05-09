@@ -5,7 +5,7 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1494259365.065982
+_modified_time = 1494348438.199233
 _enable_loop = True
 _template_filename = 'C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/homepage/templates/base.htm'
 _template_uri = 'homepage/templates/base.htm'
@@ -23,12 +23,12 @@ def render_body(context,**pageargs):
     __M_caller = context.caller_stack._push_frame()
     try:
         __M_locals = __M_dict_builtin(pageargs=pageargs)
-        request = context.get('request', UNDEFINED)
-        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
         self = context.get('self', UNDEFINED)
-        user = context.get('user', UNDEFINED)
         def content():
             return render_content(context._locals(__M_locals))
+        request = context.get('request', UNDEFINED)
+        STATIC_URL = context.get('STATIC_URL', UNDEFINED)
+        user = context.get('user', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\r\n')
         __M_writer('\r\n')
@@ -43,7 +43,7 @@ def render_body(context,**pageargs):
         __M_writer('    ')
         __M_writer(str( get_template_css(self, request, context) ))
         __M_writer('\r\n\r\n  </head>\r\n  <body>\r\n\r\n    <header>\r\n\r\n      <nav class="navbar navbar-inverse navbar-static-top">\r\n        <div class="container-fluid">\r\n          <!-- Brand and toggle get grouped for better mobile display -->\r\n          <div class="navbar-header">\r\n            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">\r\n              <span class="sr-only">Toggle navigation</span>\r\n              <span class="icon-bar"></span>\r\n              <span class="icon-bar"></span>\r\n              <span class="icon-bar"></span>\r\n            </button>\r\n            <a class="navbar-brand" href="#">Alumni Database</a>\r\n          </div>\r\n\r\n          <!-- Collect the nav links, forms, and other content for toggling -->\r\n          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">\r\n            <ul class="nav navbar-nav">\r\n              <li><a href="#">Reports</a></li>\r\n              <li><a href="#">Graduation Survey</a></li>\r\n              <li><a href="#">IS News</a></li>\r\n')
-        if user.is_superuser:
+        if user.has_perm('users.delete_user'):
             __M_writer('                <li><a href="/users/users/">Alumni</a></li>\r\n                <li><a href=\'/reports/companies/\'>Companies</a></li>\r\n')
         __M_writer('            </ul>\r\n')
         if user.is_authenticated:
@@ -82,6 +82,6 @@ def render_content(context,**pageargs):
 
 """
 __M_BEGIN_METADATA
-{"uri": "homepage/templates/base.htm", "source_encoding": "utf-8", "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/homepage/templates/base.htm", "line_map": {"64": 114, "65": 114, "71": 80, "77": 80, "18": 4, "83": 77, "20": 5, "22": 0, "33": 2, "34": 4, "35": 5, "36": 14, "37": 14, "38": 17, "39": 20, "40": 20, "41": 21, "42": 21, "43": 26, "44": 26, "45": 26, "46": 52, "47": 53, "48": 56, "49": 57, "50": 58, "51": 61, "52": 61, "53": 69, "54": 70, "55": 75, "60": 83, "61": 87, "62": 87, "63": 87}}
+{"line_map": {"64": 114, "65": 114, "71": 80, "77": 80, "18": 4, "83": 77, "20": 5, "22": 0, "33": 2, "34": 4, "35": 5, "36": 14, "37": 14, "38": 17, "39": 20, "40": 20, "41": 21, "42": 21, "43": 26, "44": 26, "45": 26, "46": 52, "47": 53, "48": 56, "49": 57, "50": 58, "51": 61, "52": 61, "53": 69, "54": 70, "55": 75, "60": 83, "61": 87, "62": 87, "63": 87}, "uri": "homepage/templates/base.htm", "source_encoding": "utf-8", "filename": "C:/Users/MSM-IS-Web/Documents/Alumni Database/Program/alumni-webapp/homepage/templates/base.htm"}
 __M_END_METADATA
 """
