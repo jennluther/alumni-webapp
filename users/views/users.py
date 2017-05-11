@@ -11,6 +11,7 @@ from django import forms
 import io
 import xlsxwriter
 from django.utils.translation import ugettext
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 @view_function
@@ -22,30 +23,53 @@ def process_request(request):
         exitsurvey.append(e.user.id)
         print("$$$$$$", e.user.id)
 
-    alumni = umod.User.objects.filter(alumni=True)
+    alumni_list = umod.User.objects.filter(alumni=True)
 
     if request.urlparams[0] == 'completed':
-        alumni = alumni.filter(id__in=exitsurvey)
+        alumni_list = alumni_list.filter(id__in=exitsurvey)
         export_link = '/users/export/completed'
     elif request.urlparams[0] == "incomplete":
-        alumni = alumni.exclude(id__in=exitsurvey)
+        alumni_list = alumni_list.exclude(id__in=exitsurvey)
         export_link = '/users/export/incomplete'
     elif request.urlparams[0] == "MISM":
-        alumni = alumni.filter(program__icontains='MISM')
+        alumni_list = alumni_list.filter(program__icontains='MISM')
         export_link = '/users/export/MISM'
     elif request.urlparams[0] == "BSIS":
-        alumni = alumni.filter(program__icontains='BSIS')
+        alumni_list = alumni_list.filter(program__icontains='BSIS')
         export_link = '/users/export/BSIS'
     else:
-        alumni = alumni.order_by('last_name').all()
+        alumni_list = alumni_list.order_by('last_name').all()
         export_link = '/users/export/'
+
+    page = request.urlparams[1]
+    print("PAGE", page)
+    paginator = Paginator(alumni_list, 5)
+
+    try:
+        alumni = paginator.page(page)
+    except PageNotAnInteger:
+        alumni = paginator.page(1)
+    except EmptyPage:
+        alumni = paginator.page(paginator.num_pages)
+
+    print("PAGE RANGE", alumni.paginator.page_range)
+    # print("PAGE RANGE", alumni.previous_page_number())
 
     form = SearchForm(request)
     if form.is_valid():
         form.commit()
-        alumni = umod.User.objects.filter(Q(first_name__icontains=form.cleaned_data.get('search')) | Q(last_name__icontains=form.cleaned_data.get('search')))
+        alumni_list = umod.User.objects.filter(Q(first_name__icontains=form.cleaned_data.get('search')) | Q(last_name__icontains=form.cleaned_data.get('search')))
+        paginator = Paginator(alumni_list, 15)
 
+        try:
+            alumni = paginator.page(page)
+        except PageNotAnInteger:
+            alumni = paginator.page(1)
+        except EmptyPage:
+            alumni = paginator.page(paginator.num_pages)
 
+    afilter = request.urlparams[0]
+    print('FILTER', afilter)
 
 
 
@@ -55,6 +79,7 @@ def process_request(request):
         'alumni': alumni,
         'form' : form,
         'export_link': export_link,
+        'afilter': afilter,
 
     }
     return dmp_render(request, 'users.html', context)

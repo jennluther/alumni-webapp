@@ -78,7 +78,7 @@
       %if alumni.number == i:
         <li class="active"><span>${ i }<span class="sr-only">(current)</span></span></li>
       %else:
-        <li><a href="/users/users/${ afilter }/${ i }">${ i }</a></li>
+        <li><a href="users/users/${ requset.urlparams[0] }/${ i }">${ i }</a></li>
       %endif
     %endfor
     %if alumni.has_next():

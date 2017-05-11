@@ -21,7 +21,7 @@ def process_request(request):
     if form.is_valid():
         uploaded_csv = io.TextIOWrapper(request.FILES['file_field'].file, encoding="ASCII")
         alumni_import.ImportAlumni(uploaded_csv)
-        return HttpResponseRedirect('/users/users/')
+        return HttpResponseRedirect('/users/users/all')
 
 
 

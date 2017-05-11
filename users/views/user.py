@@ -44,7 +44,7 @@ def process_request(request):
     if form.is_valid():
         print('>>> form is valid')
         form.commit(user1)
-        return HttpResponseRedirect('/users/users/')
+        return HttpResponseRedirect('/users/users/all')
 
     #render the template
     context = {
@@ -108,7 +108,7 @@ def create(request):
     if form.is_valid():
         print('>>> form is valid')
         form.commit()
-        return HttpResponseRedirect('/users/users/')
+        return HttpResponseRedirect('/users/users/all')
 
     #render the template
     context = {
@@ -175,7 +175,7 @@ def delete(request):
     try:
         user = umod.User.objects.get(id=request.urlparams[0])
     except umod.User.DoesNotExist:
-        return HttpResponseRedirect('/users/users')
+        return HttpResponseRedirect('/users/users/all')
 
     user.delete()
-    return HttpResponseRedirect('/users/users')
+    return HttpResponseRedirect('/users/users/all')
