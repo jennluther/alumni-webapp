@@ -43,7 +43,7 @@ def process_request(request):
 
     page = request.urlparams[1]
     print("PAGE", page)
-    paginator = Paginator(alumni_list, 5)
+    paginator = Paginator(alumni_list, 50)
 
     try:
         alumni = paginator.page(page)
